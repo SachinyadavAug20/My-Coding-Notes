@@ -1,0 +1,12 @@
+s={28.2,82,"harry",292}
+s.add(3.14159)
+print(s)
+s.clear()
+print(s) # empty set looks like this set()
+s.add("empty")
+s.add(3.14159)
+print(s)
+s.remove(3.14159)
+print(s)
+s.add(3.14)
+print(s)

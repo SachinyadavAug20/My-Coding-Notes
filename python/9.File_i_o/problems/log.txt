@@ -1,0 +1,13 @@
+Key Changes Expla Python ed
+    Import Python g random: The random module is imported at the top, allowing you to generate random scores.
+    File Handl Python g with Error Checking:
+        The use of try and except handles the case where "hi-score.txt" might not exist.
+        strip() is used to clean up any whitespace from the read str Python g, preventing conversion errors.
+    High Score Logic:
+        Before convert Python g, it checks if there’s content in the file.
+        It only updates the high score if the current score is greater than the stored high score.
+Instructions
+    Run the Code: You can execute this script  Python  any shhd environment.
+    Check "hi-score.txt": If it doesn't exist, the program will create it after the first run with the high score.
+    Empty or Non-empty File: The code handles both scenarios where "hi-score.txt" is empty or conta Python s a score.
+

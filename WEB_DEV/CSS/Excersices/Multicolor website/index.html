@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-color website</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&display=swap');
+        :root{
+            --Bodycolor:rgb(151, 243, 243);
+            --navColor:rgb(38, 187, 247);
+            --navButtonColor:rgb(176, 227, 247);
+            --navTextColor:rgb(128, 127, 127);
+            --defmargin:2px;
+            --defpad:5px;
+            --HoverTextColor:rgb(143, 173, 255);
+            --HoverBackgroundColor:rgb(14, 241, 102);
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: var(--Bodycolor);
+        }
+        ul{
+            background-color: var(--navColor);
+            padding:2px 5px 3px;
+        }
+        ul li{
+            list-style: none;
+            display: inline-flex;
+            text-align: center;
+            color: var(--navTextColor);
+            margin: var(--defmargin);
+            padding: var(--defpad);
+            border: 0.5px solid green;
+            border-radius: 7.25px;
+            background-color: var(--navButtonColor);
+            font-family: "Baloo Bhai 2", "Poppins",system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: 600;
+            list-style-position: inside;
+        }
+        a{
+            text-decoration: none;
+            color: var(--navTextColor);
+        }
+        header nav ul li:hover{
+            color: var(--HoverTextColor);
+            background-color: var(--HoverBackgroundColor);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><div class="image"><img src="home.png" alt="HOME"></div><a target="_blank" href="/">Home</a></li>
+                <li><div class="image"><img src="about.png" alt="ABOUT"></div><a target="_blank" href="https://youtube.com">About</a></li>
+                <li><div class="image"><img src="menu.png" alt="SERVICE"></div><a target="_blank" href="/">Services</a></li>
+                <li><div class="image"><img src="contact.png" alt="CONTACT"></div><a target="_blank" href="https://meta.com">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+</body>
+</html>

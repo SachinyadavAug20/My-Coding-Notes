@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DataBase</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  </head>
+  <body style="background-color: black;">
+  <%- include('navbar') %>
+
+<div style="text-align: center; margin-top: 50px;font-weight: 700;color: white;padding: 150px;display: flex;flex-direction: column;gap: 5px;width: 100vw;height: 90vh;justify-content: center;align-items: center;position: relative;bottom: 11vh;">
+    <h1 style="margin-bottom: 20px;">Generate 10 Random details to add in Employee Collection of Company DataBase</h1>
+    <button type="button" class="generate_btn btn btn-outline-success" id="generateBtn" style="display: block; margin: 0 auto;transform: scale(1.5);">Generate</button>
+</div>
+    <script>
+      document.querySelector(".generate_btn").addEventListener('click',()=>{
+         location.href = 'generate';
+      }) 
+      </script>
+  </body>
+</html>

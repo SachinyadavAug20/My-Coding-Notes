@@ -1,0 +1,507 @@
+@import url('https://fonts.googleapis.com/css2?family=Boldonse&family=Martel+Sans:wght@200;300;400;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@font-face {
+    font-family: 'MyFont';
+    src: url('font.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins";
+    transition: all 200ms ease-in-out 1ms;
+}
+
+body {
+    background-color: black;
+}
+
+.main {
+    background-image: url(Assets/Images/background.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 88vh;
+    overflow:hidden;
+}
+@media only screen and (orientation: portrait){
+    .main{
+        height: 65vh;
+    }
+    .black_box{
+        height: 65vh !important;
+        position: absolute;
+    }
+    .black_box_nav{
+        height: 15vh;
+    }
+}
+img.logo {
+    padding-top: 30px;
+    width: max(12vw, 100px);
+    filter: brightness(100%);
+}
+
+.black_box {
+    height: 88vh;
+    width: 100%;
+    background-color: black;
+    opacity: 0.67;
+    position: absolute;
+    top: 0;
+}
+
+.black_box_nav {
+    width: 100%;
+    position: absolute;
+    height: 17vh;
+    background-color: black;
+    opacity: 0.1;
+}
+
+.main div.box-nav {
+    width: 85vw;
+    margin: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+}
+
+nav {
+    width: 85vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav div.lanuage {
+    background-color: black;
+    opacity: 0.77;
+    font-size: 17px;
+    color: white;
+    border: 1.5px solid gray;
+    border-radius: 3.25px;
+    padding: 5px;
+    display: flex;
+    align-content: center;
+    text-align: center;
+    max-height: 25px;
+    place-self: center;
+    cursor: pointer;
+    font-family: 'MyFont',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+nav .icon-lang {
+    position: relative;
+    width: 17.567px;
+    padding-left: 0.1vw;
+    padding-right: 0.9vw;
+}
+
+nav .down-arr {
+    width: 18.6px;
+    position: relative;
+}
+
+.buttons {
+    padding-top: 20px;
+    display: flex;
+}
+
+nav span {
+    justify-self: center;
+    align-self: center;
+    padding: 0.1vw;
+    color: white;
+    text-shadow: 2px 2px 5px black;
+}
+
+nav div.buttons {
+    align-self: center;
+    position: relative;
+}
+
+.sign-in {
+    border: 2px solid black;
+    border-radius: 7px;
+    background-color: red;
+    padding: 0.5vw;
+    font-weight: bolder;
+    align-self: center;
+    justify-self: center;
+    position: relative;
+    margin: 1vw;
+}
+
+.sign-in a {
+    color: white;
+    font-size: 19px;
+    text-decoration: none;
+    font-family: 'MyFont', "Martel Sans", 'Arial Narrow Bold', sans-serif;
+}
+
+.sign-in:hover {
+    box-shadow: 0.1px 0.1px 0.01px 0.01px grey;
+    text-shadow: 0.1px 0.1px 0.011px white;
+    transform: scale(1.035);
+    border: 2px double white;
+    background-color: rgb(210, 2, 2);
+}
+
+/* Nav bar is done  */
+div.get-email-address {
+    width: 60vw;
+    height: 60vh;
+    margin: 2.5vh auto;
+    position: relative;
+    text-align: center;
+    z-index: 10;
+    color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+div.get-email-address h1 {
+    padding-top: 3vh;
+    font-size: 48px;
+    font-weight: 4000;
+    font-family: 'MyFont', "Martel Sans", 'Arial Narrow Bold', sans-serif;
+}
+@media only screen and (orientation: portrait){
+    div.get-email-address h1 {
+        padding-top: 3vh;
+        font-size: 32px;
+        font-weight: bolder;
+    }
+    div.get-email-address h3 {
+        font-size: 22px;
+    }
+    div.get-email-address h5 {
+        font-size: 16px;
+    }
+    div.get-email-address div.offer{
+    flex-direction: column;
+    }
+    div.get-email-address div.offer button{
+        width: 30vw;
+    }
+    div.get-email-address div.offer input{
+        width: 75vw !important;
+    }
+}
+div.get-email-address h3 {
+    font-weight: 100;
+    font-size: 20px;
+    padding: 5px;
+    font-family: 'MyFont', "Martel Sans", 'Arial Narrow Bold', sans-serif;
+}
+
+div.get-email-address h5 {
+    padding: 1px;
+    margin-top: 1.125vh;
+    font-size: 14px;
+    font-weight: 600;
+    font-family:  "Martel Sans", 'Arial Narrow Bold', sans-serif;
+}
+
+div.get-email-address div.offer {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    white-space: nowrap;
+    gap: 0.125vw;
+}
+
+
+div.get-email-address div.offer button {
+    background-color: #e50914;
+    margin: 2px;
+    border: 1px solid black;
+    border-radius: 3.25px;
+    display: flex;
+    flex-wrap: wrap;
+    place-items: center;
+    place-content: center;
+    white-space: inherit;
+    padding: 10px;
+}
+
+div.get-email-address div.offer button:hover,.endpage_offer .get button a:hover{
+    border: 1px solid white;
+    background-color: #cf0610;
+    box-sizing: border-box;
+    box-shadow: 1.2px 1.2px 4px white;
+}
+
+div.get-email-address div.offer a {
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+    font-size: auto;
+    vertical-align: middle;
+    padding: 2px;
+    /* padding: 1.3vh 1vh 1vh 1vh; */
+    font-family: 'MyFont';
+    place-self: center;
+}
+
+div.get-email-address div.offer button span.last_letter{
+    font-size: 1em;
+    cursor: pointer;
+    padding: 2px 2px 5px 0px ;
+    vertical-align: middle;
+   font-weight: normal;
+}
+
+div.get-email-address div.offer input{
+    border: 1px solid gray;
+    border-radius: 3.253px;
+    width: 25vw;
+    /* background-color: black; */
+    padding: 1vw;
+    color: white;
+    font-family: 'MyFont', "Martel Sans", 'Arial Narrow Bold', sans-serif;
+    font-size: 18px;
+    opacity: 0.77;
+}
+
+div.get-email-address div.offer input::placeholder {
+    color: grey;
+    font-family: 'MyFont';
+    text-shadow: 0.015px 0.015px 1px black;
+}
+
+div.get-email-address div.offer input:focus {
+    box-shadow: 0 0 7px white;
+    border: 2px solid white;
+    color: white;
+    font-family: 'MyFont', "Martel Sans", 'Arial Narrow Bold', sans-serif;
+}
+
+div.seperation {
+    background-color: #222;
+    width: 100%;
+    height: 0.00125px;
+    box-sizing:border-box;
+    box-shadow: 0 0 15px white;
+    /* glowing effect */
+    border: 2px double rgb(11, 12, 12);
+    outline: 2px solid gray;
+    box-shadow: inset 0 2px 5px rgb(90, 88, 88);
+    margin: 0;
+    padding: 0;
+}
+/* Done till front page 1/9/25 */
+.title_cards,.faq-head{
+    color: white;
+    padding: 4vh 0vw 1vh 9vw;
+    font-family: 'MyFont', "Martel Sans", 'Arial Narrow Bold', sans-serif;
+}
+.cards{
+    display: flex;
+    flex-direction: row;
+    gap: 1.25vw;
+    width: 80vw;
+    padding-top: 10px;
+    margin: auto;
+    padding: 1vh 1vw 1vh 1vw;
+}
+@media only screen and (orientation: portrait) {
+    .cards{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 0vw;
+        width: 95vw;
+    }
+    .first{
+        width: 45vw !important;
+    }
+     div.faq-head{
+        font-size: 21px;
+        padding-left: 10.5vw;
+    }
+}
+.first{
+    background-color: rgba(54, 0, 54, 0.541);
+    width: 23vw;
+    color: white;
+    font-family: 'MyFont', "Martel Sans", 'Arial Narrow Bold', sans-serif;
+    border: 1px solid rgb(29, 29, 29);
+    border-radius: 20px;
+    box-sizing:border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.sec-head{
+    padding: 2vh 1.5vw 2vh 1vw;
+    font-size: 20px;
+    font-weight: bolder;
+    text-shadow: 0px 0px 4px black;
+    font-family: 'MyFont';
+    opacity: 100%;
+}
+.sec-desc{
+    color: rgb(201, 201, 201);
+    padding: 0 1.5vw 3vh 1vw;
+    font-weight: 500;
+    font-size: 14.75px;
+}
+.sec-icon{
+    align-self: flex-end;
+    justify-self: flex-end;
+}
+.sec-icon img{
+    width: 10vw;
+    padding: 2vh 1vw 1vh 1vw;
+}
+/* Done withe cards  */
+.faq-head{
+    font-size: 25px;
+    padding: 2vh 2vw 2vh 8vw;
+}
+.faq_part{
+    width: 82vw;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+}
+.question{
+    padding: 9px 15px;
+    display: flex;
+    background-color: rgba(128, 127, 127, 0.322);
+    justify-content:space-between;
+    transition: all 200ms ease-in-out 2ms;
+}
+.question:hover{
+    transition: all 200ms ease-in-out 2ms;
+    background-color: rgba(226, 226, 226, 0.322);
+    transform: scale(1.0225);
+}
+.question div{
+    color: white;
+    font-size: 20px;
+    font-family: 'MyFont',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.question img{
+    cursor: pointer;
+    filter: invert(0);
+    transition: transform 200ms ease-in-out 20ms;
+}
+.question img:hover{
+    transform: rotate(45deg);
+    transition: transform 200ms ease-in-out 20ms;
+}
+.endpage_offer{
+    color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    padding: 2vw;
+}
+.endpage_offer .title{
+    font-family: 'MyFont',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 2.5vh 3vw 2vh 3vw;
+    text-align: center;
+    font-size: 14px;
+}
+.endpage_offer .get{
+    padding: 1vh 2vw 1vh 2vw;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+.endpage_offer .get input{
+    width: 40vw;
+    /* height: 3.5vw; */
+    padding: 8px 0vh;
+    background-color: rgba(168, 168, 168, 0.459);
+    color: white;
+    font-family: 'MyFont',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: white;
+    
+}
+.endpage_offer .get input::placeholder{
+    /* background-color: rgba(168, 168, 168, 0.459); */
+    color: white;
+    padding: 1vh 1vw;
+    font-family: 'MyFont',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    
+}
+.endpage_offer .get button{
+    /* width: 45vw; */
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    /* height: 3.5vw; */
+    margin: 0.1vh 0.2vw;
+    background-color:#e50914;
+    border: 1px solid grey;
+    border-radius: 3px;
+}
+.endpage_offer .get button a{
+    font-family: 'MyFont',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-decoration: none;
+    text-align: center;
+    color: white;
+   padding: 5px 5px;
+}
+footer{
+    color: grey;
+    width: 82.5vw;
+    margin: auto;
+}
+footer a{
+    color: grey;
+}
+.links{
+    padding: 2vw 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1.5vw;
+}
+@media only screen and (orientation: portrait){
+    .links{
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5vw;
+    }
+    .links a{
+        /* text-align: center; */
+        color: rgb(175, 175, 175);
+    }
+
+}
+footer a:hover{
+    color: rgb(201, 201, 201);
+}
+footer .lanuage{
+    background-color: rgba(82, 82, 82, 0.267);
+    border: 1px solid white;
+    /* font-weight: 560; */
+    color: white;
+    display: inline-flex;
+    font-family: 'MyFont',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    cursor: pointer;
+    padding: 1vh 1vw;
+    gap: 0.5vw;
+    margin: 2vh 0vw 4vh 0vw;
+}
+.NetflixIndia{
+    font-family: 'MyFont',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: white;
+    font-size: 16px;
+    margin: 1vh 0vw 4vh 0vw;
+}
+.end{
+    margin: 1vh 0vw 4vh 0vw;
+    color: white;
+    font-size: 14px;
+}

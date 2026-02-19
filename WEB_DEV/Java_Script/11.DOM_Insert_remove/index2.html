@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <style>
+        *{
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="font-weight: bolder;background-color: red" ; class="box box1">This is a box</div>
+        <div style="font-weight: bolder; background-color: red;" class="box box2">This is a box</div>
+        <div class="box box3" style="background-color: aqua;" data-createdby="Sachin" data-concept="Harry" data-CEO="Rohan">Hii</div>
+    </div>
+    <script>
+
+        let a = document.createElement("div");//created a element
+        a.setAttribute("class", "box");//made it of a class box
+        a.innerHTML = "I came from <b>js</b>\n<div>I am here! </div>";//added text in it and possible to inset as these
+        document.querySelector(".container").append(a);//place / insert the element
+    //OR WAY
+    let constant= document.querySelector(".container");
+    constant.insertAdjacentHTML("beforeend","<div style=\"background-color: #2389da\">I am under <b>water</b>, plz <b>help!</b></div>");
+
+    </script>
+</body>
+</html>

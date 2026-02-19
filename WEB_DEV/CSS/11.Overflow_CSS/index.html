@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overflow</title>
+    <style>
+        .box {
+            width: 10vw;
+            height: 10vh;
+            margin: auto;
+            overflow: auto;
+            border: 2px solid blueviolet;
+        }
+
+        .box1 {
+            border: 2px solid black;
+            width: 50vw;
+            height: 10vw;
+            /* overflow: scroll; */
+            overflow: hidden;
+            /* overflow-x: hidden;
+            overflow-y: scroll; */
+            /* OR */
+            overflow: hidden auto;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <p>I am a box, Lorem ipsum dolor sit amet consectetur, adisicing elit. Iure accusamus cupiditate, maxime
+            dolorem commodi iusto eligendi officia velit tempora incidunqui facere earum. Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit. Qui ipsam sit error! Odivoluptate amet neque quidem unde veniam! Blanditiis,
+            fugit unde corrupti deserunt doloribus porro. Aspernatur odiut placeat asperiores deleniti labore saepe
+            exercitationem cumque impedit nobis numquam, delectus temporpossimus ea totam. Magnam!</p>
+    </div>
+    <p class="box1">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse ex nobis cupiditate dolorem harum
+        maxime suscipit maiores. Modi laudantium laboriosam praesentium tempore exercitationem doloremque magni voluptas
+        non reprehenderit, molestias maiores delectus sunt iure quam voluptatem consequatur suscipit. Cumque architecto
+        illum ea nemo labore deleniti in voluptatibus beatae sapiente sed odio eligendi laboriosam officia autem numquam
+        suscipit voluptatum quasi necessitatibus, nisi qui! Deserunt porro ducimus, quidem provident cupiditate aliquam
+        facilis natus unde rem nam quae quis saepe eveniet a dolorum, similique, doloremque omnis fuga iusto. Debitis
+        alias reiciendis quo adipisci!</p>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specificity of CSS</title>
+    <style>
+        /* the specificity of this is 0 */
+        * {
+            color: aqua;
+        }
+
+        /* the specificity of this is 10 */
+        .yellow {
+            color: yellow;
+        }
+
+        /* the specificity of this is 100 */
+        /* #headline {
+            color: blue;
+        } */
+
+        /* the specificity of this is 10 */
+        .cred {
+            color: red;
+        }
+
+        /* the specificity of this is 10 */
+        .cpurple {
+            color: purple;
+        }
+
+        /* the specificity of this is 1 */
+        h1 {
+            color: aqua;
+        }
+
+        /* the specificity of this is 10 */
+        [data-x="Aha"] {
+            color: brown;
+        }
+
+        /* the specificity of this is 10 */
+        [data-x=A] {
+            background-color: aquamarine;
+        }
+
+        /* the specificity of this is 1 */
+        .h3 {
+            color: magenta !important;
+        }
+        
+        /* the specificity of this is 1+10=11 */
+        h1.yellow{
+            color: yellow;
+        }
+        h1.yellow:hover{
+            color: limegreen;
+        }
+        
+        /* the specificity of this is 1+10=11 */
+        a.harryclass.rohanclass[href]:hover{
+            color: lime;
+        }
+        
+        </style>
+</head>
+
+<body>
+    <div>
+        <h1 id="headline" class="yellow cred cpurple" data-x="A">Specificity CSS</h1>
+        <h2 data-x="Aha">CSS</h2>
+        <h3 style="color: lightseagreen;" class="h3">This is inline style</h3>
+    </div>
+    <a href="Google.com" class="harryclass rohanclass">Hover Google</a>
+    <iframe width="853" height="480" src="https://www.youtube.com/embed/EEpj1zC8HkE" title="MATRICES | S-5 | RANK OF MATRIX | NORMAL FORM | ENGINEERING MATHS | SEM-1 | SAURABH DAHIVADKAR" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</body>
+
+</html>

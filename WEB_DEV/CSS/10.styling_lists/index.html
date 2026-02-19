@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list CSS styling</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li{
+            list-style:devanagari;
+            background-color: aqua;
+            border: 2px dashed darkcyan;
+            outline: 2px double darkcyan;
+            border-width: 3.5px;
+            padding: 2px;
+            outline-offset: 0.51px;
+            border-radius: 7.5px;
+            /* list-style-type: "🏠"; */
+            /* list-style-position: inside; */
+            /* list-style-image: url(icon.png); */
+            /* list-style: "🏠" inside url(icon.png); */
+            list-style: "🏠" inside;
+        }
+        div.actualNavBar ul li{
+            /* list-style: none; */
+            list-style-position: inside;
+            display: list-item;
+            padding: 10px;
+            background-color: wheat;
+            margin: 10px;
+            border-radius: 10px;
+            border: 2px solid black;
+            outline: 2px solid black;
+        }
+        li.home{
+            list-style-type: "🏡" ;
+        }
+        li.about{
+            list-style-type: "🎭";
+        }
+        li.contact{
+            list-style-type: "📞";
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Lists in CSS</h1>
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Contact</li>
+            </ul>
+        </nav>
+        <div class="actualNavBar">
+            <ul>
+                <li class="home">Home</li>
+                <li class="about">About</li>
+                <li class="contact">Contact</li>
+                
+            </ul>
+        </div>
+    </header>
+</body>
+</html>

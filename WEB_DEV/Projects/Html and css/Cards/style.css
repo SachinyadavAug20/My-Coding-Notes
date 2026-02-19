@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+header{
+    margin: 10px;
+    margin-top: 10px;
+    padding: 10px;
+
+}
+body{
+    background-color: #eaf0f5;
+    /* display: flex; */
+}
+header h1.head{
+    display: inline;
+    height: 10px;
+    width: 10px;
+}
+main{
+    display: inline-block;
+}
+header{
+    border: 2px solid yellowgreen;
+    border-radius: 10px;
+    text-transform: uppercase;
+    text-align: center;
+}
+main{
+    margin: auto;
+}
+.card_box {
+    
+    border: 1.5px solid #555;
+    /* outline: 2px solid rgb(173, 173, 173); */
+    border-radius: 10px;
+    padding: 2px;
+    margin: 20px;
+    width: 189px;
+    background-color: #fff;
+}
+div.card_box>img {
+    
+    padding: 1px;
+    position: relative;
+    left: -2px;
+    height: 140px;
+    top: -1px;
+    border: 2px solid white;
+    border-radius: 10px;
+    box-sizing: border-box;
+    width: 193px;
+    outline: 1px solid black;
+    outline-offset: -4px;
+    height: 123px;
+}
+main{
+    display: block;
+    width: 50vw;
+}
+.tage{
+    position: relative;
+    background-color: #f0f4f8;;
+    top: -12px;
+    left: 8px;
+    padding: 0.5px 7px;
+    border:0.5px solid #555;
+    border-radius: 8.5px;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 9px;
+    display: inline-block;
+    font-weight: 400;
+    color: #555;
+}
+div.tage:hover{
+    color: black;
+    background-color: #cccccc;
+}
+.card_heading{
+    font-weight: bold;
+    position: relative;
+    top: -10px;
+    margin-top: -1px;
+    font-size: 18px;
+    margin-bottom: 2px;
+}
+.card_discription{
+    font-weight: lighter;
+    font-size: 10px;
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    left: 2px;
+    top: -10px;
+    color: #555;
+    font-weight: 400;
+
+}
+.readmore{
+    text-align: center;
+    display: block;
+    border: 2px solid white;
+    width: 75px;
+    border-radius: 20px;
+    margin: auto;
+    position: relative;
+    top: -12px;
+    text-decoration: none;
+    color: rgb(19, 19, 243);
+    padding: 2px;
+    background-color: rgba(144, 211, 252, 0.425);
+    font-size: 11px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+}
+a.readmore:hover{
+    color: darkblue;
+    background-color: rgba(27, 158, 240, 0.425);
+
+}
+
+div.referrence{
+    display: inline;
+}
+span.referrence img{
+    display: inline-block;
+    width: 240px;
+}

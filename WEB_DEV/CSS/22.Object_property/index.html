@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Object fit & position Property</title>
+    <style>
+        .containers{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .container{
+            height: 30vh;
+            width: 30vw;
+            border: 2px dashed grey;
+            background-color: azure;
+            outline: 2px solid gray;
+            margin: 20px;
+            background-image: url("background.jpeg");
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-repeat: repeat-x;
+            /* background-repeat: repeat-y; */
+        }
+        img.image{
+            width: 30vw;
+            height: 30vh;
+        }
+        img.image1{
+            object-fit: cover;
+        }
+        img.image2{
+            object-fit: contain;
+        }
+        img.image3{
+            object-fit: cover;
+            object-position: bottom right;
+        }
+        img.image4{
+            object-fit: fill;
+        }
+        img.image5{
+            object-fit: cover;
+            object-position: 10px 20px;
+            object-position: 50% 50%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="containers">
+
+        <div class="container">
+            <img class="image1 image" src="dog.png" alt="dog">
+        </div>
+        <div class="container">
+            <img class="image2 image" src="dog.png" alt="dog">
+        </div>
+        <div class="container">
+            <img class="image3 image" src="dog.png" alt="dog">
+        </div>
+        <div class="container">
+            <img class="image4 image" src="dog.png" alt="dog">
+        </div>
+        <div class="container">
+            <img class="image5 image" src="dog.png" alt="dog">
+        </div>
+        <div class="container">
+            <img class="image6 image" src="dog.png" alt="dog">
+        </div>
+        <div class="container">
+
+        </div>
+        
+    </div>
+</body>
+</html>

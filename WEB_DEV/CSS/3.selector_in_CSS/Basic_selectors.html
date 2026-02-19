@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selector</title>
+    <style>
+        /* element selector  */
+        div{
+            background-color: red;
+        }
+        span{
+            background-color: blue;
+        }
+        section{
+            background-color: yellow;
+        }
+        body{
+            background-color: paleturquoise;
+        }
+        /* class selector  */
+        .Red{
+            color: red;
+        }
+        .Blue{
+            color: blue;
+        }
+        /* ID selector  */
+        #thin_border{
+            border: 2px solid black;
+        }
+        #thick_border{
+            border: 5px solid black;
+        }
+        #seconddiv{
+            background-color: blueviolet;
+        }
+        /* Child selector  */
+        div>p{
+            background-color: green;
+            color: lightskyblue;
+            border: 2px solid lightseagreen;
+        }
+        /* Desended selector  */
+        div p{
+            background-color: purple;
+            color: white;
+            border: 2px solid saddlebrown;
+        }
+        /* Universal selector  */
+        *{
+            border: 5px solid lightpink;
+            margin: 0;
+            padding: 0;
+        }
+        /* pesudo selector  */
+        a:visited{
+            color: lightseagreen;
+            background-color: blueviolet;
+        }
+        a:link{
+            color: red;
+            background-color: lightcyan;
+        }
+        a:active{
+            color: white;
+            background-color: black;
+        }
+        a:hover{
+            color: black;
+            background-color: lightseagreen;
+        }
+        p:first-child{
+            color: black;
+            background-color: blanchedalmond;
+        }
+    </style>
+</head>
+<body>
+    <div class="Red" id="thin_border">I am a div
+        <p>I am a paragraph in a div</p>
+    </div>
+    <span class="Blue" id="thick_border">I am a span</span>
+    <section class="Blue" id="firstsection">I am section</section>
+    <div class="Red" id="seconddiv">I am another div</div>
+    <section class="Red" id="secondsection">I am another section</section>
+    <div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas eos autem, quod minima magni asperiores dignissimos pariatur necessitatibus iste saepe vel nihil aut voluptatibus. Perspiciatis voluptate ipsam fuga ratione placeat.</p>
+    </div>
+    <div>
+        <article>
+            <span>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo sequi quas sint unde odit maxime consequuntur ipsum in, nesciunt animi quae suscipit pariatur accusamus nisi illo aut ducimus, corrupti nulla!</p>
+            </span>
+        </article>
+    </div>
+    <a target="_blank" href="https://google.com">Google</a>
+    <a target="_blank" href="https://facebook.com">Facebook</a>
+    <a target="_blank" href="https://facebook7.com">Quara</a>
+    <div class="one">
+        <p>I am first child of div</p>
+    </div>
+    <main class="one">
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse excepturi enim eos dicta nobis. Aperiam quam nisi ipsum repudiandae neque, eligendi molestiae eius fuga odio ratione optio esse, quia velit.</p>
+    </main>
+    <main class="second"></main>
+
+</body>
+</html>

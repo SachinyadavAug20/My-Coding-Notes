@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sizing in CSS</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: lightgoldenrodyellow;
+        }
+        h1{
+            background-color: azure;
+            text-align: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: bolder;
+            font-style: normal;
+            text-transform: uppercase;
+            border: 5px solid rgb(93, 24, 150);
+            margin: auto;
+            
+        }
+        html{
+            font-size: 16px;
+        }
+        .box{
+            box-sizing: border-box;
+            border: 2px solid black;
+            /* width: 1366px; */
+            width: 60vw;
+            min-height: 5vh;
+            margin: auto;
+            text-align: center;
+            background-color: mediumaquamarine;
+        }
+        .container{
+            box-sizing: border-box;
+            border: 2px solid black;
+            /* width: 1366px; */
+            width: 60vw;
+            margin: 23px auto;
+            text-align: center;
+            background-color: magenta;
+            min-height: 20vh;
+            font-size: 1.02rem;
+        }
+        .container p{
+            font-size: 1.2em;
+        }
+        .units{
+            margin: auto;
+            text-align: left;
+            border: 2px solid goldenrod;
+            background-color: aqua;
+            color: darkblue;
+            width: 75vmax;
+            min-height: 25vmin;
+        }
+        .mycontainer{
+            box-sizing: border-box;
+            border: 2px solid yellowgreen;
+            background-color: lime;
+            color: green;
+            font-weight: bolder;
+            width: 175vmin;
+            text-align: center;
+            border: 2px double rebeccapurple;
+            margin: auto;
+            min-height: 10vmax;
+        }
+        ul{
+            font-style: italic;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: left;
+            color: darkblue;
+            background-color: moccasin;
+            border: 2px solid blueviolet;
+            min-height: 2vh;
+        }
+        li{
+            color: black;
+            background-color: bisque;
+            border: 2px dotted gold;
+            font-family: cursive,system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            text-decoration: underline;
+            text-decoration-color: maroon;
+            text-decoration-thickness: 2px;
+            min-height: 2vh;
+        }
+        .mycontainer div{
+            border: 2px double darkcyan;
+        }
+        .mycontainer p{
+            width: 50%;
+            border: 2px double purple;
+        }
+        .mycontainer p span{
+            width: 75%;
+            display: block;
+            color: black;
+            border: 2px solid blanchedalmond;
+            
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Different sizing units in CSS</h1>
+    </header>
+    <main>
+        <section class="units">
+            <ul class="list_of_units">
+                <li>Px -pixels(not responsive)</li>
+                <li>vw -viewport width(% of width)</li>
+                <li>vh -viewport height(% of height)</li>
+                <li>em -*Current size(multiplier of current default or inherited size)</li>
+                <li>rem -*Current size of root element(root element are html)</li>
+                <li>vmin & vmax -this is same as vw/vh it decides on min and max of hight/width</li>
+                <li>% -it is percentage of parent value(parents value must be set before hand)</li>
+            </ul>
+        </section>
+        <div class="box">This is a box</div>
+        <div class="container"><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui ipsum a ratione! Voluptate sit magnam commodi excepturi laboriosam consequuntur eos iusto explicabo sequi, nam molestias delectus numquam aut dolore nisi cum reiciendis sapiente. Ducimus?</p></div>
+        <div class="mycontainer"><div>I am another container</div>
+            <p>I am p in a div of class mycontainer,i take 50% of width of parent div. "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus porro tempore dignissimos laboriosam nemo, sunt maxime nostrum magnam ex quaerat aliquam, reprehenderit sapiente cum obcaecati! Reiciendis eos eum doloremque fuga nesciunt harum aliquam illo, minus apertetur est, doloremque corporis quo sit animi tat corporis culpa dicta voluptatum, consequatur rerum delectus quas, dolores obcaecati architecto esse odio. Veritatis sunt, exercitationem laboriosam recusandae enim quaerat temporibus quis repellendus fugiat ea aperiam fugit ducimus? Ipsa officiis laborum assumenda doloribus neque voluptate modi libero atque, qui dolorum tenetur quod nihil deleniti quos architecto distinctio minus iste tempore alias maiores esse ipsam earum adipisci? Commodi nemo voluptatum praesentium omnis tempore?"
+                <span>This is a span in p in div of class mycontainer, i take 75% of parent p</span>
+            </p>
+            
+        </div>
+    </main>
+</body>
+</html>

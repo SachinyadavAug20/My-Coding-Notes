@@ -1,0 +1,14 @@
+.Red{
+    background-color: red;
+}
+.blue{
+    color: blue;
+}
+#firstdiv{
+    border: 2px solid black;
+
+}
+#seconddiv{
+    border: 2px solid green;
+    background-color: greenyellow;
+}

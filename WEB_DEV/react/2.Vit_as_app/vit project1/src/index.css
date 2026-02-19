@@ -1,0 +1,15 @@
+div>img{
+    background-color: rgb(100, 100, 100);
+    width: 200px;
+    height: 200px;
+}
+*{
+    margin: 0;
+    padding: 0;
+    transition: all 150ms ease-in-out;
+}
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}

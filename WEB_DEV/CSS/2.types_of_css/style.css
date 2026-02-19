@@ -1,0 +1,20 @@
+section{
+    color: blue;
+    background-color: yellow;
+    border: 2px solid black;
+}
+footer{
+    background-color: aquamarine;
+    color: maroon;
+    border: 2px solid blueviolet;
+}
+span,div{
+    color: black;
+    background-color: lightseagreen;
+    border: 2px solid lightgreen;
+}
+textarea{
+    color: blue;
+    background-color: lightskyblue;
+    border: 5px solid yellowgreen;
+}

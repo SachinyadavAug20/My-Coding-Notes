@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Shadows</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            border-radius: 15px;
+        }
+        body{
+            background-color: linen;
+
+        }
+        h1{
+            border: 2px dotted lime;
+            text-align: center;
+            text-transform: uppercase;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-weight: bolder;
+            text-shadow: 2px 2px 2px dimgray;
+            background-color: antiquewhite;
+            padding: 2px;
+            margin: 15px;
+            box-sizing: border-box;
+            outline: 2px solid lime;
+            outline-offset: 0.5px;
+        }
+        h2{
+            color: black;
+            margin: 2vh auto;
+            text-indent: 5px;
+            text-transform: capitalize;
+            border: 2px dashed darkgoldenrod;
+            text-shadow: 1px 1px 2px darkslateblue;
+            background-color: yellow;
+            padding: 2px;
+            margin: 5px;
+            outline: 2px double darkgoldenrod;
+            outline-offset: 0.1px;
+            box-shadow: 3px 3px 2px 3px rgb(173, 124, 0);
+            text-shadow: 2px 2px 2px white;
+        }
+        .box{
+            border: 2px solid darkslategray;
+            font-weight: bolder;
+            font-family: cursive,-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            padding: 12px;
+            box-sizing: border-box;
+            box-shadow:5px 5px 5px 2px lime;
+            min-width: 100px;
+            min-height: 1vh;
+            margin: 3.5vh auto;
+            text-shadow: 2px 2px 5px salmon;
+        }
+        .text{
+            border: 2px solid darkturquoise;
+            font-family:  'Arial Narrow Bold', sans-serif;
+            text-transform: capitalize;
+            width: 75vw;
+            margin: auto;
+            min-height: 15vh;
+            color: white;
+            background-color: darkmagenta;
+            box-shadow: 9px 9px 5px 2px rgba(255, 146, 255, 0.616);
+            line-height: 25px;
+            text-shadow: 2px 2px 2px darkblue;
+        }
+        .outline{
+            margin: 25px;
+            padding: 2px;
+            box-sizing: border-box;
+            border: 2px solid blue;
+            outline: 2px solid red;
+            outline-offset: 1px;
+            background-color: darkred;
+            color: lightcyan;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: 600;
+            min-height: 5vh;
+            min-width: 90vw;
+        }
+    </style>
+</head>
+<body>
+    <header><h1>Shadows and outline</h1></header>
+    <main>
+        <h2>Shadows</h2>
+        <div class="box">I am a box</div>
+        <div class="text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, repudiandae accusantium blanditiis qui praesentium eveniet sequi aspernatur dolor minima! Consequuntur similique omnis debitis!</p></div>
+        <h2>outline</h2>
+        <div class="outline">I am a box</div>
+        <p class="outline">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora accusantium distinctio iste quo ad ea eos nobis, officia dolore, placeat animi nam!</p>
+    </main>
+</body>
+</html>

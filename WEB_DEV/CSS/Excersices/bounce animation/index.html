@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bounce Ball</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: auto;
+            margin-top: 5vh;
+            /* padding: 10px; */
+            border: 2px solid gray;
+            height: 60vh;
+            width: 76vw;
+            background-color: rgb(91, 143, 255);
+        }
+
+        .box {
+            border: 2px solid;
+            border-radius: 700px;
+            width: 15vh;
+            height: 15vh;
+            position: relative;
+            top: 45vh;
+            background-color: red;
+            /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+        }
+        .box{
+            animation: x-movement 4s linear 1s 1,
+            y-movement 2s cubic-bezier(0, 1, 0.1, 1) 1s 1,
+            y-movement 2s cubic-bezier(0, 1, 0.1, 1) 3s 1 alternate-reverse forwards;
+
+        }
+
+        @keyframes x-movement {
+            from {
+
+            }
+
+            to {
+                transform: translateX(61.5vw);
+            }
+        }
+
+        @keyframes y-movement {
+            from {top: 75%;}
+
+            to{
+                top: -0.4%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box"></div>
+    </div>
+</body>
+
+</html>

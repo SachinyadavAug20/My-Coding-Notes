@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Testing post request</title>
+</head>
+<body>
+   <h1>This is a public site for any one to see</h1>
+      <h2>Hello 1.html</h2>
+      <script>
+      async function tsetpos(){
+         let a=await fetch("/",{method:"PUT"})//doing post request on server /
+         let b= await a.text();
+         console.log(b);
+      }
+      tsetpos();
+      </script>
+</body>
+</html>

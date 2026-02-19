@@ -1,0 +1,17 @@
+l1=[2,3,1,43,5,7,9,5,6,10,22,11]
+print("l1 original : ",l1)
+l1.append(21)
+print("l1.append(21) : ",l1)
+l1.sort()
+print("l1.sort() : ",l1)
+l1.reverse()
+print("l1.reverse() : ",l1)
+print("print(l1.pop()) : ",l1.pop())
+print("l1.pop() : ",l1)
+l1.pop(2)
+print("l1.pop(2) : ",l1)
+l1.remove(5)
+print("l1.remove(5) : ",l1)
+
+print("print(l1.insert(2,69)) : ",l1.insert(2,69))
+print("l1.insert(2,69) : ",l1)

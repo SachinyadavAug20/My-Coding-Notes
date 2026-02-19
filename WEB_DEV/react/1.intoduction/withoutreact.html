@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter -without react</title>
+    <style>
+        * {
+            background-color: black;
+            color: white;
+            padding: 15px;
+            margin: 20px;
+        }
+
+        h1 {
+            background-color: gray;
+            text-align: center;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            font-weight: 900;
+            font-size: 50px;
+            font-family: cursive;
+        }
+
+        .count {
+            background-color: yellow;
+            color: black;
+            font-weight: 600;
+            text-align: center;
+            width: auto;
+            margin-right: 30vw;
+            font-size: 100px;
+            margin-left: 30vw;
+            margin-top: 10%;
+        }
+
+        #btn {
+            align-items: center;
+            width: auto;
+            padding: 12px;
+            margin-right: 45vw;
+            margin-left: 45vw;
+            margin-top: 20vh;
+            transform: scale(2.2);
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-weight: 600;
+            color: lime;
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Counter clicker</h1>
+    <div class="count" id="counter">
+        0
+    </div>
+    <button type="button" id="btn">Clicker</button>
+    <script>
+        let count = 0;
+        let counter = document.getElementById("counter");
+        count = parseInt(counter.innerText);
+        console.log(count);
+        document.getElementById("btn").addEventListener('click', ()=>{
+            count++;
+            counter.innerText=count;
+        });
+
+    </script>
+</body>
+
+</html>

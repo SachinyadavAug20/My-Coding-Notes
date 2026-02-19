@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Filters</title>
+    <style>
+        .container{
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px;
+            margin: auto
+        }
+        img{
+            border: 2px solid black;
+            margin: 10px;
+            box-shadow: 2px 2px 5px 5px ;
+        }
+        .image1:hover{
+            filter: blur(5px);
+        }
+        .image2:hover{
+            filter: brightness(120%);
+        }
+        .image3:hover{
+            filter: contrast(120%);
+        }
+        .image4:hover{
+            filter: grayscale(100%);
+        }
+        .image5:hover{
+            filter: sepia(100%);
+        }
+        .image6:hover{
+            filter: hue-rotate(90deg);
+        }
+        .image7:hover{
+            filter: invert(0.625);
+        }
+        .image8:hover{
+            /* filter: invert(0.621); */
+            filter: opacity(0.25);
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="image1" src="dog.png" alt="dog" width="300vw">
+        <img class="image2" src="dog.png" alt="dog" width="300vw">
+        <img class="image3" src="dog.png" alt="dog" width="300vw">
+        <img class="image4" src="dog.png" alt="dog" width="300vw">
+        <img class="image5" src="dog.png" alt="dog" width="300vw">
+        <img class="image6" src="dog.png" alt="dog" width="300vw">
+        <img class="image7" src="dog.png" alt="dog" width="300vw">
+        <img class="image8" src="dog.png" alt="dog" width="300vw">
+    </div>
+</body>
+</html>

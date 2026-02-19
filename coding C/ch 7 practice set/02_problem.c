@@ -1,0 +1,7 @@
+ #include<stdio.h>
+ 
+ int main(){
+    int s[3]={1,2,3};
+    printf("%d",*(s +3)); // same as printf("%d",*(&s[0] +3));
+    return 0;
+ }

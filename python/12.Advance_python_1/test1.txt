@@ -1,0 +1,2 @@
+what is the use of walrus operator in python
+what is the use of walrus operator in python

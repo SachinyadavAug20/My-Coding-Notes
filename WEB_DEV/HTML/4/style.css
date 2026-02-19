@@ -1,0 +1,12 @@
+td{
+    border: 2px solid blue;
+    background-color: rgb(144, 144, 252);
+}
+th{
+    border: 2px solid red;
+    background-color: rgb(243, 147, 147);
+}
+caption{
+    border: 2px solid black;
+    background-color: aqua;
+}

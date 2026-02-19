@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Id and class</title>
+    <style>
+        .container{
+            margin: 0;
+            padding: 0;
+        }
+        .box,.can{
+        border: 2px solid grey;
+            width: 34px;
+            height: 34px;
+            margin: 10px;
+            padding: 7px; 
+            text-align: center;
+        }
+        .container{
+            display: flex;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <h1 class="header">Id and class</h1>
+    <div class="container">
+        <div class="box">Box 1</div>
+        <div class="box">Box 2 </div> 
+        <div class="box" id="redbox">Box 3</div>
+        <div class="box">Box 4</div>
+        <div class="box">Box 5</div>
+    </div>
+
+    <div class="container">
+        <div class="can">1</div>
+        <div class="can">2</div>
+        <div class="can">3</div>
+        <div class="can">4</div>
+        <div class="can">5</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

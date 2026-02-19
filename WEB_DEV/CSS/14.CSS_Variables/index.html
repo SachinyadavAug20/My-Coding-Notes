@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Variables</title>
+    <style>
+        :root{
+            --color: rgb(104, 104, 255);
+            --seccolor: rgb(135, 203, 226);
+            --defmargin: 10px;
+            --defpad: 12px;
+            --defop: 0.5;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        h1{
+            margin: var(--defmargin);
+            padding: var(--defpad);
+            text-align: center;
+            border: 2px solid gray;
+            border-radius: 20px;
+            background-color: aquamarine;
+            opacity: var(--defop);
+        }
+        body{
+            background-color: #eaf0f5;
+        }
+        ul{
+            display: flex;
+        }
+        ul li{
+            list-style: none;
+            list-style-position: inside;
+            padding: var(--defpad);
+            border: 2px solid black;
+            border-radius: 20px;
+            margin: 2px;
+            background-color: var(--color,blue);
+        }
+        div:nth-child(2){
+            padding: var(--defpad);
+            border-radius: 10px;
+            outline: 1px solid black;
+            min-width: 10vw;
+            display: inline-block;
+            font-weight: bold;
+            margin: var(--defmargin);
+            font-family:Arial, Helvetica, sans-serif;
+        }
+        .container{
+            background-color: var(--seccolor ,lightblue);
+            border: 2px solid var(--seccolor ,lightblue);
+            border-radius: 10px;
+            padding: var(--defpad);
+            margin: var(--defmargin);
+            color: darkblue;
+            text-shadow: 0.5px 0.5px 3px rgb(24, 183, 236);
+            outline: 2px solid rgb(95, 188, 219);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            opacity: var(--defop);
+            
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS Variables</h1>
+        <div>
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <div class="container">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias accusantium excepturi adipisci similique doloribus doloremque, iure magni labore corporis quis ipsa autem facere.</div>
+    </main>
+</body>
+</html>

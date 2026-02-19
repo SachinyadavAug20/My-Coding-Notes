@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factorial</title>
+</head>
+<body>
+    
+    <script>
+        let num=prompt("Enter a number");
+        let  result_reduce,result_loop;
+
+        //by loop
+        result_loop=1;
+        for(let index=num;index>=1;index--){
+            result_loop*=index;
+        }
+        console.log("result by loop ",result_loop);
+        alert("result by loop "+result_loop)
+        
+        //bby reduce
+        let numbers=[];
+        for(let index=num;index>=1;index--){
+            numbers.push(index);
+        }
+        result_reduce=numbers.reduce((a,b)=>{
+            return a*b;
+        })
+        console.log("result by reduce ",result_reduce);
+        alert("result by reduce "+result_reduce);
+        
+    </script>
+</body>
+</html>

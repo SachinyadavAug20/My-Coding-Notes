@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        main,dl{
+            color: yellow;
+            background-color: yellowgreen;
+            border: 2px solid greenyellow;
+        }
+        p{
+            color: black;
+            background-color: blanchedalmond;
+            box-sizing: 2px solid black;
+        }
+        dt,dd{
+            color: aqua;
+            background-color: red;
+            border: 2px solid black;
+        }
+        aside{
+            color: yellow;
+            background-color: grey;
+            border: 10px solid lightgreen;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <title>Diffrent types of CSS</title>
+</head>
+<body>
+    <header style="color: aqua;background-color: red;border: 2px solid black;">
+        <h1>Types of CSS</h1>
+        <aside><ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul></aside>
+    </header>
+    <main>
+        <p>There are 3 types of CSS. that are Inline, Internal and External CSS</p>
+        <dl>
+            <dt>Inline CSS</dt>
+            <dd>This CSS is writtern in a tag directl to style it on the line.not suggested often but useable in a case of quick chicking here and there</dd>
+            <dt>Internal CSS</dt>
+            <dd>This CSS is also written in the html file but it is separated from the body in a style tage in the head tag this provides more controle over papge and it is the leap in the direction of external  CSS</dd>
+            <dt>External CSS</dt>
+            <dd>This CSS is used to write in an external file with .css extension the file is then linked withe the page by using link tag in the head most used way is this only as the designe element can be shared among pages and code becomes more reuseable</dd>
+
+        </dl>
+        <section>
+            <p>*On this side all 3 CSS used in header, main and footer of the page respectively</p>
+        </section>
+    </main>
+    <footer>
+        <div>
+            <h5>Copyright &copy; samtagon_studio</h5>
+        </div>
+        <span>
+            <h6>All rights are reserved by law</h6>
+        </span>
+        <section>
+            <label for="Comment">Give you review and suggestion</label>
+            <textarea name="Comment" id="Comment" rows="10" cols="59"></textarea>
+        </section>
+    </footer>
+</body>
+</html>

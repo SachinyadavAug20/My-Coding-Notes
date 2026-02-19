@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This is a form learning page">
+    <title>Forms</title>
+</head>
+
+<body>
+    <h1>Form to apply for SCIET</h1>
+    <form action="post">
+        <div><label for="Username">Enter your name</label>
+            <input type="text" name="firstName" id="Username" placeholder="Username">
+        </div>
+        <div><input type="radio" id="Male" name="Gender" value="Male">
+            <label for="Male">Male</label>
+            <input type="radio" id="Female" name="Gender" value="Female">
+            <label for="Female">Female</label>
+        </div>
+        <div>
+            <input type="checkbox" name="Subscription" id="Subscribe">
+            <label for="Subscribe">Subscribe to Weekly newsletter</label>
+        </div>
+        <div>
+            <label for="Comment">Comment section</label>
+            <textarea name="Comment" id="Comment" rows="10" cols="10" placeholder="Enter you thougths"></textarea>
+        </div>
+        <div>
+            <label for="Character">Selects your character</label>
+            <select name="Character" id="Character">
+                <option value="Hero">Hero</option>
+                <option value="Vilan">Vilain</option>
+                <option value="Cat">Cat</option>
+                <option value="Dog">Dog</option>
+            </select>
+        </div>
+    </form>
+</body>
+
+</html>

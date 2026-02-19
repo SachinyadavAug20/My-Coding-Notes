@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More CSS selector</title>
+    <style>
+        *{
+            margin: 2px;
+            padding: 5px;
+            border: 2px solid grey;
+            border-radius: 7px;
+        }
+        .box:first-child{
+            background-color: aqua;
+        }
+       div.para::first-line{
+            color: red;
+        }
+        .boxes *{
+            border: 1px solid red;
+            outline: 2px solid black;
+        }
+        [data-color="primary"]{
+            background-color: yellow ;
+            padding-top: 20px;
+            padding-bottom: 2px;
+            padding-left: 30px;
+        }
+        .box:nth-child(2),.para{
+            background-color: antiquewhite;
+        }
+        .box:nth-child(odd){
+        /* .box:nth-child(even){ */
+            font-family: cursive;
+        }
+        .box:nth-last-child(1){
+            background-color: aquamarine;
+        }
+        .box:nth-child(5)::before{
+            content: "!! New content !! ";
+            color: red;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+        .box:nth-child(5)::after{
+            content: " !! New content !!";
+            color: red;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+        .boxes *::selection{
+            color: aqua;
+            background-color: black;
+        }
+        .box::first-letter{
+            color: red;
+            font-size: 20px;
+        }
+        .para::first-letter{
+            color: darkorchid;
+            font-weight: bolder;
+            font-size: 30px;
+        }
+        input.name::placeholder{
+            color: lightblue;
+            font-family: cursive;
+            font-size: 18px;
+        }
+        input.name:hover{
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="boxes">
+        <div class="box" >I am a box</div>
+        <div class="box" data-color="primary">I am a box</div>
+        <div class="box">I am a box</div>
+        <div class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt possimus error, voluptates facilis quam veritatis, voluptate tempora temporibus dolorum illo eos voluptas commodi!</div>
+        <div class="box">I am a box</div>
+    </div>
+    <input class="name" type="text" name="name" placeholder="Enter your name">
+</body>
+</html>
