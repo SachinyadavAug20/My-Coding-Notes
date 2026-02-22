@@ -25,31 +25,6 @@ void printVectSS(vector<pair<pair<int, int>, int>> a) {
 }
 
 int main(void) {
-  int t;
-  cin >> t;
-  while (t--) {
-    int n1,x;
-    cin >> n1;
-    multiset<int> a1;
-    for (int i = 0; i < n1; i++) {
-      cin >> x;
-            a1.insert(x);
-    }
-    int n2;
-    cin >> n2;
-    for (int i = 0; i < n2; i++) {
-      cin >> x;
-            int count_of_common=a1.count(x);
-            while (count_of_common--) {
-            cout<<x<<" ";
-            }
-            a1.erase(x);
-    }
-        for (int nn : a1) {
-        cout<<nn<<" ";
-        }
-    cout << endl;
 
-  }
   return 0;
 }

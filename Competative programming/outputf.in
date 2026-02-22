@@ -1,2 +1,11 @@
-7 2 3 5 10 15 
-3 3 9 1 1 2 4 5 8 10 
+6
+12
+1
+0
+1
+2147483647 -2147483648
+4294967295
+2147483647
+This signed 32 bit integer so range is (-2^31 to +2^31-1)
+This unsigned 32 bit integer so range is (0 to +2^32-1)
+4294967295
