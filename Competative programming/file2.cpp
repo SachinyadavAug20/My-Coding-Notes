@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 #define ll long long
 
@@ -19,6 +20,14 @@ void printVectSS(vector<pair<pair<int, int>, int>> a) {
     cout << a[i].first.first << " " << a[i].first.second << " > " << a[i].second
          << endl;
   }
+}
+
+// print binary
+void printBinary(int num) {
+  for (int i = 31; i >= 0; i--) {
+    cout << ((num >> i) & 1);
+  }
+  cout << endl;
 }
 
 int main(void) {
