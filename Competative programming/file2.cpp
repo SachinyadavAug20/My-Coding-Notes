@@ -6,7 +6,6 @@ void printVect(vector<int> a);
 void printVect2D(vector<pair<pair<int, int>, pair<int, int>>> a);
 void printVectSS(vector<pair<pair<int, int>, int>> a);
 
-// print binary
 void printBinary(int num) {
   for (int i = 31; i >= 0; i--) {
     cout << ((num >> i) & 1);
@@ -14,9 +13,12 @@ void printBinary(int num) {
   cout << endl;
 }
 
-int main(int argn, char *argv[]) { 
-    return 0; 
+int main(int argn, char *argv[]) {
+
+  return 0;
 }
+
+
 
 void printVect(vector<int> a) {
   for (int i = 0; i < a.size(); i++) {
