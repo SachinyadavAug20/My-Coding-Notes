@@ -1,4 +1,6 @@
+#include <algorithm>
 #include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 #define ll long long
 
@@ -6,17 +8,48 @@ void printVect(vector<int> a);
 void printVect2D(vector<pair<pair<int, int>, pair<int, int>>> a);
 void printVectSS(vector<pair<pair<int, int>, int>> a);
 
-void printBinary(int num) {
-  for (int i = 31; i >= 0; i--) {
-    cout << ((num >> i) & 1);
-  }
-  cout << endl;
-}
-
 int main(int argn, char *argv[]) {
 
-  return 0;
+      return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
