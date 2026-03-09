@@ -1,17 +1,31 @@
 #include <algorithm>
 #include <bits/stdc++.h>
-#include <iostream>
+#include <ostream>
 using namespace std;
 #define ll long long
+
+const int M=1e9+7;
 
 void printVect(vector<int> a);
 void printVect2D(vector<pair<pair<int, int>, pair<int, int>>> a);
 void printVectSS(vector<pair<pair<int, int>, int>> a);
 
-int main(int argn, char *argv[]) {
 
-      return 0;
+int main(int argn, char *argv[]) {
+    
+
+  return 0;
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
