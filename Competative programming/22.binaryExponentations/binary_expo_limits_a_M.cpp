@@ -4,10 +4,6 @@ using namespace std;
 
 const ll M = 1e18 + 7;
 
-void printVect(vector<int> a);
-void printVect2D(vector<pair<pair<int, int>, pair<int, int>>> a);
-void printVectSS(vector<pair<pair<int, int>, int>> a);
-
 // a<=10^18 , b<=10^9 , M<=10^18
 
 ll binMul(ll a, ll b);
@@ -53,54 +49,3 @@ int main(int argn, char *argv[]) {
   return 0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void printVect(vector<int> a) {
-  for (int i = 0; i < a.size(); i++) {
-    cout << a[i] << " ";
-  }
-  cout << endl;
-}
-void printVect2D(vector<pair<pair<int, int>, pair<int, int>>> a) {
-  for (int i = 0; i < a.size(); i++) {
-    cout << "(" << a[i].first.first << "," << a[i].first.second << ") " << "("
-         << a[i].second.first << "," << a[i].second.second << ") " << endl;
-  }
-}
-void printVectSS(vector<pair<pair<int, int>, int>> a) {
-  for (int i = 0; i < a.size(); i++) {
-    cout << a[i].first.first << " " << a[i].first.second << " > " << a[i].second
-         << endl;
-  }
-}
