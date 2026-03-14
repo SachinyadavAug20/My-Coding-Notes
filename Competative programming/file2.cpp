@@ -2,56 +2,219 @@
 using namespace std;
 #define ll long long
 
-const ll M = 1e18 + 7;
+const ll M = 1e7 + 7;
 
 void printVect(vector<int> a);
 void printVect2D(vector<pair<pair<int, int>, pair<int, int>>> a);
 void printVectSS(vector<pair<pair<int, int>, int>> a);
 
-// a<=10^18 , b<=10^9 , M<=10^18
-
-ll binMul(ll a, ll b);
-ll binExp(ll a, ll b) {
-  a = a % M; // make a smaller by %M
-  ll ans = 1;
+int binPow(int a, int b) {
+  int ans = 1;
   while (b > 0) {
     if (b & 1) {
-      ans = binMul(ans , a);
+      ans = (ans * 1LL * a) % M;
     }
-    a = binMul(a ,a) ;
+    a = (a * 1LL * a) % M;
     b = b >> 1;
   }
   return ans;
 }
-ll SimMul(int a, int b) {
-  // repeated addition is mul
-  int ans = 0;
-  for (int i = 0; i < b; i++) {
-    ans = (ans + a) % M;
-  }
-  return ans;
-} // O(n)
-
-ll binMul(ll a, ll b) {
-  ll ans = 0;
-  while (b >0) {
-    if (b&1) {
-            ans=(ans+a)%M;
-    }
-    a=(a+a)%M;
-    b = b >> 1;
-  }
-  return ans;
-} //O(logn)
 
 int main(int argn, char *argv[]) {
-  ll p, q;
-  cin >> p >> q;
-  cout << binExp(p, q) << endl;
-  cout << SimMul(p, q) << endl;
-  cout << binMul(p, q) << endl;
+  // cout << binPow(11, 2)<<endl;
+  // cout << binPow(2,10)<<endl;
   return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
