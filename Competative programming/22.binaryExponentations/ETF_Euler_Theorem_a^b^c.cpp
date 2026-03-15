@@ -21,21 +21,28 @@ int binPow(int a, ll b,int m) {
 int ETF(int x) {
   // It is no of coprime pairs formed of x with number 1 to x
   // formula is xΠ(1-1/p) where p are distinct primes factors of x
-  float ans = x;
-  set<int> factorX;
-  factorX.insert(x); // x is factor of it self
-  for (int i = 1; i * i <= x; i++) {
+  int ans = x;
+  set<int> factorPrimeX;
+  int temp = x;
+  for (int i = 2; i * i < temp; i++) {
     if (x % i == 0) {
-      factorX.insert(i);
+      factorPrimeX.insert(i);
+      while (x % i == 0) {
+        x /= i;
+      }
     }
   }
-factorX.erase(1);
-  for (int num : factorX) {
-    ans *= (((float)num-1)/ num);
+  if (x > 1) {
+    factorPrimeX.insert(x);
+  }
+  for (int num : factorPrimeX) {
+    ans *= (num - 1);
+  }
+  for (int num : factorPrimeX) {
+    ans /= num;
   }
   return ans;
 }
-
 int main(int argn, char *argv[]) {
   // Make 50^64^32
   int a, b, c;
