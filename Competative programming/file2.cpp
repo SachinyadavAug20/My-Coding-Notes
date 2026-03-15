@@ -4,7 +4,7 @@
 using namespace std;
 #define ll long long
 
-const int M = 1337;
+const int M = 1e9+7;
 
 void printVect(vector<int> a);
 void printprimefactors(vector<pair<int, int>> a){
@@ -16,6 +16,17 @@ void printprimefactors(vector<pair<int, int>> a){
 void printVect2D(vector<pair<pair<int, int>, pair<int, int>>> a);
 void printVectSS(vector<pair<pair<int, int>, int>> a);
 
+int binPow(int a,int b){
+    int ans=1;
+    while (b>0) {
+        if (b&1) {
+        ans=(ans*1LL*a)%M;
+        }
+        a=(a*1LL*a)%M;
+    b=b>>1;
+    }
+    return ans;
+}
 
 vector<int> divisorBruteForce(int n){
     vector<int> ans;
@@ -66,12 +77,32 @@ ctn=0;
     return ans;
 }
 
+void Divisor_formula(int n){
+    vector<int>ans;
+    auto pfac=primeFactors(n);
+    // formula for sum of divisor = (p^n1-1)/p-1 * ..
+    // formula for count of divisor = (n1+1)(n2+1)...
+    int sum=1;
+    int ctn=1;
+    for (auto pr  : pfac) {
+    sum*=(binPow(pr.first, pr.second+1)-1);
+        ctn*=(pr.second+1);
+
+    }
+    for (auto pr  : pfac) {
+    sum/=(pr.first-1);
+    }
+    cout<<"count : "<<ctn<<endl;
+    cout<<"sum : "<<sum<<endl;
+}
+
 int main(int argn, char *argv[]) {
     int n;
     cin>>n; 
     printVect(divisorBruteForce(n));
     printVect(divisor_till_root_n(n));
     printprimefactors(primeFactors(n));
+    Divisor_formula(n);
   return 0;
 }
 
