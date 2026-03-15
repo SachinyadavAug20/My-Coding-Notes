@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <utility>
 #include <vector>
 using namespace std;
 #define ll long long
@@ -6,10 +7,15 @@ using namespace std;
 const int M = 1337;
 
 void printVect(vector<int> a);
+void printprimefactors(vector<pair<int, int>> a){
+    for (auto pr  : a) {
+    cout<<pr.first<<"^"<<pr.second<<" ";
+    }
+    cout<<endl;
+}
 void printVect2D(vector<pair<pair<int, int>, pair<int, int>>> a);
 void printVectSS(vector<pair<pair<int, int>, int>> a);
 
-// b>10^18 will works as 32 bit happend in 32 times and greater
 
 vector<int> divisorBruteForce(int n){
     vector<int> ans;
@@ -40,18 +46,21 @@ vector<int> divisor_till_root_n(int n){
     return ans;
 }   // O(sqrt(n))
 
-vector<int> primeFactors(int n){
-    vector<int> ans;
+vector<pair<int,int>> primeFactors(int n){
+    vector<pair<int,int>> ans;
+    int ctn=0;
     for (int i=2; i*i<=n; i++) {
         if (n%i==0) {
-        ans.push_back(i);
+ctn=0;
             while (n%i==0) {
+                ctn++;
             n/=i;
             }
+            ans.push_back({i,ctn});
         }
     }
     if (n>1) {
-    ans.push_back(n);
+    ans.push_back({n,1});
     }
     cout<<endl;
     return ans;
@@ -59,10 +68,10 @@ vector<int> primeFactors(int n){
 
 int main(int argn, char *argv[]) {
     int n;
-    cin>>n;
+    cin>>n; 
     printVect(divisorBruteForce(n));
     printVect(divisor_till_root_n(n));
-    printVect(primeFactors(n));
+    printprimefactors(primeFactors(n));
   return 0;
 }
 
