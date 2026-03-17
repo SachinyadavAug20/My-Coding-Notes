@@ -1,188 +1,42 @@
 #include <bits/stdc++.h>
+#include <iostream>
 #include <utility>
 #include <vector>
 using namespace std;
 #define ll long long
 
-const int M = 1e9+7;
-
 void printVect(vector<int> a);
-void printprimefactors(vector<pair<int, int>> a){
-    for (auto pr  : a) {
-    cout<<pr.first<<"^"<<pr.second<<" ";
-    }
-    cout<<endl;
-}
+void printprimefactors(vector<pair<int, int>> a);
 void printVect2D(vector<pair<pair<int, int>, pair<int, int>>> a);
 void printVectSS(vector<pair<pair<int, int>, int>> a);
 
-int binPow(int a,int b){
-    int ans=1;
-    while (b>0) {
-        if (b&1) {
-        ans=(ans*1LL*a)%M;
-        }
-        a=(a*1LL*a)%M;
-    b=b>>1;
-    }
-    return ans;
-}
+const int N = 1e5 + 10;
+vector<int> divisor[N];
+vector<int> sumDivisor(N,0);
 
-vector<int> divisorBruteForce(int n){
-    vector<int> ans;
-    for (int i=1; i<=n; i++) {
-        if (n%i==0) {
-        ans.push_back(i);
-        }
-    }
-    cout<<"count : "<<ans.size()<<endl;
-    cout<<"sum : "<<accumulate(ans.begin(),ans.end(),0)<<endl;
-    return ans;
-}   // O(n)
 
-vector<int> divisor_till_root_n(int n){
-    vector<int> ans;
-    for (int i=1; i*i<=n; i++) {
-        if (n%i==0) {
-            ans.push_back(i);
-    // Problem it duplicates found in if n is perfect square
-            if (i!=n/i) {
-            ans.push_back(n/i);
-            }
-        }
-    }
-    cout<<"count : "<<ans.size()<<endl;
-    cout<<"sum : "<<accumulate(ans.begin(),ans.end(),0)<<endl;
 
-    return ans;
-}   // O(sqrt(n))
-
-vector<pair<int,int>> primeFactors(int n){
-    vector<pair<int,int>> ans;
-    int ctn=0;
-    for (int i=2; i*i<=n; i++) {
-        if (n%i==0) {
-ctn=0;
-            while (n%i==0) {
-                ctn++;
-            n/=i;
-            }
-            ans.push_back({i,ctn});
-        }
-    }
-    if (n>1) {
-    ans.push_back({n,1});
-    }
-    cout<<endl;
-    return ans;
-}
-
-void Divisor_formula(int n){
-    vector<int>ans;
-    auto pfac=primeFactors(n);
-    // formula for sum of divisor = (p^n1-1)/p-1 * ..
-    // formula for count of divisor = (n1+1)(n2+1)...
-    int sum=1;
-    int ctn=1;
-    for (auto pr  : pfac) {
-    sum*=(binPow(pr.first, pr.second+1)-1);
-        ctn*=(pr.second+1);
-
-    }
-    for (auto pr  : pfac) {
-    sum/=(pr.first-1);
-    }
-    cout<<"count : "<<ctn<<endl;
-    cout<<"sum : "<<sum<<endl;
-}
 
 int main(int argn, char *argv[]) {
-    int n;
-    cin>>n; 
-    printVect(divisorBruteForce(n));
-    printVect(divisor_till_root_n(n));
-    printprimefactors(primeFactors(n));
-    Divisor_formula(n);
+    divisor[0].push_back(0);
+    divisor[1].push_back(1);
+    for (int i=2; i<N; i++) {
+        for (int j=i; j<N; j+=i) {
+            // as j is multiple of i => i is divisor of j
+            divisor[j].push_back(i);
+            sumDivisor[j]+=i;
+        }
+    }   // O(n*logn)
+    int q;
+    cin>>q;
+    while (q--) {
+        int n;
+        cin>>n;
+        cout<<sumDivisor[n]<<endl;
+        printVect(divisor[n]);
+    }
   return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -234,4 +88,11 @@ void printVectSS(vector<pair<pair<int, int>, int>> a) {
     cout << a[i].first.first << " " << a[i].first.second << " > " << a[i].second
          << endl;
   }
+}
+
+void printprimefactors(vector<pair<int, int>> a) {
+  for (auto pr : a) {
+    cout << pr.first << "^" << pr.second << " ";
+  }
+  cout << endl;
 }
