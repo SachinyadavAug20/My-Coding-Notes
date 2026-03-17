@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include <iostream>
+#include <numeric>
 #include <utility>
 #include <vector>
 using namespace std;
@@ -10,31 +11,33 @@ void printprimefactors(vector<pair<int, int>> a);
 void printVect2D(vector<pair<pair<int, int>, pair<int, int>>> a);
 void printVectSS(vector<pair<pair<int, int>, int>> a);
 
-const int N = 1e5 + 10;
+const int N = 5e6 + 10;
 vector<int> divisor[N];
 vector<int> sumDivisor(N,0);
 
-
-
+int countPrimes(int n) {
+    vector<bool> isprime(n+10,1);
+    isprime[0]=isprime[1]=0;
+    int ctn=0;
+    for (int i=2; i<n; i++) {
+        if (isprime[i]) {
+                ctn++;
+                for (int j=2*i; j<n; j+=i) {
+                isprime[j]=0;
+            }
+        }
+    }
+    return ctn;
+}
 
 int main(int argn, char *argv[]) {
-    divisor[0].push_back(0);
-    divisor[1].push_back(1);
-    for (int i=2; i<N; i++) {
-        for (int j=i; j<N; j+=i) {
-            // as j is multiple of i => i is divisor of j
-            divisor[j].push_back(i);
-            sumDivisor[j]+=i;
-        }
-    }   // O(n*logn)
-    int q;
-    cin>>q;
-    while (q--) {
-        int n;
-        cin>>n;
-        cout<<sumDivisor[n]<<endl;
-        printVect(divisor[n]);
-    }
+    cout<<countPrimes(10)<<endl;
+    cout<<countPrimes(0)<<endl;
+
+    cout<<countPrimes(3)<<endl;
+    cout<<countPrimes(2)<<endl;
+    cout<<countPrimes(1)<<endl;
+    cout<<countPrimes(205922)<<endl;
   return 0;
 }
 
