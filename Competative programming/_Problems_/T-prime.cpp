@@ -22,11 +22,6 @@
 using namespace std;
 #define ll long long
 
-void printVect(vector<int> a);
-void printprimefactors(vector<pair<int, int>> a);
-void printVect2D(vector<pair<pair<int, int>, pair<int, int>>> a);
-void printVectSS(vector<pair<pair<int, int>, int>> a);
-
 const int N = 1e6 + 10;
 
 int MYsqrt(int a ){
