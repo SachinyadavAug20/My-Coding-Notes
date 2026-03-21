@@ -22,104 +22,25 @@ int binExpo(int a,int b,int m){
     return ans;
 }
 
-int N=1e5+10;
+
+const int M=1e9+7; //prime
+const int N=1e5+10; // all fact till here
+vector<int> f(N);
+
 int main(int argn, char *argv[]) {
-
-    vector<bool> isPrime(101,1);
-    vector<int> hp(101,0);
-    hp[0]=hp[1]=0;
-    isPrime[0]=isPrime[1]=0;
-    for (int i=2; i<101; i++) {
-        if (isPrime[i]) {
-            for (int j=2*i; j<101; j+=i) {
-                hp[j]=i;
-                isPrime[j]=0;
-            }
-        }
+    f[0]=f[1]=1;
+    for (int i=2; i<N; i++) {
+        f[i]=(i*1LL*f[i-1])%M;
     }
-
-    map<int,vector<int>> primefact;
-    primefact[0]={};
-    primefact[1]={};
-    for (int i=2; i<101; i++) {
-        primefact[i]={};
-        int n=i;
-        while (n>1) {
-            if (hp[n]==0 || hp[n]==1)
-            {
-                break;
-            }
-            primefact[i].push_back(hp[n]);
-            n/=hp[n];
-        }
-        if (n>1)
-        {
-            primefact[i].push_back(n);
-        }
-    }
-
-
-    // // print
-    // for (auto something : primefact) {
-    //     cout<<something.first<<" : ";
-    //     for (int i  : something.second) {
-    //         cout<<i<<" ";
-    //     }
-    //     cout<<endl;
-    // }
-
-
-    int n;
-    cin>>n;
-    // cout<<"1111111";
-    vector<vector<int>> prefix(n+1);
-    vector<int> arr(n,0);
-    for (int i=0; i<n; i++) {
-        cin>>arr[i];
-    }
-
-    for (int f  : primefact[arr[0]]) {
-        prefix[0].push_back(f);
-    }
-    for (int i=1; i<n; i++) {
-
-        int num=arr[i];
-        prefix[i]=prefix[i-1];
-        for (int f  : primefact[num]) {
-            prefix[i].push_back(f);
-        }
-    }
-
-    // for (int i=0; i<n; i++) {
-    //     cout<<arr[i]<<" : ";
-    //     for (auto pr   : prefix[i]) {
-    //         cout<<pr<<" ";
-    //     }
-    //     cout<<endl;
-    // }
-
-
     int t;
     cin>>t;
     while (t--) {
-        int Li,Ri,M;
-        cin>>Li>>Ri>>M;
-           
-        ll ans=1;
-        ll up=1;
-        ll down=1;
-        if ((Li-2)>=0) {
-            for (int a  : prefix[Li-2]) {
-                up=(up*1LL*a);
-                cout<<":::"<<up;
-            }
-        }
-        for (int a : prefix[Ri-1]) {
-            down=(down*a);
-        }
-        
-
-        cout<<(down*binExpo(up, M-2, M)*1LL)%M<<endl;
+        ll n,k;
+        cin>>n>>k;
+        // no of combination of n letters from k characters = kpn = k!/((k-n)!)
+        ll nr=f[k];
+        ll dr=(f[k-n]);
+        cout<<(nr%M*binExpo(dr, M-2, M)%M)%M<<endl;
     }
   return 0;
 }
