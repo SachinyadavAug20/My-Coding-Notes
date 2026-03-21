@@ -55,7 +55,7 @@ int main(int argn, char *argv[]) {
         ll nr=f[k];
         ll dr=(f[k-n]);
         cout<<(nr%M*binExpo(dr, M-2, M)%M)%M<<endl;
-    }
+    }  // O(t*log(n))
   return 0;
 }
 

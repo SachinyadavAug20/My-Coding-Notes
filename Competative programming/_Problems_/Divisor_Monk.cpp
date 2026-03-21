@@ -1,15 +1,28 @@
-#include <algorithm>
+// Problem
+//
+// Here is another task for you, prepared by Monk himself. So, this is how it goes :
+//
+// Given an integer array A of size N, Monk needs you to answer T queries for him. In each query, he gives you 2 integers P and Q. In response to each of these queries, you need to tell Monk the count of numbers in array A. that are either divisible by P, Q, or both.
+//
+// Can you cope with this ?
+//
+// Video approach to solve this question: here
+//
+// Input Format :
+//
+// The first line contains a single integer N denoting the size of array A. The next line contains N space separated integers, where the integer denotes .
+//
+// The next line contains a single integer T denoting the number of queries Monk poses to you. Each of the next T lines contains 2 space separated integers P and Q.
+//
+// Output Format :
+//
+// For each query, print the answer on a new line.
+//
+// Constraints :
+
 #include <bits/stdc++.h>
-#include <iostream>
-#include <map>
-#include <vector>
 using namespace std;
 #define ll long long
-
-void printVect(vector<int> a);
-void printprimefactors(vector<pair<int, int>> a);
-void printVect2D(vector<pair<pair<int, int>, pair<int, int>>> a);
-void printVectSS(vector<pair<pair<int, int>, int>> a);
 
 int binExpo(int a,int b,int m){
     int ans=1;
@@ -98,60 +111,11 @@ int main(int argn, char *argv[]) {
         int p,q;
         cin>>p>>q;
         int cnt;
+        cnt=disibleByindex[p]+ disibleByindex[q];
         if (p*1LL/MYgcd(p, q)*q<N) {
-            cnt=disibleByindex[p]+ disibleByindex[q]- disibleByindex[p/MYgcd(p, q)*q];
-        } else {
-            cnt=disibleByindex[p]+ disibleByindex[q];
-        }
+            cnt-= disibleByindex[p/MYgcd(p, q)*q];
+        }  
         cout<<cnt<<endl;
     }
   return 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void printVect(vector<int> a) {
-  for (int i = 0; i < a.size(); i++) {
-    cout << a[i] << " ";
-  }
-  cout << endl;
-}
-void printVect2D(vector<pair<pair<int, int>, pair<int, int>>> a) {
-  for (int i = 0; i < a.size(); i++) {
-    cout << "(" << a[i].first.first << "," << a[i].first.second << ") " << "("
-         << a[i].second.first << "," << a[i].second.second << ") " << endl;
-  }
-}
-void printVectSS(vector<pair<pair<int, int>, int>> a) {
-  for (int i = 0; i < a.size(); i++) {
-    cout << a[i].first.first << " " << a[i].first.second << " > " << a[i].second
-         << endl;
-  }
-}
-
-void printprimefactors(vector<pair<int, int>> a) {
-  for (auto pr : a) {
-    cout << pr.first << "^" << pr.second << " ";
-  }
-  cout << endl;
 }
