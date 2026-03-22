@@ -1,26 +1,23 @@
+// Alex has started hacking websites, and also started learning encryption and decryption of messages. Once he faced an interesting issue, where he needs to decrypt the message in a different way.
+// Initially, he will be given an array A of N integers, and has to decrypt Q messages. In each message he will get an integer X, and if X can be converted into product of two different or same prime numbers, then the real message is "YES" (without quotes), otherwise the message is "NO" (without quotes).
+//
+// To convert X, he can choose one element from array say Y (X should be divisible Y), and can divide X by Y any number of times (till X is divisible by Y). Help Alex in decrypting the messages.
+//
+// Input Format:
+//
+// First line will contain an integer N and Q,, denoting the number of elements in the array and number of encrypted messages respectively.
+//
+// Next line will contain N space-separated integers representing the elements of the array.
+//
+// In next Q lines, each line will contain an integer X , representing an encrypted message.
+//
+// Output Format:
+//
+// For each encrypted message, output the decrypted message in new line. 
+
 #include <bits/stdc++.h>
-#include <map>
-#include <unordered_map>
-#include <vector>
 using namespace std;
 #define ll long long
-
-void printVect(vector<int> a);
-void printprimefactors(vector<pair<int, int>> a);
-void printVect2D(vector<pair<pair<int, int>, pair<int, int>>> a);
-void printVectSS(vector<pair<pair<int, int>, int>> a);
-
-int binExpo(int a, int b, int m) {
-  int ans = 1;
-  while (b > 0) {
-    if (b & 1) {
-      ans = (ans * 1LL * a) % m;
-    }
-    a = (a * 1LL * a) % m;
-    b = b >> 1;
-  }
-  return ans;
-}
 
 const int N = 1e6 + 10;
 vector<bool> isPrime(N, 1);
@@ -88,63 +85,4 @@ int main(int argn, char *argv[]) {
     cout<<(isdone?"YES":"NO")<<endl;
   } // O(q*100*log100) = 10^8  --> possible in 1 second 
   return 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void printVect(vector<int> a) {
-  for (int i = 0; i < a.size(); i++) {
-    cout << a[i] << " ";
-  }
-  cout << endl;
-}
-void printVect2D(vector<pair<pair<int, int>, pair<int, int>>> a) {
-  for (int i = 0; i < a.size(); i++) {
-    cout << "(" << a[i].first.first << "," << a[i].first.second << ") " << "("
-         << a[i].second.first << "," << a[i].second.second << ") " << endl;
-  }
-}
-void printVectSS(vector<pair<pair<int, int>, int>> a) {
-  for (int i = 0; i < a.size(); i++) {
-    cout << a[i].first.first << " " << a[i].first.second << " > " << a[i].second
-         << endl;
-  }
-}
-
-void printprimefactors(vector<pair<int, int>> a) {
-  for (auto pr : a) {
-    cout << pr.first << "^" << pr.second << " ";
-  }
-  cout << endl;
 }
