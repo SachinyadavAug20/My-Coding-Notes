@@ -1,7 +1,4 @@
 #include <bits/stdc++.h>
-#include <map>
-#include <unordered_map>
-#include <vector>
 using namespace std;
 #define ll long long
 
@@ -21,73 +18,38 @@ int binExpo(int a, int b, int m) {
   }
   return ans;
 }
+string intToRoman(int n) {
+    string ans="";
+    map<char, int> RtI;
+    RtI['I']=1;
+    RtI['V']=5;
+    RtI['X']=10;
+    RtI['L']=50;
+    RtI['C']=100;
+    RtI['D']=500;
+    RtI['M']=1000;
 
-const int N = 1e6 + 10;
-vector<bool> isPrime(N, 1);
-vector<int> hp(N, 0);
-
-vector<int> distinctPrime(int n) {
-  vector<int> ans;
-  while (n > 1) {
-    int pf = hp[n];
-    ans.push_back(pf);
-    while (n % pf == 0)
-      n /= pf;
-  }
-  return ans;
+    return ans;
 }
 
 int main(int argn, char *argv[]) {
-  // prep
-  isPrime[0] = isPrime[1] = 0;
-  hp[0] = hp[1] = 1;
-  for (int i = 2; i < N; i++) {
-    if (hp[i] == 0) { // i.e is prime
-      for (int j = i; j < N; j += i) {
-        isPrime[j] = 0;
-        hp[j] = i;
-      }
-    }
-  }
-
-  int n, q;
-  cin >> n >> q;
-  vector<int> arr(n);
-  vector<bool> removeAbleByArray(N, 0);
-  vector<bool> hsh(N, 0);
-  for (int i = 0; i < n; i++) {
-    cin >> arr[i];
-        hsh[arr[i]]=1;
-  }
-    removeAbleByArray[1]=1;
-    for (int i=2; i<N; i++) {
-        if (hsh[i]) {
-            for (ll j=i; j<N; j*=i) {
-                removeAbleByArray[j]=1;
+    int q;
+    cin>>q;
+    while (q--) {
+        ll num;
+        cin>>num;
+        // last step will be by father as need exactly num ammount
+        // as we can increase amount by number of days increased and mathematically to mimimize need 0 or 1 coin on a day to reach the amount so => answer is no of set bits on the number
+        ll ctn=0;
+        while (num>0) {
+            if (num&1) {
+                ctn++;
             }
+            num=num>>1;
         }
+        cout<<ctn<<endl;
     }
-  // printVect(arr);
-  while (q--) {
-    int num, isdone = 0;
-    cin >> num;
-    vector<int> distinctprime = distinctPrime(num);
-    int sz = distinctprime.size();
-    for (int i = 0; i < sz; i++) {
-      for (int j = i; j < sz; j++) {
-        int prt= distinctprime[j]*distinctprime[i];
-        if (i == j && num %prt!=0) continue;
-        int toremove=num/prt;
-          if (removeAbleByArray[toremove]) {
-            isdone = 1;
-          }
-          if (isdone) break;
-      }
-        if (isdone) break;
-    }
-    cout<<(isdone?"YES":"NO")<<endl;
-  } // O(q*100*log100) = 10^8  --> possible in 1 second 
-  return 0;
+    return 0;
 }
 
 
