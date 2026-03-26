@@ -1,36 +1,18 @@
+// Problem
+//
+// Our Monk visits a neighbourhood school to teach kids, once a week. This week, they are studying the famous novel "The Three Musketeers" by Alexandre Dumas. As Monk is a fun teacher, he wants to enact a scene from the novel and hence, must choose 3 children from the class as the musketeers.
+// There are N children in his class. Monk is given the list of names of the students. Help Monk find the number of ways in which he can choose the musketeers, such that the names of the three children have atleast a vowel in common i.e. the names must have atleast one of ('a', 'e', 'i', 'o', 'u') in common. Two ways are considered different only if atleast one of the chosen student is different.
+//
+// Input:
+// The first line consists of integer T. T testcases follow. The first line of each testcase consists of an integer N, denoting the number of children. It is followed by N lines, wherein each line is a string having only lowercase alphabets ('a'-'z') without spaces, denoting the names of children. A name can have a maximum length of 15 characters.
+//
+// Output:
+// For each testcase, print the answer in a single line. 
+
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
 
-void printVect(vector<unsigned> a);
-void printprimefactors(vector<pair<int, int>> a);
-void printVect2D(vector<pair<pair<int, int>, pair<int, int>>> a);
-void printVectSS(vector<pair<pair<int, int>, int>> a);
-
-int binExpo(int a, int b, int m) {
-  int ans = 1;
-  while (b > 0) {
-    if (b & 1) {
-      ans = (ans * 1LL * a) % m;
-    }
-    a = (a * 1LL * a) % m;
-    b = b >> 1;
-  }
-  return ans;
-}
-string intToRoman(int n) {
-    string ans="";
-    map<char, int> RtI;
-    RtI['I']=1;
-    RtI['V']=5;
-    RtI['X']=10;
-    RtI['L']=50;
-    RtI['C']=100;
-    RtI['D']=500;
-    RtI['M']=1000;
-
-    return ans;
-}
 // 15 char names so each letter can be vowel or now in order aeiou set if had that vowel
 // use && to see common vowel
 int M=1e9+7;
@@ -94,63 +76,4 @@ int main(int argn, char *argv[]) {
         // find number who have a common , e common and so on
     }
     return 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void printVect(vector<unsigned> a) {
-  for (int i = 0; i < a.size(); i++) {
-    cout << a[i] << " ";
-  }
-  cout << endl;
-}
-void printVect2D(vector<pair<pair<int, int>, pair<int, int>>> a) {
-  for (int i = 0; i < a.size(); i++) {
-    cout << "(" << a[i].first.first << "," << a[i].first.second << ") " << "("
-         << a[i].second.first << "," << a[i].second.second << ") " << endl;
-  }
-}
-void printVectSS(vector<pair<pair<int, int>, int>> a) {
-  for (int i = 0; i < a.size(); i++) {
-    cout << a[i].first.first << " " << a[i].first.second << " > " << a[i].second
-         << endl;
-  }
-}
-
-void printprimefactors(vector<pair<int, int>> a) {
-  for (auto pr : a) {
-    cout << pr.first << "^" << pr.second << " ";
-  }
-  cout << endl;
 }
