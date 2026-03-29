@@ -38,3 +38,4 @@ int main(int argn, char *argv[]) {
     }
     return 0;
 }
+// https://www.hackerearth.com/problem/algorithm/monk-and-his-father-93b639f4/

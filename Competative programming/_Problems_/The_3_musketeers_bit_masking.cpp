@@ -77,3 +77,6 @@ int main(int argn, char *argv[]) {
     }
     return 0;
 }
+
+
+// https://www.hackerearth.com/problem/algorithm/the-three-musketeers-6efd5f2d/
