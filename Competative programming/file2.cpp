@@ -31,74 +31,51 @@ string intToRoman(int n) {
 
     return ans;
 }
-// 15 char names so each letter can be vowel or now in order aeiou set if had that vowel
-// use && to see common vowel
 int M=1e9+7;
 
 int main(int argn, char *argv[]) {
-    
-    char v[5]={'a','e','i','o','u'};
-    int t;
-    cin>>t;
-    while (t--) {
-        int n;
-        cin>>n;
-        vector<unsigned> bitmap(n,0);
-        for (int i = 0; i < n; i++) {
-            string na;
-            cin>>na;
-            unsigned bm=0;
-            for(int j=0;j<na.size();j++){
-                int cch=na[j];
-                for (int i = 0; i < 5; i++) {
-                    if (cch==v[i]) {
-                        bm=(bm|(1<<i));
-                    }
-                }
-            }
-            bitmap[i]=bm;
+    int c;
+    cin>>c;
+    int bitCtn=(int)log2(c)+1;
+    int a=0,b=0;
+    vector<int> set_bits;
+    for (int i = 0; i < bitCtn; i++) {
+        bool currentBt=(c&(1<<i));
+        if (currentBt==0) {
+            a=a|(1<<i);
+            b=b|(1<<i);
+        }else{
+            set_bits.push_back(i);// store index of set bit
         }
-        // printVect(bitmap);
-        
-        // now have the bit map => viable pair have 1 common vowel so do & 
-        // make freq vector
-        vector<unsigned> freq(32,0);
-        for (int i = 0; i < n; i++) {
-            freq[bitmap[i]]++;
-        }
-        // printVect(freq);
-
-        ll count=0;
-        for (int i = 0; i < 32; i++) {
-            for (int j = i; j < 32; j++) {
-                for (int k = j; k < 32; k++) {
-                    if (i&j&k) {
-                        if (i == j && j == k) {
-                            count+=(1LL*freq[i]*(freq[i]-1)*(freq[i]-2)/6);
-                        }
-                        else if(i == j && j != k){
-                            count+=(1LL*freq[i]*(freq[i]-1)/2*freq[k]);
-                        }
-                        else if(i != j && j == k){
-                            count+=(1LL*freq[j]*(freq[j]-1)/2*freq[i]);
-                        }
-                        else{
-                            count+=(1LL*freq[i]*freq[j]*freq[k]);
-                        }
-                    }
-                }
-            }
-        }
-        cout<<count<<endl;
-
-        // find number who have a common , e common and so on
     }
+    // make all subset of set_bits
+    ll ans=-1;
+    int sz=(1<<set_bits.size());   // 2^size possible subsets
+    for (int mask = 0; mask < sz ; mask++) {
+        int a_copy=a;
+        int b_copy=b;
+        for (int  j = 0; j < set_bits.size() ; j++) {
+            if (mask&(1<<j)) {
+                a_copy|=(1<<set_bits[j]);
+            }else{
+                b_copy|=(1<<set_bits[j]);
+            }
+            ans=max(ans,a_copy*1LL*b_copy);
+        }
+    }
+    cout<<ans<<endl;
+
     return 0;
 }
 
 
 
-
+/*
+ https://codeforces.com/contest/776/problem/B
+ https://www.hackerearth.com/problem/algorithm/the-game-of-oxa-bb3d2676/
+ https://www.hackerearth.com/practice/basic-programming/bit-manipulation/basics-of-bit-manipulation/practice-problems/algorithm/xor-challenge-2420f189/
+ https://www.hackerearth.com/practice/math/number-theory/basic-number-theory-2/practice-problems/
+ */
 
 
 
