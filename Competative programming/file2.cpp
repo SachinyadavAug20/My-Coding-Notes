@@ -24,10 +24,10 @@ bool visited[N];
 void dfs(int vertices){
     // section 1 : take action on vectex after entering the vertex
     // if(visited[vertices]) return; can be done here, instead of in section 2
-    cout<<" "<<vertices<<" > "<<endl;
+    // cout<<" "<<vertices<<" > "<<endl;
     visited[vertices]=true;
     for (int child : graph[vertices]) {
-        cout<<"     "<<" child "<<child<<endl;
+        // cout<<"     "<<" child "<<child<<endl;
         // section 2 : take action on child before entering child node
         if (visited[child]) continue;  
         dfs(child);
@@ -45,8 +45,18 @@ int main(int argn, char *argv[]) {
         graph[v1].push_back(v2);
         graph[v2].push_back(v1);
     }
-    printAdjList(n);
-    dfs(1);
+    // printAdjList(n);
+    // dfs(1);
+
+    int no_of_connected_componenets=0;
+    for (int i = 1; i < n+1; i++) {
+        if (visited[i]) {
+            continue;
+        }
+        no_of_connected_componenets++;
+        dfs(i);
+    }
+    cout<<no_of_connected_componenets<<endl;
     return 0;
 }
 
