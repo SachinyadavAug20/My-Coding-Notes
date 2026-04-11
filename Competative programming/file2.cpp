@@ -7,56 +7,41 @@ void printprimefactors(vector<pair<int, int>> a);
 void printVect2D(vector<pair<pair<int, int>, pair<int, int>>> a);
 void printVectSS(vector<pair<pair<int, int>, int>> a);
 
-
-
-const int N =1e5+10;
+const int N=3e5+10;
 vector<int> graph[N];
-void printAdjList(int n){
-     for (int  i = 0; i < n+1; i++) {
-        for (auto pr:graph[i]) {
-            cout<<pr<<' ';
-        }
-        cout<<endl;
-     }
+vector<bool> visited(N,0);
+
+    int backed_vertex=0;
+void dfs(int vertex,int parent){
+    visited[vertex]=true;
+    bool isLoopExits=false;
+    for(int child:graph[vertex]){
+        if(parent==child && visited[child]) continue;  // here, visited check is redundant(as if it is parent then it is visited by default)
+        if(visited[child]) {
+          backed_vertex++;
+          continue;
+        }  
+        // OR of all childern for vertex who say loop exist
+        dfs(child,vertex);
+    }
 }
 
-bool visited[N];
-void dfs(int vertices){
-    // section 1 : take action on vectex after entering the vertex
-    // if(visited[vertices]) return; can be done here, instead of in section 2
-    // cout<<" "<<vertices<<" > "<<endl;
-    visited[vertices]=true;
-    for (int child : graph[vertices]) {
-        // cout<<"     "<<" child "<<child<<endl;
-        // section 2 : take action on child before entering child node
-        if (visited[child]) continue;  
-        dfs(child);
-        // section 3 : take action on child after exiting child node
-    }
-    // section 4 : take action on vertex before exiting the vertex
-} // complexity O( V + E )
-
 int main(int argn, char *argv[]) {
+    // loop has minimum 3 nodes if end up at visited node which is not direct parent is a loop
     int n,m;
     cin>>n>>m;
-    for (int i=0; i<m; i++) {
+    for (int i = 0; i < m; i++) {
         int v1,v2;
         cin>>v1>>v2;
-        graph[v1].push_back(v2);
+        graph[v1].push_back(v2); // undirected map
         graph[v2].push_back(v1);
     }
-    // printAdjList(n);
-    // dfs(1);
 
-    int no_of_connected_componenets=0;
-    for (int i = 1; i < n+1; i++) {
-        if (visited[i]) {
-            continue;
-        }
-        no_of_connected_componenets++;
-        dfs(i);
+    for (int i = 1; i <= n; i++) {
+        if (visited[i]) continue;
+        dfs(i,0);
     }
-    cout<<no_of_connected_componenets<<endl;
+    cout<<"No of loops : "<<backed_vertex/2<<endl;
     return 0;
 }
 
@@ -65,7 +50,6 @@ int main(int argn, char *argv[]) {
 /*
  https://codeforces.com/contest/776/problem/B
  https://www.hackerearth.com/problem/algorithm/the-game-of-oxa-bb3d2676/
- https://www.hackerearth.com/practice/basic-programming/bit-manipulation/basics-of-bit-manipulation/practice-problems/algorithm/xor-challenge-2420f189/
  https://www.hackerearth.com/practice/math/number-theory/basic-number-theory-2/practice-problems/
  */
 

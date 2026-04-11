@@ -17,14 +17,18 @@
 using namespace std;
 #define ll long long
 
+
 const int N =1e5+10;
 vector<int> graph[N];
-
 bool visited[N];
+vector<vector<int>> cc; // store connected component
+vector<int> currentcc;
+
 void dfs(int vertices){
+    currentcc.push_back(vertices);
     visited[vertices]=true;
     for (int child : graph[vertices]) {
-        if (visited[child]) continue;  
+        if (visited[child]) continue;
         dfs(child);
     }
 } // complexity O( V + E )
@@ -39,15 +43,23 @@ int main(int argn, char *argv[]) {
         graph[v2].push_back(v1);
     }
 
-    int no_of_connected_componenets=0;
     for (int i = 1; i < n+1; i++) {
         if (visited[i]) {
             continue;
         }
-        no_of_connected_componenets++;
+        currentcc.clear();
         dfs(i);
+        cc.push_back(currentcc);
     }
-    cout<<no_of_connected_componenets<<endl;
+    cout<<"no_of_connected_componenets : "<<cc.size()<<endl;
+    // print connected component
+    cout<<"connected components: \n";
+    for(auto aa:cc){
+        for(int bb:aa){
+            cout<<bb<<" ";
+        }
+        cout<<endl;
+    }
     return 0;
 }
 
