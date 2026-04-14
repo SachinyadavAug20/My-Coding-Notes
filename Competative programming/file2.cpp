@@ -1,6 +1,4 @@
 #include <bits/stdc++.h>
-#include <complex>
-#include <vector>
 using namespace std;
 #define ll long long
 
@@ -16,8 +14,6 @@ void printImage(vector<vector<int>> a) {
     cout << endl;
   }
 }
-
-
 
 
 int main(int argn, char *argv[]) {
