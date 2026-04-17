@@ -15,8 +15,54 @@ void printImage(vector<vector<int>> a) {
   }
 }
 
+// https://leetcode.com/problems/longest-increasing-path-in-a-matrix/description/  Pending TLE => making use of hsh(to be solved)
+// here, increasing order will do work of visited array
+const int N = 300;
+int cc=0;
+vector<vector<int>> hsh(N,vector<int>(N,-1));
+void dfs_increaing_path(int i,int j,vector<vector<int>>& matrix,int count,int parent=-1){
+    int n=matrix.size(),m=matrix[0].size();
+    if((i<0 || j<0)||(i>=n ||j>=m)) return;
+    if(hsh[i][j]!=-1){
+        cc=count+hsh[i][j];
+        return;
+    }
+    if(matrix[i][j]>parent){
+        // cout<<"   "<<cc<<endl;
+        count++;
+        cc=max(count,cc);
+        dfs_increaing_path(i+1, j, matrix,count, matrix[i][j]);
+        dfs_increaing_path(i-1, j, matrix,count, matrix[i][j]);
+        dfs_increaing_path(i, j+1, matrix,count, matrix[i][j]);
+        dfs_increaing_path(i, j-1, matrix,count, matrix[i][j]);
+    }
+}
+int longestIncreasingPath(vector<vector<int>>& matrix) {
+    int n=matrix.size(),m=matrix[0].size();
+    int count=0;
+    for (int i=0; i<n; i++) {
+       for (int j=0; j<m; j++) {
+            cc=0;
+            dfs_increaing_path(i, j, matrix,0);
+            cout<<">> "<<cc<<endl;
+            hsh[i][j]=cc;
+            count=max(cc,count);
+        }
+    }
+    return count;
+}
+
 
 int main(int argn, char *argv[]) {
+    int n,m;
+    cin>>n>>m;
+vector<vector<int>> matrix(n,vector<int>(m));
+    for (int i=0; i<n; i++) {
+       for (int j=0; j<m; j++) {
+           cin>>matrix[i][j];
+        }
+    }
+    cout<<longestIncreasingPath(matrix);
   return 0;
 }
 
@@ -33,50 +79,6 @@ https://www.geeksforgeeks.org/problems/find-the-number-of-islands/1?category=
     https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1?page=1&sortBy=submissions
 https://leetcode.com/problems/number-of-islands/description/
  */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 void printVect(vector<unsigned> a) {
   for (int i = 0; i < a.size(); i++) {
@@ -103,3 +105,4 @@ void printprimefactors(vector<pair<int, int>> a) {
   }
   cout << endl;
 }
+
