@@ -1,25 +1,29 @@
-#include <algorithm>
-#include <atomic>
+// https://www.codechef.com/SNCKPB17/problems/SNSOCIAL/
+// Read problems statements in Mandarin Chinese, Russian and Vietnamese as well.
+//
+// After a long duration of the painful, torturous and tumultuous periods of capitalism in Snakeland, now the snakes have decided to adopt socialism. The houses in Snakeland are arranged in a rectangular fashion of dimension n * m. The wealth of the snake in the house at cell (i, j) is given by a[i][j] rupees.
+//
+// A bill has been passed for making a smooth transition from capitalism to socialism. At the end of each hour, the wealth of a snake will grow and will become equal to the highest wealth that its neighbor had (at the start of the hour). That is, consider the maximum wealth among its neighbors at the start of the hour, and this snake's wealth will become equal to that at the end of the hour. Note that this increase in wealth will happen simultaneously for each snake. Two houses are said to be neighbors of each other if they share a side or corner with each other. Find out the minimum number of hours required for this transition.
+// Input
+//
+// The first line of the input contains an integer T denoting the number of test cases. The description of T test cases follows.
+//
+// The first line of each test case contains two space separated integers: n, m.
+//
+// Each of the next n lines contains m space separated integers. The j-th integer in the i-th row denotes a[i][j].
+// Output
+//
+// For each test case output a single integer corresponding to the minimum number of hours required for the transition.
+// Constraints
+//
+//     1 ≤ T ≤ 4
+//     1 ≤ n, m ≤ 500
+//     1 ≤ a[i][j] ≤ 106
+//
+
 #include <bits/stdc++.h>
-#include <deque>
-#include <queue>
-#include <utility>
-#include <vector>
 using namespace std;
 #define ll long long
-
-void printprimefactors(vector<pair<int, int>> a);
-void printVect2D(vector<pair<pair<int, int>, pair<int, int>>> a);
-void printVectSS(vector<pair<pair<int, int>, int>> a);
-
-void printImage(vector<vector<int>> a) {
-  for (auto v : a) {
-    for (int n : v) {
-      cout << n << " ";
-    }
-    cout << endl;
-  }
-}
 
 vector<pair<int, int>> moves={
     {1,0},{0,1},
@@ -97,50 +101,4 @@ int main(int argn, char *argv[]) {
         cout<<min_time_for_c_to_s(grid,maxCost,level)<<endl;
     }
   return 0;
-}
-/*
- 3 3
-7 7 5
-2 4 6
-8 2 0
- */
-
-/*
- https://codeforces.com/contest/776/problem/B
- https://www.hackerearth.com/practice/math/number-theory/basic-number-theory-2/practice-problems/
-https://leetcode.com/problems/longest-increasing-path-in-a-matrix/description/
-https://leetcode.com/problems/pacific-atlantic-water-flow/description/
-https://leetcode.com/problems/island-perimeter/description/
-https://www.geeksforgeeks.org/problems/find-the-number-of-islands/1?category=
-      https://cp-algorithms.com/graph/depth-first-search.html
-    https://www.geeksforgeeks.org/problems/find-the-number-of-islands/1?category=
-    https://www.geeksforgeeks.org/explore?page=1&sortBy=submissions&_gl=1*1fcocz3*_up*MQ..*_gs*MQ..
-    https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1?page=1&sortBy=submissions
-https://leetcode.com/problems/number-of-islands/description/
- */
-
-void printVect(vector<unsigned> a) {
-  for (int i = 0; i < a.size(); i++) {
-    cout << a[i] << " ";
-  }
-  cout << endl;
-}
-void printVect2D(vector<pair<pair<int, int>, pair<int, int>>> a) {
-  for (int i = 0; i < a.size(); i++) {
-    cout << "(" << a[i].first.first << "," << a[i].first.second << ") " << "("
-         << a[i].second.first << "," << a[i].second.second << ") " << endl;
-  }
-}
-void printVectSS(vector<pair<pair<int, int>, int>> a) {
-  for (int i = 0; i < a.size(); i++) {
-    cout << a[i].first.first << " " << a[i].first.second << " > " << a[i].second
-         << endl;
-  }
-}
-
-void printprimefactors(vector<pair<int, int>> a) {
-  for (auto pr : a) {
-    cout << pr.first << "^" << pr.second << " ";
-  }
-  cout << endl;
 }

@@ -2,11 +2,12 @@
 
 
 #include <bits/stdc++.h>
+#include <cmath>
 using namespace std;
 #define ll long long
 
 vector<vector<int>> vis(8, vector<int>(8,0));
-vector<vector<int>> level(8, vector<int>(8,0));
+vector<vector<int>> level(8, vector<int>(8,-1));
 
 pair<int,int> stringToPos(string s){
         return {s[0]-'a',s[1]-'1'};
@@ -38,10 +39,12 @@ int bfs(string sr,string des){
     int sourceX=stringToPos(sr).first,sourceY=stringToPos(sr).second;
     int destinationX=stringToPos(des).first,destinationY=stringToPos(des).second;
     queue<pair<int,int>> q;
+    // horse movement always possible
 
     pair<int,int>curr_p={sourceX,sourceY};
     q.push(curr_p);
     vis[curr_p.first][curr_p.second]=1;
+    level[curr_p.first][curr_p.second]=0;
     while (!q.empty()) {
         curr_p=q.front();
         q.pop();
@@ -51,6 +54,9 @@ int bfs(string sr,string des){
                 q.push(newCor);
                 vis[newCor.first][newCor.second]=1;
                 level[newCor.first][newCor.second]=level[curr_p.first][curr_p.second]+1;
+            }
+            if(level[destinationX][destinationY]!=-1){ // optimization
+                break;
             }
         }
     }
