@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <bits/stdc++.h>
 #include <vector>
 using namespace std;
@@ -16,13 +17,60 @@ void printImage(vector<vector<int>> a) {
   }
 }
 
-const int N=510,INF=1e9+10;
-int dist[N][N];
+const int N = 510, INF = 1e9 + 10;
+ll dist[N][N];
 
+const int inf = 1e9 + 10;
+int maxDistance(vector<vector<int>> &arrays) {
+  int ans;
+  int maxSofar = arrays[0][arrays[0].size() - 1], minSoFar = arrays[0][0],
+      f = 0;
+
+  for (int j = 1; j < arrays.size(); j++) {
+    vector<int> arr = arrays[j];
+    int i = arr.size() - 1;
+    ans = max(ans, max(arr[i] - minSoFar, maxSofar - arr[0]));
+    maxSofar = max(maxSofar, arr[i]);
+    minSoFar = min(minSoFar, arr[0]);
+  }
+  return ans;
+}
 
 int main(int argn, char *argv[]) {
-
-     
+  int n;
+  cin >> n;
+  for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= n; j++) {
+      cin >> dist[i][j];
+    }
+  }
+  vector<int> deletion_order(n);
+  for (int i = 0; i < n; i++) {
+    cin >> deletion_order[i];
+  }
+  reverse(deletion_order.begin(), deletion_order.end());
+  vector<ll> ans;
+  for (int k = 0; k < n; k++) {
+    int k_v = deletion_order[k];
+    for (int i = 1; i <= n; i++) {
+      for (int j = 1; j <= n; j++) {
+        ll new_dist = dist[i][k_v] + dist[k_v][j];
+        dist[i][j] = min(dist[i][j], new_dist);
+      }
+    }
+    ll sum = 0;
+    for (int i = 1; i <= k; i++) {
+      for (int j = 1; j <= k; j++) {
+        sum += dist[deletion_order[i]][deletion_order[j]];
+      }
+    }
+    ans.push_back(sum);
+  }
+  reverse(ans.begin(), ans.end());
+  for (ll a : ans) {
+    cout << a << " ";
+  }
+  cout << endl << INT_MAX << " " << INT_MIN;
   return 0;
 }
 /*
