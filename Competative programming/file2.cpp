@@ -1,6 +1,5 @@
 #include <algorithm>
 #include <bits/stdc++.h>
-#include <vector>
 using namespace std;
 #define ll long long
 
@@ -17,24 +16,9 @@ void printImage(vector<vector<int>> a) {
   }
 }
 
+
 const int N = 510, INF = 1e9 + 10;
 ll dist[N][N];
-
-const int inf = 1e9 + 10;
-int maxDistance(vector<vector<int>> &arrays) {
-  int ans;
-  int maxSofar = arrays[0][arrays[0].size() - 1], minSoFar = arrays[0][0],
-      f = 0;
-
-  for (int j = 1; j < arrays.size(); j++) {
-    vector<int> arr = arrays[j];
-    int i = arr.size() - 1;
-    ans = max(ans, max(arr[i] - minSoFar, maxSofar - arr[0]));
-    maxSofar = max(maxSofar, arr[i]);
-    minSoFar = min(minSoFar, arr[0]);
-  }
-  return ans;
-}
 
 int main(int argn, char *argv[]) {
   int n;
@@ -70,7 +54,15 @@ int main(int argn, char *argv[]) {
   for (ll a : ans) {
     cout << a << " ";
   }
-  cout << endl << INT_MAX << " " << INT_MIN;
+  cout << endl << INT_MAX << " " << INT_MIN << endl;
+  vector<string> strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
+  auto vv = groupAnagrams(strs);
+  for (auto bb : vv) {
+    for (auto s : bb) {
+      cout << s << ' ';
+    }
+    cout << endl;
+  }
   return 0;
 }
 /*

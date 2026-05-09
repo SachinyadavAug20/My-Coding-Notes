@@ -14,7 +14,7 @@ int maxDistance(vector<vector<int>> &arrays) {
   for (int j = 1; j < arrays.size(); j++) {
     vector<int> arr = arrays[j];
     int i = arr.size() - 1;
-    ans = max(ans, max(arr[i] - minSoFar, maxSofar - arr[0]));
+    ans = max(ans, max(arr[i] - minSoFar, maxSofar - arr[0])); // avoid same array extremas
     maxSofar = max(maxSofar, arr[i]);
     minSoFar = min(minSoFar, arr[0]);
   }
