@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
@@ -15,7 +14,6 @@ void printImage(vector<vector<int>> a) {
     cout << endl;
   }
 }
-
 
 const int N = 510, INF = 1e9 + 10;
 ll dist[N][N];
@@ -52,17 +50,9 @@ int main(int argn, char *argv[]) {
   }
   reverse(ans.begin(), ans.end());
   for (ll a : ans) {
-    cout << a << " ";
+    // cout << a << " ";
   }
   cout << endl << INT_MAX << " " << INT_MIN << endl;
-  vector<string> strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
-  auto vv = groupAnagrams(strs);
-  for (auto bb : vv) {
-    for (auto s : bb) {
-      cout << s << ' ';
-    }
-    cout << endl;
-  }
   return 0;
 }
 /*
