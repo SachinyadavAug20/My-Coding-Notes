@@ -12,7 +12,7 @@ public:
         for(auto s:strs){
             string sz=to_string(s.size());
             code+=sz;
-            code+='@'; // single delimiter
+            code+='@'; // single delimiter sz#string...
             code+=s;
         }
         // cout<<code;
