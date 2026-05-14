@@ -9,7 +9,8 @@ vector<int> topKFrequent(vector<int>& nums, int k) {
     const int N=1e5+10,n=nums.size();
     unordered_map<int, int> hsh;
     // sort only need part not sort the entire hsh to find top k, only sort top k
-    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
+    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq; 
+    // (Type,container,cmp)
     hsh[N]=-1;
     for(int i=0;i<n;i++){
         hsh[nums[i]]++;
