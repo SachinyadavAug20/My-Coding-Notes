@@ -10,7 +10,7 @@ public:
         int totalProfit=0,n=prices.size();
         for(int i=0;i<n-1;i++){
             int prof=prices[i+1]-prices[i];
-            if(prof>0){
+            if(prof>0){ // uses local maxima
                 totalProfit+=prof;
             }
         }

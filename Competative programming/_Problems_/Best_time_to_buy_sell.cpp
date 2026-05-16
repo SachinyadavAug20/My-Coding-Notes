@@ -8,7 +8,7 @@ class Solution {
 public:
     int maxProfit(vector<int>& prices) {
         int n=prices.size(),maxP=0;
-        vector<int> postFixMax(n);
+        vector<int> postFixMax(n); // uses global maxima
         postFixMax[n-1]=prices[n-1];
         for(int i=n-2;i>=0;i--){
             postFixMax[i]=max(prices[i],postFixMax[i+1]);
