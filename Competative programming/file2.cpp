@@ -8,16 +8,14 @@ void printVectSS(vector<pair<pair<int, int>, int>> a);
 
 void printImage(vector<vector<int>> a) {
   for (auto v : a) {
-    for (int n : v) {  
+    for (int n : v) {
       cout << n << " ";
     }
     cout << endl;
   }
 }
 
-int main(int argn, char *argv[]) {
-  return 0;
-}
+int main(int argn, char *argv[]) { return 0; }
 /*
  3 3
 7 7 5
@@ -65,49 +63,22 @@ void printprimefactors(vector<pair<int, int>> a) {
   cout << endl;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class NumMatrix {
+class Solution {
 public:
-    vector<vector<int>> pSumMa;
-    vector<vector<int>> ma;
-    int n,m;
-    NumMatrix(vector<vector<int>>& matrix) {
-        ma=matrix;
-        n=ma.size();
-        m=ma[0].size();
-        vector<vector<int>> hsh(n,vector<int>(m));
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                int a=0;
-                if(i-1>=0) a+=hsh[i-1][j];
-                if(j-1>=0) a+=hsh[i][j-1];
-                hsh[i][j]=a+ma[i][j];
-            }
-        }
-        pSumMa=hsh;
+  bool isPalindrome(string s) {
+    s.erase(remove_if(s.begin(), s.end(), [](char c) { return !isalnum(c); }),
+            s.end());
+    int n = s.size();
+    if (n == 0) {
+      return true;
     }
-
-    int sumRegion(int row1, int col1, int row2, int col2) {
-        int ans=pSumMa[row2][col2];
-        if(row1-1>=0) ans-=pSumMa[row1-1][col2];
-        if(col1-1>=0) ans-=pSumMa[row1][col1-1];
-        ans+=pSumMa[row1][col1];
-        
-        return ans;
+    transform(s.begin(), s.end(), s.begin(), [](char c) { return tolower(c); });
+    cout << s << endl;
+    for (int i = 0, j = n - 1; i < j; i++, j--) {
+      if (s[i] != s[j]) {
+        return false;
+      }
     }
+    return true;
+  }
 };
