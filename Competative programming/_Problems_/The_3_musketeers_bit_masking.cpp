@@ -17,6 +17,7 @@ using namespace std;
 // use && to see common vowel
 int M=1e9+7;
 
+
 int main(int argn, char *argv[]) {
     
     char v[5]={'a','e','i','o','u'};

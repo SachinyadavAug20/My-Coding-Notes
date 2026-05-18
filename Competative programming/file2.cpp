@@ -8,51 +8,14 @@ void printVectSS(vector<pair<pair<int, int>, int>> a);
 
 void printImage(vector<vector<int>> a) {
   for (auto v : a) {
-    for (int n : v) {
+    for (int n : v) {  
       cout << n << " ";
     }
     cout << endl;
   }
 }
 
-const int N = 510, INF = 1e9 + 10;
-ll dist[N][N];
-
 int main(int argn, char *argv[]) {
-  int n;
-  cin >> n;
-  for (int i = 1; i <= n; i++) {
-    for (int j = 1; j <= n; j++) {
-      cin >> dist[i][j];
-    }
-  }
-  vector<int> deletion_order(n);
-  for (int i = 0; i < n; i++) {
-    cin >> deletion_order[i];
-  }
-  reverse(deletion_order.begin(), deletion_order.end());
-  vector<ll> ans;
-  for (int k = 0; k < n; k++) {
-    int k_v = deletion_order[k];
-    for (int i = 1; i <= n; i++) {
-      for (int j = 1; j <= n; j++) {
-        ll new_dist = dist[i][k_v] + dist[k_v][j];
-        dist[i][j] = min(dist[i][j], new_dist);
-      }
-    }
-    ll sum = 0;
-    for (int i = 1; i <= k; i++) {
-      for (int j = 1; j <= k; j++) {
-        sum += dist[deletion_order[i]][deletion_order[j]];
-      }
-    }
-    ans.push_back(sum);
-  }
-  reverse(ans.begin(), ans.end());
-  for (ll a : ans) {
-    // cout << a << " ";
-  }
-  cout << endl << INT_MAX << " " << INT_MIN << endl;
   return 0;
 }
 /*
@@ -101,3 +64,50 @@ void printprimefactors(vector<pair<int, int>> a) {
   }
   cout << endl;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class NumMatrix {
+public:
+    vector<vector<int>> pSumMa;
+    vector<vector<int>> ma;
+    int n,m;
+    NumMatrix(vector<vector<int>>& matrix) {
+        ma=matrix;
+        n=ma.size();
+        m=ma[0].size();
+        vector<vector<int>> hsh(n,vector<int>(m));
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                int a=0;
+                if(i-1>=0) a+=hsh[i-1][j];
+                if(j-1>=0) a+=hsh[i][j-1];
+                hsh[i][j]=a+ma[i][j];
+            }
+        }
+        pSumMa=hsh;
+    }
+
+    int sumRegion(int row1, int col1, int row2, int col2) {
+        int ans=pSumMa[row2][col2];
+        if(row1-1>=0) ans-=pSumMa[row1-1][col2];
+        if(col1-1>=0) ans-=pSumMa[row1][col1-1];
+        ans+=pSumMa[row1][col1];
+        
+        return ans;
+    }
+};
