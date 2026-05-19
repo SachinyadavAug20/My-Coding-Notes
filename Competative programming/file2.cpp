@@ -14,26 +14,21 @@ void printImage(vector<vector<int>> a) {
     cout << endl;
   }
 }
-
-int main(int argn, char *argv[]) { return 0; }
-/*
- 3 3
-7 7 5
-2 4 6
-8 2 0
- */
+int main(int argn, char *argv[]) {
+  return 0;
+}
 
 /*
- https://codeforces.com/contest/776/problem/B
- https://www.hackerearth.com/practice/math/number-theory/basic-number-theory-2/practice-problems/
+https://codeforces.com/contest/776/problem/B
+https://www.hackerearth.com/practice/math/number-theory/basic-number-theory-2/practice-problems/
 https://leetcode.com/problems/longest-increasing-path-in-a-matrix/description/
 https://leetcode.com/problems/pacific-atlantic-water-flow/description/
 https://leetcode.com/problems/island-perimeter/description/
 https://www.geeksforgeeks.org/problems/find-the-number-of-islands/1?category=
-      https://cp-algorithms.com/graph/depth-first-search.html
-    https://www.geeksforgeeks.org/problems/find-the-number-of-islands/1?category=
-    https://www.geeksforgeeks.org/explore?page=1&sortBy=submissions&_gl=1*1fcocz3*_up*MQ..*_gs*MQ..
-    https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1?page=1&sortBy=submissions
+https://cp-algorithms.com/graph/depth-first-search.html
+https://www.geeksforgeeks.org/problems/find-the-number-of-islands/1?category=
+https://www.geeksforgeeks.org/explore?page=1&sortBy=submissions&_gl=1*1fcocz3*_up*MQ..*_gs*MQ..
+https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1?page=1&sortBy=submissions
 https://leetcode.com/problems/number-of-islands/description/
  */
 
@@ -62,23 +57,3 @@ void printprimefactors(vector<pair<int, int>> a) {
   }
   cout << endl;
 }
-
-class Solution {
-public:
-  bool isPalindrome(string s) {
-    s.erase(remove_if(s.begin(), s.end(), [](char c) { return !isalnum(c); }),
-            s.end());
-    int n = s.size();
-    if (n == 0) {
-      return true;
-    }
-    transform(s.begin(), s.end(), s.begin(), [](char c) { return tolower(c); });
-    cout << s << endl;
-    for (int i = 0, j = n - 1; i < j; i++, j--) {
-      if (s[i] != s[j]) {
-        return false;
-      }
-    }
-    return true;
-  }
-};
