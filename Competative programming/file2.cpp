@@ -14,113 +14,47 @@ void printImage(vector<vector<int>> a) {
     cout << endl;
   }
 }
-
-
-
-
-int main(int argn, char *argv[]) {
-  return 0;
+void printVector(vector<int> a) {
+  for (int n : a) {
+    cout << n << " ";
+  }
+  cout << endl;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+void rotate(vector<int> &nums, int k) {
+  int n = nums.size();
+  stack<int> snums;
+  stack<int> enums;
+    k=k%n;
+  for (int i = n - 1; i >= 0; i--) {
+    int num = nums[i];
+    if (i >= n - k) {
+      enums.push(num);
+    } else {
+      snums.push(num);
+    }
+  }
+  int i = 0;
+  while (!enums.empty()) {
+    nums[i] = enums.top();
+    cout<<"e :"<<nums[i]<<endl;
+    enums.pop();
+    i++;
+  }
+  while (!snums.empty()) {
+    nums[i] = snums.top();
+    cout<<"s :"<<nums[i]<<endl;
+    snums.pop();
+    i++;
+  }
+}
+int main(int argn, char *argv[]) {
+  vector<int> a = {1, 2};
+  printVector(a);
+  rotate(a, 7);
+  printVector(a);
+  return 0;
+}
 
 /*
 https://codeforces.com/contest/776/problem/B
