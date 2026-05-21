@@ -21,38 +21,41 @@ void printVector(vector<int> a) {
   cout << endl;
 }
 
-void rotate(vector<int> &nums, int k) {
-  int n = nums.size();
-  stack<int> snums;
-  stack<int> enums;
-    k=k%n;
-  for (int i = n - 1; i >= 0; i--) {
-    int num = nums[i];
-    if (i >= n - k) {
-      enums.push(num);
-    } else {
-      snums.push(num);
+bool is_digits(string &str) {
+  return all_of(str.begin(), str.end(), ::isdigit);
+}
+int calPoints(vector<string> &operations) {
+  stack<int> st;
+  for (string s : operations) {
+    // cout<<s<<endl;
+    if (is_digits(s)) {
+      st.push(stoi(s));
+    } else if (s == "D") {
+      int n = st.top();
+      st.push(2 * n);
+    } else if (s == "C") {
+      st.pop();
+    } else if (s == "+") {
+      int n = st.top();
+      st.pop();
+      int m = st.top();
+      st.pop();
+      st.push(m);
+      st.push(n);
+      st.push(n + m);
     }
   }
-  int i = 0;
-  while (!enums.empty()) {
-    nums[i] = enums.top();
-    cout<<"e :"<<nums[i]<<endl;
-    enums.pop();
-    i++;
+  int ans = 0;
+  while (!st.empty()) {
+    ans += st.top();
+    st.pop();
   }
-  while (!snums.empty()) {
-    nums[i] = snums.top();
-    cout<<"s :"<<nums[i]<<endl;
-    snums.pop();
-    i++;
-  }
+  return ans;
 }
+
 int main(int argn, char *argv[]) {
-  vector<int> a = {1, 2};
-  printVector(a);
-  rotate(a, 7);
-  printVector(a);
+  vector<string> ss = {"5","-2","4","C","D","9","+","+"};
+  cout << calPoints(ss);
   return 0;
 }
 
