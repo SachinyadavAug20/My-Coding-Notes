@@ -20,43 +20,33 @@ void printVector(vector<int> a) {
   }
   cout << endl;
 }
-
-bool is_digits(string &str) {
-  return all_of(str.begin(), str.end(), ::isdigit);
-}
-int calPoints(vector<string> &operations) {
-  stack<int> st;
-  for (string s : operations) {
-    // cout<<s<<endl;
-    if (is_digits(s)) {
-      st.push(stoi(s));
-    } else if (s == "D") {
-      int n = st.top();
-      st.push(2 * n);
-    } else if (s == "C") {
-      st.pop();
-    } else if (s == "+") {
-      int n = st.top();
-      st.pop();
-      int m = st.top();
-      st.pop();
-      st.push(m);
-      st.push(n);
-      st.push(n + m);
+  int trap(vector<int> &height) {
+    // on top of 1st and last pillar water can't stay
+    // max height of left and min height of right -> do calculation on true and should be less 
+    int n = height.size();
+    int ans = 0;
+    int l = 0, maxl = height[0];
+    int r = n - 1, maxr = height[n - 1];
+    for (; r > l;) {
+        if(maxl<=maxr){
+            int wa=maxl-height[l];
+            l++;
+            if(wa>0) ans+=wa;
+            maxl=max(maxl,height[l]);
+        }else{
+            int wa=maxr-height[r];
+            r--;
+            if(wa>0) ans+=wa;
+            maxr=max(maxr,height[r]);
+        }
+        cout<<" "<<ans<<endl;
     }
-  }
-  int ans = 0;
-  while (!st.empty()) {
-    ans += st.top();
-    st.pop();
-  }
-  return ans;
-}
+   return ans;
+  } // O(n) time and O(1) space
 
 int main(int argn, char *argv[]) {
-  vector<string> ss = {"5","-2","4","C","D","9","+","+"};
-  cout << calPoints(ss);
-  return 0;
+  vector<int> h = {0,1,0,2,1,0,1,3,2,1,2,1};
+  cout << trap(h);
 }
 
 /*
