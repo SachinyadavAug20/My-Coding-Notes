@@ -88,3 +88,42 @@ void printprimefactors(vector<pair<int, int>> a) {
   }
   cout << endl;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution {
+public:
+    int minimumSwaps(vector<int>& nums) {
+        int n=nums.size();
+        int r=n-1;
+        while(nums[r]==0){
+            r--;
+        }
+        int ans=0;
+        for(int i=0;i<r;i++){
+            if(nums[i]==0){
+                nums[i]=nums[r];
+                nums[r]=0;
+                while(nums[r]==0){
+                    r--;
+                }
+                ans++;
+            }
+        }
+        return ans;
+    }
+};
+// leetcode is down btw biweekly at 8:17

@@ -11,7 +11,7 @@ public:
         int l=1,prev=nums[0];
         k++; // 1st value is unique
         for(int i=1;i<n;i++){
-            if(nums[i]!=prev){
+            if(nums[i]!=prev){ // learn: don't swap if not nessary
                 nums[l]=nums[i];
                 l++;
                 k++;
