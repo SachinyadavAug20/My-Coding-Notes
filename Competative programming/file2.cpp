@@ -20,48 +20,110 @@ void printVector(vector<int> a) {
   }
   cout << endl;
 }
-  int trap(vector<int> &height) {
-    // on top of 1st and last pillar water can't stay
-    // max height of left and min height of right -> do calculation on true and should be less 
-    int n = height.size();
-    int ans = 0;
-    int l = 0, maxl = height[0];
-    int r = n - 1, maxr = height[n - 1];
-    for (; r > l;) {
-        if(maxl<=maxr){
-            int wa=maxl-height[l];
-            l++;
-            if(wa>0) ans+=wa;
-            maxl=max(maxl,height[l]);
-        }else{
-            int wa=maxr-height[r];
-            r--;
-            if(wa>0) ans+=wa;
-            maxr=max(maxr,height[r]);
-        }
-        cout<<" "<<ans<<endl;
-    }
-   return ans;
-  } // O(n) time and O(1) space
-
 int main(int argn, char *argv[]) {
-  vector<int> h = {0,1,0,2,1,0,1,3,2,1,2,1};
-  cout << trap(h);
+  vector<int> h = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+  return 0;
 }
 
-/*
-https://codeforces.com/contest/776/problem/B
-https://www.hackerearth.com/practice/math/number-theory/basic-number-theory-2/practice-problems/
-https://leetcode.com/problems/longest-increasing-path-in-a-matrix/description/
-https://leetcode.com/problems/pacific-atlantic-water-flow/description/
-https://leetcode.com/problems/island-perimeter/description/
-https://www.geeksforgeeks.org/problems/find-the-number-of-islands/1?category=
-https://cp-algorithms.com/graph/depth-first-search.html
-https://www.geeksforgeeks.org/problems/find-the-number-of-islands/1?category=
-https://www.geeksforgeeks.org/explore?page=1&sortBy=submissions&_gl=1*1fcocz3*_up*MQ..*_gs*MQ..
-https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1?page=1&sortBy=submissions
-https://leetcode.com/problems/number-of-islands/description/
- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void printVect(vector<unsigned> a) {
   for (int i = 0; i < a.size(); i++) {
@@ -104,26 +166,59 @@ void printprimefactors(vector<pair<int, int>> a) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Solution {
 public:
-    int minimumSwaps(vector<int>& nums) {
-        int n=nums.size();
-        int r=n-1;
-        while(nums[r]==0){
-            r--;
-        }
-        int ans=0;
-        for(int i=0;i<r;i++){
-            if(nums[i]==0){
-                nums[i]=nums[r];
-                nums[r]=0;
-                while(nums[r]==0){
-                    r--;
+    int giveDirection(int num){
+        if(num==0) return 10;
+        if(num<0) return -1;
+        return +1;
+    }
+    vector<int> asteroidCollision(vector<int>& asteroids) {
+        // ans will have all positive or all negative
+        // 4 possible -> <- , -> ->, <- <- and <- -> only one will collide -> <-
+        int n=asteroids.size();
+        if(n==0) return {};
+        stack<pair<int,int>> ast;
+        ast.push({abs(asteroids[0]),giveDirection(asteroids[0])});
+        for(int i=1;i<n;i++){
+            while((!ast.empty() && ast.top().second==1)&&giveDirection(asteroids[i])==-1){ // for collision
+                if(abs(asteroids[i])>ast.top().first){
+                    ast.pop();
+                }else if(abs(asteroids[i])<ast.top().first){
+                    asteroids[i]=0;
+                }else{
+                    ast.pop();
+                    asteroids[i]=0;
                 }
-                ans++;
             }
+            if(asteroids[i]) ast.push({abs(asteroids[i]),giveDirection(asteroids[i])});
         }
+
+        vector<int> ans;
+        while(!ast.empty()){
+            auto p=ast.top();
+            ans.push_back(p.first*p.second);
+            ast.pop();
+        }
+        reverse(ans.begin(),ans.end());
         return ans;
+        
     }
 };
-// leetcode is down btw biweekly at 8:17
