@@ -20,110 +20,11 @@ void printVector(vector<int> a) {
   }
   cout << endl;
 }
+
+
 int main(int argn, char *argv[]) {
-  vector<int> h = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
   return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 void printVect(vector<unsigned> a) {
   for (int i = 0; i < a.size(); i++) {
@@ -173,35 +74,3 @@ void printprimefactors(vector<pair<int, int>> a) {
 
 
 
-
-
-
-
-
-
-
-
-
-class Solution {
-public:
-    vector<int> dailyTemperatures(vector<int>& temperatures) {
-        // monotonic decreasing stack problem
-        // algo
-        // compare to stack.top if greater found give distance at position in ans
-        int n=temperatures.size();
-        vector<int> ans(n);
-        stack<pair<int,int>> st; // ind,temp
-        for(int i=0;i<n;i++){
-                while(!st.empty()&&st.top().second<temperatures[i]){
-                    ans[st.top().first]=(i-st.top().first);
-                    st.pop();
-                }
-            st.push({i,temperatures[i]});
-        }
-        while(!st.empty()){
-            ans[st.top().first]=0;
-            st.pop();
-        }
-        return ans;
-    }
-};
