@@ -12,6 +12,7 @@ int main(int argn, char *argv[]) {
   int ctn=0;
   for(int i:scores){
       if(i>0 && i>=scores[k-1]) ctn++;
+      else break;
   }
   cout<<ctn<<endl;
   return 0;

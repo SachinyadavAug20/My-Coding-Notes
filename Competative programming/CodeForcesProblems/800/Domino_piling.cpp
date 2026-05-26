@@ -6,5 +6,5 @@ int main(int argn, char *argv[]) {
     int m,n;
     cin>>m>>n;
     int area=m*n;
-    cout<<area/2<<endl;
+    cout<<(area>>1)<<endl;
 }
