@@ -163,27 +163,44 @@ void printprimefactors(vector<pair<int, int>> a) {
 
 class Solution {
 public:
-  int carFleet(int target, vector<int> &position, vector<int> &speed) {
-    // make array of pair of --> position : speed
-    // sort it and travel from distant to closer
-    // and compare if collide and for fleet
-    int n = position.size();
-    stack<pair<int, int>> st;
-    vector<pair<int, int>> pos_speed;
-    for (int i = 0; i < n; i++) {
-      pos_speed.push_back({position[i], speed[i]});
-    }
-    sort(pos_speed.begin(), pos_speed.end());
-    for (int i = n - 1; i >=0; i--) {
-      auto p = pos_speed[i];
-      float time = 1.0 * (target - p.first) / p.second;
-      if(!st.empty() &&
-             (1.0 * (target - st.top().first) / st.top().second) >= time) {
-          continue;
+  string simplifyPath(string path) {
+    string c_s = "";
+    deque<string> st;
+    for (char ch : path) {
+      if (ch == '/') {
+        if (c_s != "" && c_s != ".") {
+          st.push_back(c_s);
+        }
+        c_s = "";
+      } else {
+        c_s += ch;
       }
-          st.push(pos_speed[i]);
+    }
+    if (c_s != "" && c_s != ".") {
+      st.push_back(c_s);
     }
 
-    return st.size();
+    deque<string> aa;
+    while (!st.empty()) {
+      if (st.front() == "..") {
+        st.pop_front();
+        if (!aa.empty()) {
+          aa.pop_back();
+        }
+      } else {
+        aa.push_back(st.front());
+        st.pop_front();
+      }
+    }
+
+    string ans = "/";
+    while (!aa.empty()) {
+      ans += aa.front();
+      aa.pop_front();
+      if (aa.size() >= 1) {
+        ans += "/";
+      }
+    }
+    return ans;
   }
 };
