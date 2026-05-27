@@ -21,18 +21,19 @@ void printVector(vector<int> a) {
   cout << endl;
 }
 
+
+
 int main(int argn, char *argv[]) {
-  int n;
-  cin >> n;
-  int ctn = 0;
-  for (int i = 0; i < n; i++) {
-    int x, y, z;
-    cin >> x >> y >> z;
-    if (x + y + z >= 2)
-      ctn++;
-  }
-  cout << ctn;
-  return 0;
+    string s;
+    cin>>s;
+    unordered_set<char> un;
+    for(char ch:un) un.insert(ch);
+    if(un.size()%2==0){
+        cout<<"CHAT WITH HER!"<<endl;
+    }else{
+        cout<<"IGNORE HIM!"<<endl;
+    }
+    return 0;
 }
 
 void printVect(vector<unsigned> a) {
