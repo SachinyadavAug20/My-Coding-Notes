@@ -21,19 +21,59 @@ void printVector(vector<int> a) {
   cout << endl;
 }
 
+string repeatNtimes(string s, int n) {
+  string ans = "";
+  while (n--) {
+    ans += s;
+  }
+  return ans;
+}
 
+string decodeString(string s) {
+  int n = s.size();
+  int liof = s.find_last_of(']');
+  string appen = s.substr(liof + 1, (n - liof));
+  s = s.substr(0, liof+1);
+  cout<<"   "<<s<<endl;
+  cout<<"   "<<appen<<endl;
 
-int main(int argn, char *argv[]) {
-    string s;
-    cin>>s;
-    unordered_set<char> un;
-    for(char ch:un) un.insert(ch);
-    if(un.size()%2==0){
-        cout<<"CHAT WITH HER!"<<endl;
-    }else{
-        cout<<"IGNORE HIM!"<<endl;
+  stack<char> st;
+  for (char ch : s) {
+    if (ch == ']') {
+      string c_s = "";
+      while (!st.empty() && st.top() != '[') {
+        c_s += st.top();
+        st.pop();
+      }
+      st.pop(); // valid code thus won't be empty
+      string num;
+      while (!st.empty() && isdigit(st.top())) {
+        num += st.top();
+        st.pop();
+      }
+      reverse(num.begin(),num.end());
+      reverse(c_s.begin(),c_s.end());
+      int ctn = stoi(num);
+      c_s = (repeatNtimes(c_s, ctn));
+      for (char aa : c_s) {
+        st.push(aa);
+      }
+    } else {
+      st.push(ch);
     }
-    return 0;
+  }
+  string ans = "";
+  while (!st.empty()) {
+    ans += st.top();
+    st.pop();
+  }
+  reverse(ans.begin(),ans.end());
+  ans+=appen;
+  return ans;
+}
+int main(int argn, char *argv[]) {
+    cout<<decodeString("2[a3[b]]c");
+  return 0;
 }
 
 void printVect(vector<unsigned> a) {
@@ -61,147 +101,3 @@ void printprimefactors(vector<pair<int, int>> a) {
   }
   cout << endl;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class Solution {
-public:
-  string simplifyPath(string path) {
-    string c_s = "";
-    deque<string> st;
-    for (char ch : path) {
-      if (ch == '/') {
-        if (c_s != "" && c_s != ".") {
-          st.push_back(c_s);
-        }
-        c_s = "";
-      } else {
-        c_s += ch;
-      }
-    }
-    if (c_s != "" && c_s != ".") {
-      st.push_back(c_s);
-    }
-
-    deque<string> aa;
-    while (!st.empty()) {
-      if (st.front() == "..") {
-        st.pop_front();
-        if (!aa.empty()) {
-          aa.pop_back();
-        }
-      } else {
-        aa.push_back(st.front());
-        st.pop_front();
-      }
-    }
-
-    string ans = "/";
-    while (!aa.empty()) {
-      ans += aa.front();
-      aa.pop_front();
-      if (aa.size() >= 1) {
-        ans += "/";
-      }
-    }
-    return ans;
-  }
-};
