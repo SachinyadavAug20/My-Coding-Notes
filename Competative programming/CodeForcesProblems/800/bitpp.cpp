@@ -9,8 +9,8 @@ int main(int argn, char *argv[]) {
     while (q--) {
         string s;
         cin>>s;
-        if(s[0]=='+'||s[2]=='+') x++;
-        if(s[0]=='-'||s[2]=='-') x--;
+        if(s[1]=='+') x++;
+        if(s[1]=='-') x--;
     }
     cout<<x<<endl;
   return 0;

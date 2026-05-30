@@ -15,10 +15,10 @@ int main(int argn, char *argv[]) {
       if (v == 1) {
         i1 = i;
         j1 = j;
-        break;
+      cout << abs(i1 - 3) + abs(j1 - 3) << endl;
+      return 0;
       }
     }
   }
-  cout << abs(i1 - 3) + abs(j1 - 3) << endl;
   return 0;
 }
