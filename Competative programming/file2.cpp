@@ -277,30 +277,31 @@ void printprimefactors(vector<pair<int, int>> a) {
 
 
 
-
 class Solution {
 public:
-    // possible values of k are 0, maximumSze(any pile) eat 
-    // can test for each k using binary search
-    // time complexity -> O(log(maxsize)*n)
-    // it is boolean binary false false false true true true
-    int minEatingSpeed(vector<int>& piles, int h) {
-        int lo=1,hi=*max_element(piles.begin(),piles.end()),ans=hi;
+    // need to do in logn 
+    // search for minimum element
+    // min is to be tracked find -> pivote where not in increasing order
+    // to get pivote may need O(n) so can't do that
+    // let sorted and right sorted parts are different and need
+    // after rotaton
+    // left sorted -> always has value greater than right side
+    // answer lies in right side
+    int findMin(vector<int>& nums) {
+        int ans=nums[0];
+        int lo=0,hi=nums.size()-1;
         while(hi>=lo){
-            int mid=lo+(hi-lo)/2;
-            long long time=0;
-            for(int pile:piles){
-                long long th=pile/mid;
-                if(th*mid<pile){
-                    th++;
-                }
-                time+=th;
+            if(nums[lo]<nums[hi]){
+                // reached sorted range
+                ans=min(ans,nums[lo]);
+                break;
             }
-            if(time<=h){ // can be solution
-                ans=min(ans,mid);
-                hi=mid-1;
-            }else{ // rate is slow and need to increase speed
+            int mid=lo+(hi-lo)/2;
+            ans=min(ans,nums[mid]);
+            if(nums[mid]>=nums[lo]){ // we are on left sorted region go right
                 lo=mid+1;
+            }else{ // in right region go to left
+                hi=mid-1;
             }
         }
         return ans;
