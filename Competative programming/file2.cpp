@@ -149,161 +149,34 @@ void printprimefactors(vector<pair<int, int>> a) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class Solution {
 public:
-    // need to do in logn 
-    // search for minimum element
-    // min is to be tracked find -> pivote where not in increasing order
-    // to get pivote may need O(n) so can't do that
-    // let sorted and right sorted parts are different and need
-    // after rotaton
-    // left sorted -> always has value greater than right side
-    // answer lies in right side
-    int findMin(vector<int>& nums) {
-        int ans=nums[0];
+        // non-decreasing order -> complex
+    // need to know in left(lo<mid) and right portion
+    // if repeated it wll be hard to say where we are.
+    // can't element thing out. => O(n)  worst case
+    // because lo==mid
+    bool search(vector<int>& nums, int target) {
         int lo=0,hi=nums.size()-1;
         while(hi>=lo){
-            if(nums[lo]<nums[hi]){
-                // reached sorted range
-                ans=min(ans,nums[lo]);
-                break;
-            }
             int mid=lo+(hi-lo)/2;
-            ans=min(ans,nums[mid]);
-            if(nums[mid]>=nums[lo]){ // we are on left sorted region go right
-                lo=mid+1;
-            }else{ // in right region go to left
-                hi=mid-1;
+            if(nums[mid]==target) return 1;
+            if(nums[lo]<nums[mid]){ // left sorted
+                if(nums[lo]<=target && target<nums[mid]){
+                    hi=mid-1;
+                }else{
+                    lo=mid+1;
+                }
+            }else if(nums[lo]>nums[mid]){
+              if(nums[mid]<target && target <=nums[hi]){ // target in range
+                  lo=mid+1;
+              }else{
+                  hi=mid-1;
+              }
+            }else{
+                lo++;
             }
         }
-        return ans;
+        return 0;
     }
 };
