@@ -72,4 +72,3 @@ void printprimefactors(vector<pair<int, int>> a) {
 
 
 
-
