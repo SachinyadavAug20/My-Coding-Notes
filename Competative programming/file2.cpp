@@ -68,25 +68,49 @@ void printprimefactors(vector<pair<int, int>> a) {
 
 
 
+
+
+
 class Solution {
 public:
-    int earliestFinishTime(vector<int>& landStartTime, vector<int>& landDuration, vector<int>& waterStartTime, vector<int>& waterDuration) {
-        int n=landStartTime.size(),m=waterDuration.size();
-        int ans=INT_MAX;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                // land to water
-                int fl1=landStartTime[i]+landDuration[i];
-                int sw1=max(fl1,waterStartTime[j]);
-                int fw1=sw1+waterDuration[j];
-
-                // water to land
-                int fw2=waterStartTime[j]+waterDuration[j];
-                int sl2=max(fw2,landStartTime[i]);
-                int fl2=sl2+landDuration[i];
-                ans=min(ans,min(fw1,fl2));
-            }
+// merging array will be O(m+n) so, not possible
+// as need Solution in O(log(m+n))
+// for it must use binary search
+// median -> middle value(if 2 middle then, average of it)
+// divide
+  double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2) {
+    vector<int> &A = nums1;
+    vector<int> &B = nums2;
+    if (A.size() > B.size()) swap(A, B);
+    // now A is samll and B is big
+    int n = A.size();
+    int m = B.size();
+    int total = n + m;
+    int half = (total + 1) / 2; // round up
+    int l = 0;
+    int r = n - 1;
+    // binary search on A
+    while (l <= r) {
+      int cutA = l + (r - l) / 2;
+      int cutB = half - cutA;
+      int Aleft = (cutA == 0) ? INT_MIN : A[cutA - 1];
+      int Aright = (cutA == n) ? INT_MAX : A[cutA];
+      int Bleft = (cutB == 0) ? INT_MIN : B[cutB - 1];
+      int Bright = (cutB == m) ? INT_MAX : B[cutB];
+      // perfect partition
+      if (Aleft <= Bright && Bleft <= Aright) {
+        if (total % 2) {
+          return max(Aleft, Bleft);
         }
-        return ans;
+        return (max(Aleft, Bleft) + min(Aright, Bright)) / 2.0;
+      }
+      // fix to get perfect partition
+      if (Aleft > Bright) {
+        r = cutA - 1;
+      } else {
+        l = cutA + 1;
+      }
     }
+    return 0.0;
+  }
 };
