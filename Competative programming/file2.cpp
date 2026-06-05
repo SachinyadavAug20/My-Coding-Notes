@@ -21,7 +21,10 @@ void printVector(vector<int> a) {
   cout << endl;
 }
 
-int main(int argn, char *argv[]) { return 0; }
+int main(int argn, char *argv[]) {
+    int num;
+    return 0; 
+}
 
 void printVect(vector<unsigned> a) {
   for (int i = 0; i < a.size(); i++) {
@@ -56,48 +59,33 @@ void printprimefactors(vector<pair<int, int>> a) {
 
 
 
-
-
-class SolutionMY {
+class Solution {
 public:
-    // at position i and j must be same elements
-    // size of the window between this window is <= k
-    bool containsNearbyDuplicate(vector<int>& nums, int k) {
-        int n=nums.size();
-        unordered_map<int,vector<int>> hsh; // val:pos+1
-        for(int i=0;i<n;i++){
-            int c=nums[i];
-            if(hsh[c].size()!=0){
-                for(int j:hsh[c]){
-                    if(abs(j-1-i)<=k) return 1;
-                    cout<<j<<" "<<i<<endl;
-                }
-            }
-            hsh[c].push_back(i+1);
-        }
-        return 0;
-    }
-};
-
-
-class SolutionSliding {
-public:
-    // at position i and j must be same elements
-    // size of the window between this window is <= k
-    bool containsNearbyDuplicate(vector<int>& nums, int k) {
-        int n=nums.size();
-        unordered_set<int> windowhsh;
+    // can chose only uppercase english char A-Z 26
+    // replace wih
+    // Solution
+    // we want all characters in a particular window to match most frequernt character in the window
+    int characterReplacement(string s, int k) {
+        int n=s.size();
         int l=0;
+        int ans=0;
+        vector<int> hsh(26,0);
         for(int i=0;i<n;i++){
-            if(i-l>k){
-                windowhsh.erase(nums[l]);
-                l++;
-            }
-            if(windowhsh.find(nums[i])!=windowhsh.end()){
-                return true;
-            }
-            windowhsh.insert(nums[i]);
+            hsh[s[i]-'A']++;
+            int charToReplce=0;
+            do{
+                // a window is valid iff
+                // hsh windowLen - count(mostfreq)(cmfc)
+                int cmfc=*max_element(hsh.begin(),hsh.end());
+                charToReplce=i-l+1-cmfc;
+                if(charToReplce>k){
+                    hsh[s[l]-'A']++;
+                    l++;
+                }
+            }while(charToReplce>k);
+            ans=max(ans,i-l+1);
         }
-        return false;
+        return ans;
+        
     }
 };
