@@ -58,34 +58,42 @@ void printprimefactors(vector<pair<int, int>> a) {
 
 
 
-
 class Solution {
 public:
-    // can chose only uppercase english char A-Z 26
-    // replace wih
-    // Solution
-    // we want all characters in a particular window to match most frequernt character in the window
-    int characterReplacement(string s, int k) {
-        int n=s.size();
-        int l=0;
-        int ans=0;
-        vector<int> hsh(26,0);
-        for(int i=0;i<n;i++){
-            hsh[s[i]-'A']++;
-            int charToReplce=0;
-            do{
-                // a window is valid iff
-                // hsh windowLen - count(mostfreq)(cmfc)
-                int cmfc=*max_element(hsh.begin(),hsh.end());
-                charToReplce=i-l+1-cmfc;
-                if(charToReplce>k){
-                    hsh[s[l]-'A']++;
-                    l++;
-                }
-            }while(charToReplce>k);
-            ans=max(ans,i-l+1);
+    bool checkInclusion(string s1, string s2) {
+        // window size is s1.length
+        int n1=s1.size(),n2=s2.size();
+        if(n1 > n2) return 0;
+        vector<int> hsh1(26,0);
+        vector<int> hsh2(26,0);
+        for(int i=0;i<n1;i++){
+            hsh1[s1[i]-'a']++;
         }
-        return ans;
-        
-    }
+        for(int i=0;i<n1;i++){
+            hsh2[s2[i]-'a']++;
+        }
+        int l=0;
+        int i=n1;
+        int match=1;
+        for(int j=0;j<26;j++){
+            if(hsh1[j]!=hsh2[j]){ match=0; break;}
+        }
+        if(match){
+            return 1;
+        }
+        while(i<n2){
+            hsh2[s2[i]-'a']++;
+            hsh2[s2[l]-'a']--;
+            int match=1;
+            for(int j=0;j<26;j++){
+                if(hsh1[j]!=hsh2[j]){ match=0; break;}
+            }
+            if(match){
+                return 1;
+            }
+            i++;
+            l++;
+        }
+        return 0;
+    } // O(26*n2) time
 };
