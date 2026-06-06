@@ -56,44 +56,35 @@ void printprimefactors(vector<pair<int, int>> a) {
 
 
 
-
-
 class Solution {
 public:
-    bool checkInclusion(string s1, string s2) {
-        // window size is s1.length
-        int n1=s1.size(),n2=s2.size();
-        if(n1 > n2) return 0;
-        vector<int> hsh1(26,0);
-        vector<int> hsh2(26,0);
-        for(int i=0;i<n1;i++){
-            hsh1[s1[i]-'a']++;
+    // to find sum to target by smallest sz
+    // can find by sliding window
+    int minSubArrayLen(int target, vector<int>& nums) {
+        int n=nums.size();
+        vector<int> preSum(n),postSum(n);
+        preSum[0]=nums[0];
+        for(int i=1;i<n;i++){
+            preSum[i]=preSum[i-1]+nums[i];
         }
-        for(int i=0;i<n1;i++){
-            hsh2[s2[i]-'a']++;
-        }
+
+        int ans=INT_MAX;
         int l=0;
-        int i=n1;
-        int match=1;
-        for(int j=0;j<26;j++){
-            if(hsh1[j]!=hsh2[j]){ match=0; break;}
+        for(int i=0;i<n && l<n;i++){
+            int lsum=l-1>=0?preSum[l-1]:0;
+            int rsum=preSum[i];
+
+            int wSum=rsum-lsum;
+            int ww=i+1-l;
+            if(wSum>=target){ // valid be greedy
+              ans=min(ans,ww);
+              // shrink
+                l++;
+                i--;
+
+            }  
         }
-        if(match){
-            return 1;
-        }
-        while(i<n2){
-            hsh2[s2[i]-'a']++;
-            hsh2[s2[l]-'a']--;
-            int match=1;
-            for(int j=0;j<26;j++){
-                if(hsh1[j]!=hsh2[j]){ match=0; break;}
-            }
-            if(match){
-                return 1;
-            }
-            i++;
-            l++;
-        }
-        return 0;
-    } // O(26*n2) time
+        return ans==INT_MAX?0:ans;
+    }
 };
+
