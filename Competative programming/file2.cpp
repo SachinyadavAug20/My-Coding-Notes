@@ -22,8 +22,8 @@ void printVector(vector<int> a) {
 }
 
 int main(int argn, char *argv[]) {
-    int num;
-    return 0; 
+  int num;
+  return 0;
 }
 
 void printVect(vector<unsigned> a) {
@@ -52,56 +52,41 @@ void printprimefactors(vector<pair<int, int>> a) {
   cout << endl;
 }
 
-
-
-
-struct ListNode {
-  int val;
-  ListNode *next;
-  ListNode() : val(0), next(nullptr) {}
-  ListNode(int x) : val(x), next(nullptr) {}
-  ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
-class SolutionIterative {
+class Solution {
 public:
-    // rever linked list 1->2->3->4 make it 4->3->2->1
-    // plan
-    // have curr=head(1) and prev=(null)
-    // move till reach other other side null
-    // make next = store next of curr
-    // curr next -> prev
-    // prev = curr
-    // curr = next(move)
-    ListNode* reverseList(ListNode* head) {
-        ListNode*curr=head;
-        ListNode* prev=NULL;
-        ListNode* nxt;
-        while(curr){
-            nxt=curr->next;
-            curr->next=prev;
-            prev=curr;
-            curr=nxt;
+    // .count give 0 or 1 check contains
+  string minWindow(string s, string t) {
+    unordered_map<char, int> need;
+    unordered_map<char, int> window;
+    for (char ch : t) {
+      need[ch]++;
+    }
+    int have = 0;
+    int required = need.size();
+    int l = 0;
+    int minLen = INT_MAX;
+    int start = 0;
+
+    for (int r = 0; r < s.size(); r++) {
+      char ch = s[r];
+      window[ch]++;
+      if (need.count(ch) && window[ch] == need[ch]) {
+        have++;
+      }
+      while (have == required) {
+        if (r - l + 1 < minLen) {
+          minLen = r - l + 1;
+          start = l;
         }
-        return prev;
-    } // O(n) and O(1) memory
-};
-class SolutionRecursive {
-public:
-    // rever linked list 1->2->3->4 make it 4->3->2->1
-    // plan
-    // for a head rever 1 node at a time
-    // base case is at null
-    // -> 1 
-    ListNode* reverseList(ListNode* head) {
-        if(!head){
-            return NULL;
+        char leftChar = s[l];
+        window[leftChar]--;
+        if (need.count(leftChar) && window[leftChar] < need[leftChar]) {
+          have--;
         }
-        ListNode* newHead=head;
-        if(head->next){
-            newHead=reverseList(head->next);
-            head->next->next=head;
-        }
-        head->next=NULL;
-        return newHead;
-    } // O(n) and O(n) memory as make n temp
+        l++;
+      }
+    }
+
+    return minLen == INT_MAX ? "" : s.substr(start, minLen);
+  }
 };
