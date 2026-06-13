@@ -53,9 +53,3 @@ void printprimefactors(vector<pair<int, int>> a) {
 }
 
 
-class Solution {
-public:
-    int findDuplicate(vector<int>& nums) {
-        
-    }
-};
