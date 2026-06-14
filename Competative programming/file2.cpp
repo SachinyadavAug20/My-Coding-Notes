@@ -1,4 +1,6 @@
+#include <algorithm>
 #include <bits/stdc++.h>
+#include <unordered_map>
 using namespace std;
 #define ll long long
 
@@ -51,5 +53,18 @@ void printprimefactors(vector<pair<int, int>> a) {
   }
   cout << endl;
 }
+
+class Solution {
+public:
+    long long maxRatings(vector<vector<int>>& units) {
+    }
+};
+class Solution1 {
+public:
+    long long maxSum(vector<int>& nums, int k) {
+    }
+};
+
+
 
 
