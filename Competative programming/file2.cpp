@@ -54,29 +54,3 @@ void printprimefactors(vector<pair<int, int>> a) {
   cout << endl;
 }
 
-struct ListNode {
-  int val;
-  ListNode *next;
-  ListNode() : val(0), next(nullptr) {}
-  ListNode(int x) : val(x), next(nullptr) {}
-  ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
-class Solution1 {
-public:
-  ListNode *mergeKLists(vector<ListNode *> &lists) {
-    // for 2 did go to each and get minimum 
-
-    int n=lists.size(),index_of_min=0;
-    while (lists[index_of_min]==NULL) {
-      index_of_min++;
-    }
-    for(int i=0;i<n;i++){
-      ListNode* curr=lists[i];
-      if(curr && curr->val<lists[index_of_min]->val){
-        index_of_min=i;
-      }
-    }
-  }
-};
-
-
