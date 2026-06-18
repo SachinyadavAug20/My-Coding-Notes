@@ -1,7 +1,4 @@
 #include <bits/stdc++.h>
-#include <list>
-#include <stack>
-#include <vector>
 using namespace std;
 #define ll long long
 
@@ -14,41 +11,36 @@ struct TreeNode {
   TreeNode(int x, TreeNode *left, TreeNode *right)
       : val(x), left(left), right(right) {}
 };
-
 class SolutionRecursive {
 public:
-  vector<int>ans;
-  void inorder(TreeNode *root) {
+  vector<int> ans;
+  void preorder(TreeNode *root) {
     if(root==NULL) return;
-    inorder(root->left);
-    inorder(root);
-    inorder(root->right);
     ans.push_back(root->val);
+    preorder(root->left);
+    preorder(root->right);
   }
-  vector<int> inorderTraversal(TreeNode *root) { 
+  vector<int> preorderTraversal(TreeNode *root) {
     ans.clear();
-    inorder(root);
+    preorder(root);
     return ans;
-  } // O(n) worst case stack of function calls
+  }
 };
-
 class SolutionIterative {
 public:
-  vector<int> inorderTraversal(TreeNode *root) {
-    // use stack
-    // go left till possible
-    stack<TreeNode*> st;
+  vector<int> preorderTraversal(TreeNode *root) {
     vector<int> ans;
+    stack<TreeNode*> st;
     TreeNode* cur=root;
-    while (cur || !st.empty()) {
-      while (cur) {
-        st.push(cur);
+    while(cur!=NULL || !st.empty()){
+      if(cur){
+        ans.push_back(cur->val);
+        st.push(cur->right); // directly go right
         cur=cur->left;
+      }else{
+        cur=st.top();
+        st.pop();
       }
-      cur=st.top();
-      st.pop();
-      ans.push_back(cur->val);
-      cur=cur->right;
     }
     return ans;
   }
