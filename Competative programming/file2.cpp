@@ -1,6 +1,10 @@
 #include <algorithm>
 #include <bits/stdc++.h>
+#include <set>
+#include <string>
 #include <unordered_map>
+#include <unordered_set>
+#include <utility>
 using namespace std;
 #define ll long long
 
@@ -54,3 +58,113 @@ void printprimefactors(vector<pair<int, int>> a) {
   cout << endl;
 }
 
+class Solution1 {
+public:
+  int minLights(vector<int> &lights) {
+    int n = lights.size();
+    vector<int> vis(n, 0);
+    int ans = 0;
+    int l_l = -1, l_r = -1; // already lights range
+    for (int i = 0; i < n; i++) {
+      int v = lights[i];
+      if (v != 0) {
+        int l = max(0, i - v);
+        int r = min(n - 1, i + v);
+        // do mark and the prefix sum
+        vis[l]++;
+        if(r==n-1){
+        }else{
+          vis[r + 1]--;
+        }
+      }
+    }
+    for (int i = 1; i < n; i++) {
+      vis[i] = vis[i] + vis[i - 1];
+    }
+    for (int i = 0; i < n; i++) {
+      if (!vis[i]) {
+        if (i + 2 < n && !vis[i + 1]) {
+          vis[i] = 1;
+          vis[i + 1] = 1;
+          vis[i + 2] = 1;
+        } else if (i + 1 < n && !vis[i + 1]) {
+          vis[i] = 1;
+          vis[i + 1] = 1;
+        } else {
+          vis[i] = 1;
+        }
+        ans++;
+      }
+    }
+    return ans;
+  }
+};
+
+class Solution2 {
+public:
+  // L is cancel by R
+  // U is cancel by D
+  // _ alwasy works
+    int maxDistance(string moves) {
+      int xD=0,yD=0,d=0;
+      for(char ch:moves){
+        if(ch=='L'){
+          xD++;
+        }else if(ch=='R'){
+          xD--;
+        }
+        if (ch=='U') {
+          yD++;
+        }else if (ch=='D') {
+          yD--;
+        }
+        if(ch=='_'){
+          d++;
+        }
+      }
+      d+=abs(xD);
+      d+=abs(yD);
+      return d;
+    }
+};
+
+class Solution3 {
+public:
+    int countValidSubarrays(vector<int>& nums, int x) {
+        // prefix
+      int n=nums.size();
+      vector<long> prefix(n);
+      prefix[0]=nums[0];
+      for(int i=1;i<n;i++){
+        prefix[i]=nums[i]+prefix[i-1];
+      }
+      int ctn=0;
+      for(int i=0;i<n;i++){
+        for(int j=i;j<n;j++){
+          long ls=i-1<0?0:prefix[i-1];
+          long rs=prefix[j];
+          long sum=rs-ls;
+          int fd=sum%10;
+          long ld=sum;
+          while (ld >= 10) { ld /= 10; }
+          if(fd==x && ld==x){
+            ctn++;
+          }
+        }
+      }
+      return ctn;
+    }
+};
+
+class Solution {
+public:
+    int shortestPath(int n, vector<vector<int>>& edges, string labels, int k) {
+        vector<vector<pair<int,int>>> g(n);
+        for(int i=0;i<n;i++){
+          int v1=edges[i][0];
+          int v2=edges[i][1];
+          int w=edges[i][2];
+          g[v1].push_back({v2,w});
+        }
+    }
+};
