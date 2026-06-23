@@ -1,8 +1,7 @@
 #include <bits/stdc++.h>
-#include <unordered_map>
-#include <vector>
 using namespace std;
 #define ll long long
+
 struct TreeNode {
   int val;
   TreeNode *left;
@@ -12,6 +11,7 @@ struct TreeNode {
   TreeNode(int x, TreeNode *left, TreeNode *right)
       : val(x), left(left), right(right) {}
 };
+
 class Solution {
 public:
   // do dfs for path then check
