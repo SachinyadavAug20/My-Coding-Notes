@@ -158,13 +158,17 @@ public:
 
 class Solution {
 public:
-    int shortestPath(int n, vector<vector<int>>& edges, string labels, int k) {
-        vector<vector<pair<int,int>>> g(n);
-        for(int i=0;i<n;i++){
-          int v1=edges[i][0];
-          int v2=edges[i][1];
-          int w=edges[i][2];
-          g[v1].push_back({v2,w});
+  // at each position choose
+  //
+    int rob(vector<int>& nums) {
+      int op=0,ep=0;
+      for(int i=0;i<nums.size();i++){
+        if(i%2==0){
+          op+=nums[i];
+        }else{
+          ep+=nums[i];
         }
+      }
+      return max(op,ep);
     }
 };
