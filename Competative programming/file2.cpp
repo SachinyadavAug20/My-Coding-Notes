@@ -72,8 +72,8 @@ public:
         int r = min(n - 1, i + v);
         // do mark and the prefix sum
         vis[l]++;
-        if(r==n-1){
-        }else{
+        if (r == n - 1) {
+        } else {
           vis[r + 1]--;
         }
       }
@@ -105,70 +105,96 @@ public:
   // L is cancel by R
   // U is cancel by D
   // _ alwasy works
-    int maxDistance(string moves) {
-      int xD=0,yD=0,d=0;
-      for(char ch:moves){
-        if(ch=='L'){
-          xD++;
-        }else if(ch=='R'){
-          xD--;
-        }
-        if (ch=='U') {
-          yD++;
-        }else if (ch=='D') {
-          yD--;
-        }
-        if(ch=='_'){
-          d++;
-        }
+  int maxDistance(string moves) {
+    int xD = 0, yD = 0, d = 0;
+    for (char ch : moves) {
+      if (ch == 'L') {
+        xD++;
+      } else if (ch == 'R') {
+        xD--;
       }
-      d+=abs(xD);
-      d+=abs(yD);
-      return d;
+      if (ch == 'U') {
+        yD++;
+      } else if (ch == 'D') {
+        yD--;
+      }
+      if (ch == '_') {
+        d++;
+      }
     }
+    d += abs(xD);
+    d += abs(yD);
+    return d;
+  }
 };
 
 class Solution3 {
 public:
-    int countValidSubarrays(vector<int>& nums, int x) {
-        // prefix
-      int n=nums.size();
-      vector<long> prefix(n);
-      prefix[0]=nums[0];
-      for(int i=1;i<n;i++){
-        prefix[i]=nums[i]+prefix[i-1];
-      }
-      int ctn=0;
-      for(int i=0;i<n;i++){
-        for(int j=i;j<n;j++){
-          long ls=i-1<0?0:prefix[i-1];
-          long rs=prefix[j];
-          long sum=rs-ls;
-          int fd=sum%10;
-          long ld=sum;
-          while (ld >= 10) { ld /= 10; }
-          if(fd==x && ld==x){
-            ctn++;
-          }
+  int countValidSubarrays(vector<int> &nums, int x) {
+    // prefix
+    int n = nums.size();
+    vector<long> prefix(n);
+    prefix[0] = nums[0];
+    for (int i = 1; i < n; i++) {
+      prefix[i] = nums[i] + prefix[i - 1];
+    }
+    int ctn = 0;
+    for (int i = 0; i < n; i++) {
+      for (int j = i; j < n; j++) {
+        long ls = i - 1 < 0 ? 0 : prefix[i - 1];
+        long rs = prefix[j];
+        long sum = rs - ls;
+        int fd = sum % 10;
+        long ld = sum;
+        while (ld >= 10) {
+          ld /= 10;
+        }
+        if (fd == x && ld == x) {
+          ctn++;
         }
       }
-      return ctn;
     }
+    return ctn;
+  }
 };
 
 class Solution {
 public:
-  // at each position choose
-  //
-    int rob(vector<int>& nums) {
-      int op=0,ep=0;
-      for(int i=0;i<nums.size();i++){
-        if(i%2==0){
-          op+=nums[i];
-        }else{
-          ep+=nums[i];
+  vector<vector<int>> filterOccupiedIntervals(vector<vector<int>> &occupiedIntervals, int freeStart, int freeEnd) {
+    sort(occupiedIntervals.begin(), occupiedIntervals.end());
+    int n = occupiedIntervals.size();
+    int i = 0;
+    vector<vector<int>> ans;
+
+    while (i < n) {
+      auto p = occupiedIntervals[i];
+      int ois = p[0], oie = p[1];
+      int j = i + 1;
+
+      while (j < n) {
+        if (occupiedIntervals[j][0] <= oie + 1) {
+          oie = max(oie, occupiedIntervals[j][1]);
+          j++;
+        } else {
+          break;
         }
       }
-      return max(op,ep);
+      i = j;
+
+      if (oie < freeStart || ois > freeEnd) {
+        ans.push_back({ois, oie});
+      } else {
+        // Left remaining part
+        if (ois < freeStart) {
+          ans.push_back({ois, freeStart - 1});
+        }
+
+        // Right remaining part
+        if (oie > freeEnd) {
+          ans.push_back({freeEnd + 1, oie});
+        }
+      }
     }
+    return ans;
+  }
 };
