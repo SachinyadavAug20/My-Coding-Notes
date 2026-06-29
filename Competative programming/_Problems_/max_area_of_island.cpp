@@ -5,8 +5,7 @@ using namespace std;
 
 class Solution {
 public:
-  int dfs(vector<vector<int>> &grid, vector<vector<int>> &visited, int i,
-          int j) {
+  int dfs(vector<vector<int>> &grid, vector<vector<int>> &visited, int i, int j) {
     int n = grid.size(), m = grid[0].size();
     if((i<0 || j<0)||(i>=n ||j>=m)) return 0;
     if (grid[i][j] == 0 || visited[i][j]) return 0;
