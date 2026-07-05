@@ -1,10 +1,4 @@
-#include <algorithm>
 #include <bits/stdc++.h>
-#include <set>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <utility>
 using namespace std;
 #define ll long long
 
@@ -158,9 +152,11 @@ public:
   }
 };
 
-class Solution {
+class Solution1234567 {
 public:
-  vector<vector<int>> filterOccupiedIntervals(vector<vector<int>> &occupiedIntervals, int freeStart, int freeEnd) {
+  vector<vector<int>>
+  filterOccupiedIntervals(vector<vector<int>> &occupiedIntervals, int freeStart,
+                          int freeEnd) {
     sort(occupiedIntervals.begin(), occupiedIntervals.end());
     int n = occupiedIntervals.size();
     int i = 0;
@@ -196,5 +192,61 @@ public:
       }
     }
     return ans;
+  }
+};
+
+class Solution8227 {
+public:
+  int maxDigitRange(vector<int> &nums) {
+    int n = nums.size();
+    vector<int> range(n);
+    int maxDigitRange = 0;
+    for (int i = 0; i < n; i++) {
+      int num = nums[i];
+      int Max = 0, Min = 9;
+      while (num) {
+        int d = num % 10;
+        Max = max(Max, d);
+        Min = min(Min, d);
+        num = num / 10;
+      }
+      range[i] = abs(Max - Min);
+      maxDigitRange = max(maxDigitRange, range[i]);
+    }
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+      if (range[i] == maxDigitRange) {
+        ans += nums[i];
+      }
+    }
+    return ans;
+  }
+};
+
+class Solution27 {
+public:
+  bool canMakeSubsequence(string s, string t) {
+    int i = 0, j = 0;
+    bool used = false;
+    while (i < s.size() && j < t.size()) {
+      if (s[i] == t[j]) {
+        i++;
+        j++;
+      } else if (!used) {
+        used = true;
+        i++;
+        j++;
+      } else {
+        j++;
+      }
+    }
+    return i == s.size();
+  }
+};
+
+class Solution {
+public:
+  int divisibleGame(vector<int> &nums) {
+
   }
 };
