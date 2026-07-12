@@ -244,9 +244,77 @@ public:
   }
 };
 
+class Solution879 {
+public:
+  int secondsBetweenTimes(string startTime, string endTime) {
+    int ans = 0;
+    ans +=
+        60 * 60 * (stoi(endTime.substr(0, 2)) - stoi(startTime.substr(0, 2)));
+    ans += 60 * (stoi(endTime.substr(3, 5)) - stoi(startTime.substr(3, 5)));
+    ans += (stoi(endTime.substr(6, 8)) - stoi(startTime.substr(6, 8)));
+    return ans;
+  }
+};
+
+const int M = 1e9 + 7;
+class Solution781 {
+public:
+  long long power(long long a, long long b) {
+    long long ans = 1;
+    while (b) {
+      if (b & 1)
+        ans = ans * a % M;
+      a = a * a % M;
+      b >>= 1;
+    }
+    return ans;
+  }
+
+  int minimumCost(vector<int> &nums, int k) {
+    long long ans = 0, n = nums.size();
+    long long resource = k;
+    long long fact = 1;
+    for (int i = 0; i < n; i++) {
+      int num = nums[i];
+      if (num > resource) {
+        long long diff = num - resource;
+        long long cost = ((diff + k - 1) / k);
+
+        // for(int i=1;i<=cost;i++){
+        //   ans+=fact;
+        //   fact++;
+        // }
+
+        // long long den=(((2*fact+cost-1))*cost);
+        // ans+=(den/2)%M;
+
+        long long inv2 = power(2, M - 2);
+        long long sum = ((2 * fact + cost - 1) % M) * (cost % M) % M;
+        sum = sum * inv2 % M;
+        ans+=sum;
+        ans = ans % M;
+        fact += cost;
+        resource += cost * k;
+      }
+      resource -= num;
+    }
+    return ans;
+  }
+};
+
 class Solution {
 public:
-  int divisibleGame(vector<int> &nums) {
-
-  }
+    vector<string> createGrid(int m, int n, int k) {
+        vector<string> ans(m);
+        for(int i=0;i<m;i++){
+          string s="";
+          for(int j=0;j<n;j++){
+            if(i==0) s+='.';
+            else if(j>=n-k) s+='.';
+            else s+='#';
+          }
+          ans[i]=s;
+        }
+        return ans;
+    }
 };
