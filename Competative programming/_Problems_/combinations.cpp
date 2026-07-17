@@ -27,5 +27,5 @@ public:
     vector<int> p;
     dfs(p,1,0);
     return ans;
-  }
+  }// O(n^k) -> k is height of tree
 };
