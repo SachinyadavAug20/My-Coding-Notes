@@ -302,7 +302,7 @@ public:
   }
 };
 
-class Solution {
+class Solution12 {
 public:
     vector<string> createGrid(int m, int n, int k) {
         vector<string> ans(m);
@@ -316,5 +316,47 @@ public:
           ans[i]=s;
         }
         return ans;
+    }
+};
+class Solution567 {
+public:
+    string rearrangeString(string s, char x, char y) {
+        string ans;
+        for (char c : s) {
+            if (c == y)
+                ans += c;
+        }
+        for (char c : s) {
+            if (c != x && c != y)
+                ans += c;
+        }
+        for (char c : s) {
+            if (c == x)
+                ans += c;
+        }
+        return ans;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+class Solution {
+public:
+    long long maximumValue(int n, int s, int m) {
+        long long peaksLowFirst = n / 2;
+        long long ans1 = 1LL * s + peaksLowFirst * m;
+        if (peaksLowFirst > 0)
+            ans1 -= (peaksLowFirst - 1);
+        long long peaksHighFirst = (n + 1LL) / 2;
+        long long ans2 = 1LL * s + (peaksHighFirst - 1) * (m - 1LL);
+        return max(ans1, ans2);
     }
 };
