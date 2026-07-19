@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <unordered_set>
 using namespace std;
 #define ll long long
 
@@ -337,18 +338,7 @@ public:
         return ans;
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-class Solution {
+class Solution19 {
 public:
     long long maximumValue(int n, int s, int m) {
         long long peaksLowFirst = n / 2;
@@ -358,5 +348,84 @@ public:
         long long peaksHighFirst = (n + 1LL) / 2;
         long long ans2 = 1LL * s + (peaksHighFirst - 1) * (m - 1LL);
         return max(ans1, ans2);
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution72 {
+public:
+    vector<int> target;
+    bool found = false;
+    int dx[8] = {1, 2, -1, -2, 1, 2, -1, -2};
+    int dy[8] = {2, 1, -2, -1, -2, -1, 2, 1};
+    void dfs(int x, int y, int parity, vector<vector<vector<bool>>> &vis) {
+        if (x < 0 || x >= 8 || y < 0 || y >= 8)
+            return;
+        if (vis[x][y][parity])
+            return;
+        vis[x][y][parity] = true;
+        if (x == target[0] && y == target[1] && parity == 0) {
+            found = true;
+            return;
+        }
+        for (int k = 0; k < 8 && !found; k++) {
+            dfs(x + dx[k], y + dy[k], parity ^ 1, vis);
+        }
+    }
+
+    bool canReach(vector<int>& start, vector<int>& target) {
+        this->target = target;
+        vector<vector<vector<bool>>> vis(
+            8, vector<vector<bool>>(8, vector<bool>(2, false)));
+        dfs(start[0], start[1], 0, vis);
+        return found;
+    }
+};
+
+  struct TreeNode {
+      int val;
+      TreeNode *left;
+      TreeNode *right;
+      TreeNode() : val(0), left(nullptr), right(nullptr) {}
+      TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+      TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+  };
+
+class Solution2939 {
+public:
+    int nD=0;
+    int dfs(TreeNode* node,int cm=-1){
+        if(node==NULL) return cm;
+        int lcm=max(cm,dfs(node->left,cm));
+        int rcm=max(cm,dfs(node->right,cm));
+        cm=max(lcm,rcm);
+        cm=max(cm,node->val);
+        if(cm==node->val){
+            cout<<node->val<<endl;
+            nD++;
+        }
+        return cm;
+    }
+    int countDominantNodes(TreeNode* root) {
+        nD=0;
+        dfs(root);
+        return nD;
+    }
+};
+
+class Solution {
+public:
+    vector<bool> transformStr(string s, vector<string>& strs) {
+        int n= s.size();
     }
 };
