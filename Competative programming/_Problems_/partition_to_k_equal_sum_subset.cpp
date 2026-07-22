@@ -13,12 +13,7 @@ public:
     // make 1 bucket at a time and use visited
     // 
     int target;
-    bool dfs(vector<int>& nums,
-             vector<bool>& used,   
-             int start,            
-             int curSum,           
-             int bucket,
-             int k){
+    bool dfs(vector<int>& nums, vector<bool>& used,   int start,            int curSum,           int bucket, int k){
         if (bucket == k) return true;
         if (curSum == target) return dfs(nums, used, 0, 0, bucket + 1, k);
         for (int i = start; i < nums.size(); i++) {
