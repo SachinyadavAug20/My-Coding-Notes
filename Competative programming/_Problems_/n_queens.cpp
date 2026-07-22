@@ -29,7 +29,7 @@ public:
         }
         for(int c=0;c<n;c++){
             if((col.find(c)!=col.end()) || (pDia.find(i+c)!=pDia.end()) || (nDia.find(i-c)!=nDia.end())) continue;
-            board[i][c]='q';
+            board[i][c]='Q';
             col.insert(c);
             pDia.insert(i+c);
             nDia.insert(i-c);
