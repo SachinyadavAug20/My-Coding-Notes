@@ -8,7 +8,6 @@ public:
     int k;
     vector<int> topK;
     int kth;
-
     KthLargest_ON(int k, vector<int>& nums) {
         this->k = k;
         sort(nums.begin(), nums.end());
@@ -47,10 +46,11 @@ public:
     KthLargest(int k, vector<int>& nums) {
         this->k = k;
         int take = min((int)nums.size(), k);
-        sort(nums.begin(), nums.end());
-        pq=priority_queue<int, vector<int>, greater<int>>(nums.end()-take,nums.end());
+        for(int i:nums){
+            pq.push(i);
+            if(pq.size()>k) pq.pop();
+        }
     }
-
     int add(int val) {
         pq.push(val);
         if(pq.size()>k){
