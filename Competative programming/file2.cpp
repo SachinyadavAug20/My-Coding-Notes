@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <bits/stdc++.h>
 #include <unordered_set>
 using namespace std;
@@ -292,7 +293,7 @@ public:
         long long inv2 = power(2, M - 2);
         long long sum = ((2 * fact + cost - 1) % M) * (cost % M) % M;
         sum = sum * inv2 % M;
-        ans+=sum;
+        ans += sum;
         ans = ans % M;
         fact += cost;
         resource += cost * k;
@@ -305,127 +306,174 @@ public:
 
 class Solution12 {
 public:
-    vector<string> createGrid(int m, int n, int k) {
-        vector<string> ans(m);
-        for(int i=0;i<m;i++){
-          string s="";
-          for(int j=0;j<n;j++){
-            if(i==0) s+='.';
-            else if(j>=n-k) s+='.';
-            else s+='#';
-          }
-          ans[i]=s;
-        }
-        return ans;
+  vector<string> createGrid(int m, int n, int k) {
+    vector<string> ans(m);
+    for (int i = 0; i < m; i++) {
+      string s = "";
+      for (int j = 0; j < n; j++) {
+        if (i == 0)
+          s += '.';
+        else if (j >= n - k)
+          s += '.';
+        else
+          s += '#';
+      }
+      ans[i] = s;
     }
+    return ans;
+  }
 };
 class Solution567 {
 public:
-    string rearrangeString(string s, char x, char y) {
-        string ans;
-        for (char c : s) {
-            if (c == y)
-                ans += c;
-        }
-        for (char c : s) {
-            if (c != x && c != y)
-                ans += c;
-        }
-        for (char c : s) {
-            if (c == x)
-                ans += c;
-        }
-        return ans;
+  string rearrangeString(string s, char x, char y) {
+    string ans;
+    for (char c : s) {
+      if (c == y)
+        ans += c;
     }
+    for (char c : s) {
+      if (c != x && c != y)
+        ans += c;
+    }
+    for (char c : s) {
+      if (c == x)
+        ans += c;
+    }
+    return ans;
+  }
 };
 class Solution19 {
 public:
-    long long maximumValue(int n, int s, int m) {
-        long long peaksLowFirst = n / 2;
-        long long ans1 = 1LL * s + peaksLowFirst * m;
-        if (peaksLowFirst > 0)
-            ans1 -= (peaksLowFirst - 1);
-        long long peaksHighFirst = (n + 1LL) / 2;
-        long long ans2 = 1LL * s + (peaksHighFirst - 1) * (m - 1LL);
-        return max(ans1, ans2);
-    }
+  long long maximumValue(int n, int s, int m) {
+    long long peaksLowFirst = n / 2;
+    long long ans1 = 1LL * s + peaksLowFirst * m;
+    if (peaksLowFirst > 0)
+      ans1 -= (peaksLowFirst - 1);
+    long long peaksHighFirst = (n + 1LL) / 2;
+    long long ans2 = 1LL * s + (peaksHighFirst - 1) * (m - 1LL);
+    return max(ans1, ans2);
+  }
 };
-
-
-
-
-
-
-
-
-
-
-
 
 class Solution72 {
 public:
-    vector<int> target;
-    bool found = false;
-    int dx[8] = {1, 2, -1, -2, 1, 2, -1, -2};
-    int dy[8] = {2, 1, -2, -1, -2, -1, 2, 1};
-    void dfs(int x, int y, int parity, vector<vector<vector<bool>>> &vis) {
-        if (x < 0 || x >= 8 || y < 0 || y >= 8)
-            return;
-        if (vis[x][y][parity])
-            return;
-        vis[x][y][parity] = true;
-        if (x == target[0] && y == target[1] && parity == 0) {
-            found = true;
-            return;
-        }
-        for (int k = 0; k < 8 && !found; k++) {
-            dfs(x + dx[k], y + dy[k], parity ^ 1, vis);
-        }
+  vector<int> target;
+  bool found = false;
+  int dx[8] = {1, 2, -1, -2, 1, 2, -1, -2};
+  int dy[8] = {2, 1, -2, -1, -2, -1, 2, 1};
+  void dfs(int x, int y, int parity, vector<vector<vector<bool>>> &vis) {
+    if (x < 0 || x >= 8 || y < 0 || y >= 8)
+      return;
+    if (vis[x][y][parity])
+      return;
+    vis[x][y][parity] = true;
+    if (x == target[0] && y == target[1] && parity == 0) {
+      found = true;
+      return;
     }
+    for (int k = 0; k < 8 && !found; k++) {
+      dfs(x + dx[k], y + dy[k], parity ^ 1, vis);
+    }
+  }
 
-    bool canReach(vector<int>& start, vector<int>& target) {
-        this->target = target;
-        vector<vector<vector<bool>>> vis(
-            8, vector<vector<bool>>(8, vector<bool>(2, false)));
-        dfs(start[0], start[1], 0, vis);
-        return found;
-    }
+  bool canReach(vector<int> &start, vector<int> &target) {
+    this->target = target;
+    vector<vector<vector<bool>>> vis(
+        8, vector<vector<bool>>(8, vector<bool>(2, false)));
+    dfs(start[0], start[1], 0, vis);
+    return found;
+  }
 };
 
-  struct TreeNode {
-      int val;
-      TreeNode *left;
-      TreeNode *right;
-      TreeNode() : val(0), left(nullptr), right(nullptr) {}
-      TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-      TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-  };
+struct TreeNode {
+  int val;
+  TreeNode *left;
+  TreeNode *right;
+  TreeNode() : val(0), left(nullptr), right(nullptr) {}
+  TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+  TreeNode(int x, TreeNode *left, TreeNode *right)
+      : val(x), left(left), right(right) {}
+};
 
 class Solution2939 {
 public:
-    int nD=0;
-    int dfs(TreeNode* node,int cm=-1){
-        if(node==NULL) return cm;
-        int lcm=max(cm,dfs(node->left,cm));
-        int rcm=max(cm,dfs(node->right,cm));
-        cm=max(lcm,rcm);
-        cm=max(cm,node->val);
-        if(cm==node->val){
-            cout<<node->val<<endl;
-            nD++;
-        }
-        return cm;
+  int nD = 0;
+  int dfs(TreeNode *node, int cm = -1) {
+    if (node == NULL)
+      return cm;
+    int lcm = max(cm, dfs(node->left, cm));
+    int rcm = max(cm, dfs(node->right, cm));
+    cm = max(lcm, rcm);
+    cm = max(cm, node->val);
+    if (cm == node->val) {
+      cout << node->val << endl;
+      nD++;
     }
-    int countDominantNodes(TreeNode* root) {
-        nD=0;
-        dfs(root);
-        return nD;
+    return cm;
+  }
+  int countDominantNodes(TreeNode *root) {
+    nD = 0;
+    dfs(root);
+    return nD;
+  }
+};
+
+class Solution728 {
+public:
+  int countValidPrefixes(string s) {
+    int c0 = 0, c1 = 0;
+    int ans = 0;
+
+    for (char ch : s) {
+      if (ch == '0')
+        c0++;
+      else
+        c1++;
+
+      if (abs(c0 - c1) <= 1)
+        ans++;
     }
+    return ans;
+  }
+};
+class Solution7687 {
+public:
+  int maximumWidth(vector<int> &planks) {
+    unordered_map<int, int> freq;
+    for (int p : planks) {
+      freq[p]++;
+    }
+
+    unordered_map<long long, int> widthForH;
+    for (auto const &[height, count] : freq) {
+      widthForH[height] += count;
+    }
+
+    vector<int> unique_planks;
+    for (auto const &[height, _] : freq) {
+      unique_planks.push_back(height);
+    }
+
+    for (int i = 0; i < unique_planks.size(); i++) {
+      int x = unique_planks[i];
+      widthForH[2LL * x] += freq[x] / 2;
+      for (int j = i + 1; j < unique_planks.size(); j++) {
+        int y = unique_planks[j];
+        widthForH[(long long)x + y] += min(freq[x], freq[y]);
+      }
+    }
+    int ans = 1;
+    for (auto const &[H, width] : widthForH) {
+      ans = max(ans, width);
+    }
+
+    return ans;
+  }
 };
 
 class Solution {
 public:
-    vector<bool> transformStr(string s, vector<string>& strs) {
-        int n= s.size();
+    long long minInitialStrength(vector<int>& monsters, vector<vector<int>>& boosts) {
+        
     }
 };
