@@ -471,9 +471,100 @@ public:
   }
 };
 
-class Solution {
+class Solution27873 {
 public:
-    long long minInitialStrength(vector<int>& monsters, vector<vector<int>>& boosts) {
-        
+  int MYgcd(int m, int n) {
+    int divident = max(m, n);
+    int divisor = min(m, n);
+    if (divident % divisor == 0) {
+      return divisor;
     }
+    return MYgcd(divisor, divident % divisor);
+  } //  O(logn)
+  long long maxPairStrength(vector<int> &nums) {
+    int n = nums.size();
+    long long ans = 0;
+    for (int i = 0; i < n; i++)
+      for (int j = 0; j < n; j++) {
+        long long nr = nums[i] * 1LL * nums[j] * 1LL;
+        long long dr = MYgcd(nums[i], nums[j]) * 1LL;
+        dr *= dr * 1LL;
+        ans = max(ans, nr / dr);
+      }
+    return ans;
+  }
 };
+
+class Solution736 {
+public:
+  int countRatioSubarrays(vector<int> &nums, int a, int b) {
+    int n = nums.size();
+    vector<int> preEven(n);
+    if (nums[0] % 2)
+      preEven[0] = 0;
+    else
+      preEven[0] = 1;
+    for (int i = 1; i < n; i++) {
+      if (nums[i] % 2) {
+        preEven[i] = preEven[i - 1];
+      } else {
+        preEven[i] = preEven[i - 1] + 1;
+      }
+    }
+    int ans = 0;
+
+    for (int i = 0; i < n; i++) {
+      for (int j = i; j < n; j++) {
+        int sz = j - i + 1;
+        int even = preEven[j] - (i ? preEven[i - 1] : 0);
+        int odd = sz - even;
+        if (odd != 0) {
+          if (even * 1LL * b <= odd * 1LL * a)
+            ans++;
+        }
+      }
+    }
+    return ans;
+  }
+};
+
+class Solution79 {
+public:
+  vector<int> countTasks(vector<int> &tasks, vector<int> &shifts) {
+    int sz = tasks.size();
+    vector<int> ans;
+    int n = shifts.size();
+    int it = 0;
+    int carry = 0;
+    for (int i = 0; i < n; i++) {
+      int time = shifts[i];
+      if (carry > 0) {
+        if (time >= carry) {
+          time -= carry;
+          carry = 0;
+          it++;
+        } else {
+          carry -= time;
+          ans.push_back(sz - it);
+          continue;
+        }
+      }
+      while (it < sz && time > 0) {
+        if (time >= tasks[it]) {
+          time -= tasks[it];
+          it++;
+        } else {
+          carry = tasks[it] - time;
+          time = 0;
+        }
+      }
+      ans.push_back(sz - it);
+      if (it == sz) {
+        it = 0;
+      }
+    }
+
+    return ans;
+  }
+};
+
