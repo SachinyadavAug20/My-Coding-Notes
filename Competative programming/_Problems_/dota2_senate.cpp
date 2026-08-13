@@ -34,7 +34,7 @@ public:
                 indexR.pop_front();
             }
         }
-        string ans= !indexR.size()?"Radiant":"Dire";
+        string ans= indexR.size()?"Radiant":"Dire";
         return ans;
     }
 };
