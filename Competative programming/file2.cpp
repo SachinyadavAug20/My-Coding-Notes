@@ -568,3 +568,161 @@ public:
   }
 };
 
+class Solution273 {
+public:
+  int elevatorRequests(int n, vector<int> &requests) {
+    int time = 0;
+    int prev = 0;
+    for (int req : requests) {
+      time += (abs(prev - req));
+      prev = req;
+    }
+    return time;
+  }
+};
+
+class Solution78738 {
+public:
+  int minOperations(string s) {
+    int n = s.length();
+    int minOps = INT_MAX;
+
+    for (int r = 0; r < n; r++) {
+      string rS = s.substr(r) + s.substr(0, r);
+
+      int incrementCost = 0;
+      for (int i = 0; i < n / 2; i++) {
+        char le = rS[i];
+        char ri = rS[n - 1 - i];
+        int forward = abs(le - ri);
+        int backward = 26 - forward;
+        int minDistance = min(forward, backward);
+
+        incrementCost += minDistance;
+      }
+      int totalOps = r + incrementCost;
+      minOps = min(minOps, totalOps);
+    }
+
+    return minOps;
+  }
+};
+
+class Solution7627 {
+public:
+  int nearestDrone(vector<vector<int>> &drones, vector<int> &target) {
+    int n = drones.size();
+    int minD = INT_MAX;
+    int index = -1;
+    for (int i = 0; i < n; i++) {
+      int x = drones[i][0];
+      int y = drones[i][1];
+      int r = drones[i][2];
+      int d = abs(x - target[0]) + abs(y - target[1]);
+      if (d <= r) {
+        if (minD > d) {
+          minD = d;
+          index = i;
+        }
+      }
+    }
+    return index;
+  }
+};
+
+class Solution72928 {
+public:
+  int minimizePenalty(int period, vector<int> &lights,
+                      vector<int> &arrivalTime) {
+    int n = arrivalTime.size();
+    int m = lights.size();
+
+    sort(lights.begin(), lights.end());
+
+    vector<int> cars(n);
+    for (int i = 0; i < n; i++)
+      cars[i] = arrivalTime[i] % period;
+    sort(cars.begin(), cars.end());
+
+    auto waitOk = [&](int a, int g, int X) -> bool {
+      int w = (g - a + period) % period;
+      return w <= X;
+    };
+
+    auto can = [&](int X) -> bool {
+      for (int a : cars) {
+        bool ok = false;
+        for (int g : lights) {
+          if (waitOk(a, g, X)) {
+            ok = true;
+            break;
+          }
+        }
+        if (!ok)
+          return false;
+      }
+      return true;
+    };
+
+    int lo = 0, hi = period - 1;
+    while (lo < hi) {
+      int mid = lo + (hi - lo) / 2;
+      if (can(mid))
+        hi = mid;
+      else
+        lo = mid + 1;
+    }
+    return lo;
+  }
+};
+
+class Solution {
+public:
+  bool canAssign(int gap, const string &skill, const string &station) {
+    int n = skill.size(), m = station.size();
+    int prev = -1;
+
+    for (int i = 0; i < n; i++) {
+      int j = prev + 1;
+      while (j < m && station[j] != skill[i])
+        j++;
+      if (j == m)
+        return false;
+
+      if (prev != -1 && j - prev > gap)
+        return false;
+      prev = j;
+    }
+    return true;
+  }
+
+  int maximumGap(string skill, string station) {
+    int n = skill.length();
+    int m = station.length();
+    if (n <= 1)
+      return 0;
+    vector<int> leftmost(n);
+    int stationIdx = 0;
+    for (int i = 0; i < n; ++i) {
+      while (stationIdx < m && station[stationIdx] != skill[i]) {
+        stationIdx++;
+      }
+      leftmost[i] = stationIdx;
+      stationIdx++;
+    }
+    vector<int> rightmost(n);
+    stationIdx = m - 1;
+    for (int i = n - 1; i >= 0; --i) {
+      while (stationIdx >= 0 && station[stationIdx] != skill[i]) {
+        stationIdx--;
+      }
+      rightmost[i] = stationIdx;
+      stationIdx--;
+    }
+    int maxGap = 0;
+    for (int i = 0; i < n - 1; ++i) {
+      maxGap = max(maxGap, rightmost[i + 1] - leftmost[i]);
+    }
+    return maxGap;
+  }
+};
