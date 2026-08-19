@@ -4,6 +4,8 @@ using namespace std;
 
 class Solution {
 public:
+    // plan
+    // circular
     map<pair<int, bool>, int> dp;
     int n;
     int dfs(vector<int>& nums, int i, bool canTake) {
@@ -21,9 +23,15 @@ public:
         dp[{i, canTake}] = ans;
         return ans;
     }
+
     int rob(vector<int>& nums) {
         dp.clear();
-        n = nums.size();
-        return dfs(nums, 0, true);
+        n=nums.size()-1;
+        if(n==0) return nums[0];
+        int m1=dfs(nums,0,true);
+        n=nums.size();
+        dp.clear();
+        int m2=dfs(nums,1,true);
+        return max(m1,m2);
     }
 };
