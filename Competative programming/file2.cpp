@@ -726,3 +726,56 @@ public:
     return maxGap;
   }
 };
+class Solution72783 {
+public:
+  bool isPalindromic(string s) {
+    string binrep = "";
+    for (char c : s) {
+      int ch = (int)c;
+      int ctn = 0;
+      string s = "";
+      while (ch) {
+        if (ch & 1)
+          s += '1';
+        else
+          s += '0';
+        ch >>= 1;
+        ctn++;
+      }
+      if (ctn < 8)
+        s.insert(ctn, 8 - ctn, '0');
+      s.reserve();
+      binrep += s;
+    }
+    cout << binrep;
+    int l = 0, r = binrep.length() - 1;
+    while (l < r) {
+      if (binrep[l++] != binrep[r--])
+        return false;
+    }
+    return true;
+  }
+};
+
+class Solution919 {
+public:
+  vector<vector<int>> findDisappearedNumbers(vector<int> &nums, int lower, int upper) {
+    vector<vector<int>> result;
+    sort(nums.begin(), nums.end());
+    int nextExpected = lower;
+    for (int num : nums) {
+      if (num < nextExpected)
+        continue;
+      if (num > upper)
+        break;
+      if (num > nextExpected) {
+        result.push_back({nextExpected, num - 1});
+      }
+      nextExpected = num + 1;
+    }
+    if (nextExpected <= upper) {
+      result.push_back({nextExpected, upper});
+    }
+    return result;
+  }
+};
