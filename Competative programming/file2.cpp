@@ -676,7 +676,7 @@ public:
   }
 };
 
-class Solution {
+class Solution12782 {
 public:
   bool canAssign(int gap, const string &skill, const string &station) {
     int n = skill.size(), m = station.size();
@@ -759,7 +759,8 @@ public:
 
 class Solution919 {
 public:
-  vector<vector<int>> findDisappearedNumbers(vector<int> &nums, int lower, int upper) {
+  vector<vector<int>> findDisappearedNumbers(vector<int> &nums, int lower,
+                                             int upper) {
     vector<vector<int>> result;
     sort(nums.begin(), nums.end());
     int nextExpected = lower;
@@ -777,5 +778,61 @@ public:
       result.push_back({nextExpected, upper});
     }
     return result;
+  }
+};
+
+class Solution277992999299929992999299929992999299929 {
+public:
+  int minBishopMoves(vector<int> &source, vector<int> &target) {
+    if (source == target)
+      return 0;
+    if ((source[0] + source[1]) % 2 != (target[0] + target[1]) % 2) {
+      return -1;
+    }
+    if (abs(source[0] - target[0]) == abs(source[1] - target[1])) {
+      return 1;
+    }
+    return 2;
+  }
+};
+
+
+class Solution {
+  int countSplits(vector<int> &arr) {
+    int n = arr.size();
+    if (n < 2)
+      return 0;
+    vector<int> pref(n), suff(n);
+    pref[0] = arr[0];
+    for (int i = 1; i < n; i++)
+      pref[i] = gcd(pref[i - 1], arr[i]);
+
+    suff[n - 1] = arr[n - 1];
+    for (int i = n - 2; i >= 0; i--)
+      suff[i] = gcd(suff[i + 1], arr[i]);
+
+    int validSplits = 0;
+    for (int i = 0; i < n - 1; i++) {
+      if (pref[i] == suff[i + 1]) {
+        validSplits++;
+      }
+    }
+    return validSplits;
+  }
+
+public:
+  int maxValidSplits(vector<int> &nums) {
+    int n = nums.size();
+    int maxScore = countSplits(nums); 
+    for (int i = 0; i < n; i++) {
+      vector<int> modified;
+      for (int j = 0; j < n; j++) {
+        if (i == j)
+          continue;
+        modified.push_back(nums[j]);
+      }
+      maxScore = max(maxScore, countSplits(modified));
+    }
+    return maxScore;
   }
 };
