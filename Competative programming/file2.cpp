@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <bits/stdc++.h>
+#include <cmath>
 #include <unordered_set>
 using namespace std;
 #define ll long long
@@ -796,8 +797,7 @@ public:
   }
 };
 
-
-class Solution {
+class Solution7227j {
   int countSplits(vector<int> &arr) {
     int n = arr.size();
     if (n < 2)
@@ -823,7 +823,7 @@ class Solution {
 public:
   int maxValidSplits(vector<int> &nums) {
     int n = nums.size();
-    int maxScore = countSplits(nums); 
+    int maxScore = countSplits(nums);
     for (int i = 0; i < n; i++) {
       vector<int> modified;
       for (int j = 0; j < n; j++) {
@@ -836,3 +836,54 @@ public:
     return maxScore;
   }
 };
+
+class Solution7871 {
+public:
+  int countSpecialIntegers(vector<int> &nums) {
+    unordered_set<int> seen;
+    unordered_set<int> notSpecial;
+    int n = nums.size();
+    int specialCount = 0;
+
+    for (int i = 0; i < n; i++) {
+      int current = nums[i];
+      if (seen.count(current) && (i == 0 || nums[i - 1] != current)) {
+        notSpecial.insert(current);
+      }
+      seen.insert(current);
+    }
+    return seen.size() - notSpecial.size();
+  }
+};
+
+#define ll long long
+class Solution2798 {
+public:
+    int M = 1e9 + 7;
+    ll power(ll base, ll exp) {
+        ll res = 1;
+        base %= M;
+        while (exp > 0) {
+            if (exp % 2 == 1) res = (res * base) % M;
+            base = (base * base) % M;
+            exp /= 2;
+        }
+        return res;
+    }
+
+    int sumDecoded(vector<long long>& nums) {
+        ll totalSum = 0;
+        for (long long val : nums) {
+            int width = val % 10;
+            ll di = val / 10;
+            string s = to_string(di);
+            string x_str = s.substr(0, width);
+            string y_str = s.substr(width);
+            ll x = stoll(x_str);
+            ll y = stoll(y_str);
+            totalSum = (totalSum + power(x, y)) % M;
+        }
+        return (int)totalSum;
+    }
+};
+
