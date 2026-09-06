@@ -859,31 +859,88 @@ public:
 #define ll long long
 class Solution2798 {
 public:
-    int M = 1e9 + 7;
-    ll power(ll base, ll exp) {
-        ll res = 1;
-        base %= M;
-        while (exp > 0) {
-            if (exp % 2 == 1) res = (res * base) % M;
-            base = (base * base) % M;
-            exp /= 2;
-        }
-        return res;
+  int M = 1e9 + 7;
+  ll power(ll base, ll exp) {
+    ll res = 1;
+    base %= M;
+    while (exp > 0) {
+      if (exp % 2 == 1)
+        res = (res * base) % M;
+      base = (base * base) % M;
+      exp /= 2;
     }
+    return res;
+  }
 
-    int sumDecoded(vector<long long>& nums) {
-        ll totalSum = 0;
-        for (long long val : nums) {
-            int width = val % 10;
-            ll di = val / 10;
-            string s = to_string(di);
-            string x_str = s.substr(0, width);
-            string y_str = s.substr(width);
-            ll x = stoll(x_str);
-            ll y = stoll(y_str);
-            totalSum = (totalSum + power(x, y)) % M;
-        }
-        return (int)totalSum;
+  int sumDecoded(vector<long long> &nums) {
+    ll totalSum = 0;
+    for (long long val : nums) {
+      int width = val % 10;
+      ll di = val / 10;
+      string s = to_string(di);
+      string x_str = s.substr(0, width);
+      string y_str = s.substr(width);
+      ll x = stoll(x_str);
+      ll y = stoll(y_str);
+      totalSum = (totalSum + power(x, y)) % M;
     }
+    return (int)totalSum;
+  }
 };
 
+class Solution299999 {
+public:
+  int countRotations(string s, int k) {
+    int n = s.length();
+    if (n <= 1)
+      return (k == 0) ? 1 : 0;
+    int total_equal_pairs = 0;
+    for (int i = 0; i < n - 1; i++) {
+      if (s[i] == s[i + 1])
+        total_equal_pairs++;
+    }
+    if (s[n - 1] == s[0]) {
+      total_equal_pairs++;
+    }
+    int valid_rotations = 0;
+    for (int i = 0; i < n; i++) {
+      int current_wrap_start = i;
+      int current_wrap_end = (i + 1) % n;
+      int current_score = total_equal_pairs;
+      if (s[current_wrap_start] == s[current_wrap_end]) {
+        current_score--;
+      }
+      if (current_score == k) {
+        valid_rotations++;
+      }
+    }
+    return valid_rotations;
+  }
+};
+
+class Solution {
+public:
+  int countGoodRotations(vector<int> &nums) {
+    int n = nums.size();
+    int half = n / 2;
+    long long leftSum = 0;
+    long long rightSum = 0;
+    for (int i = 0; i < half; i++) {
+      leftSum += nums[i];
+    }
+    for (int i = half; i < n; i++) {
+      rightSum += nums[i];
+    }
+    int goodRotations = 0;
+    for (int i = 0; i < n; i++) {
+      if (leftSum > rightSum) {
+        goodRotations++;
+      }
+      int leavingLeft = nums[i % n];
+      int enteringLeft = nums[(i + half) % n];
+      leftSum = leftSum - leavingLeft + enteringLeft;
+      rightSum = rightSum - enteringLeft + leavingLeft;
+    }
+    return goodRotations;
+  }
+};
