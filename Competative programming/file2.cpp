@@ -918,7 +918,7 @@ public:
   }
 };
 
-class Solution {
+class Solution2iu29 {
 public:
   int countGoodRotations(vector<int> &nums) {
     int n = nums.size();
@@ -942,5 +942,71 @@ public:
       rightSum = rightSum - enteringLeft + leavingLeft;
     }
     return goodRotations;
+  }
+};
+
+class Solution288 {
+public:
+  int countSpecialIntegers(vector<int> &nums) {
+    int n = nums.size();
+    map<int, vector<int>> hsh;
+    for (int i = 0; i < n; i++) {
+      hsh[nums[i]].push_back(i);
+    }
+    int ans = 0;
+    for (auto p : hsh) {
+      auto v = p.second;
+      if (v.size() == 3) {
+        int diff1 = v[1] - v[0];
+        int diff2 = v[2] - v[1];
+        if (diff1 == diff2)
+          ans++;
+      }
+    }
+    return ans;
+  }
+};
+
+class Solution1717 {
+public:
+  int countSpecialIntegers(vector<int> &nums) {
+    int n = nums.size();
+    map<int, vector<int>> hsh;
+    for (int i = 0; i < n; i++) {
+      hsh[nums[i]].push_back(i);
+    }
+    int ans = 0;
+    for (auto p : hsh) {
+      auto v = p.second;
+      if (v.size() >= 3) {
+        int diff1 = v[1] - v[0];
+        int vn = v.size();
+        bool isV = 1;
+        for (int i = 0; i < vn - 1; i++) {
+          if (v[i + 1] - v[i] != diff1)
+            isV = 0;
+        }
+        if (isV)
+          ans++;
+      }
+    }
+    return ans;
+  }
+};
+
+class Solution279287 {
+public:
+  int minDays(int n) {
+    if (n == 0) return 0;
+    vector<int> dp(n + 1, 1e9);
+    dp[0] = -1;
+    for (int i = 1; i <= n; i++) {
+      for (int k = 1; k * (k + 1) / 2 <= i; k++) {
+        int points = k * (k + 1) / 2;
+        int cost = k + 1;
+        dp[i] =min(dp[i], cost + dp[i - points]);
+      }
+    }
+    return dp[n];
   }
 };
