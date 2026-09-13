@@ -997,16 +997,85 @@ public:
 class Solution279287 {
 public:
   int minDays(int n) {
-    if (n == 0) return 0;
+    if (n == 0)
+      return 0;
     vector<int> dp(n + 1, 1e9);
     dp[0] = -1;
     for (int i = 1; i <= n; i++) {
       for (int k = 1; k * (k + 1) / 2 <= i; k++) {
         int points = k * (k + 1) / 2;
         int cost = k + 1;
-        dp[i] =min(dp[i], cost + dp[i - points]);
+        dp[i] = min(dp[i], cost + dp[i - points]);
       }
     }
     return dp[n];
+  }
+};
+
+class Solution91791 {
+public:
+  vector<vector<int>> cyclicShift(int n, vector<vector<int>> grid,
+                                  vector<int> rowShift, vector<int> colShift) {
+    vector<vector<int>> temp(n, vector<int>(n));
+    for (int i = 0; i < n; i++) {
+      int shift = rowShift[i] % n;
+      for (int j = 0; j < n; j++) {
+        int newCol = (j - shift + n) % n;
+        temp[i][newCol] = grid[i][j];
+      }
+    }
+
+    vector<vector<int>> ans(n, vector<int>(n));
+
+    for (int j = 0; j < n; j++) {
+      int shift = colShift[j] % n;
+      for (int i = 0; i < n; i++) {
+        int newRow = (i - shift + n) % n;
+        ans[newRow][j] = temp[i][j];
+      }
+    }
+
+    return ans;
+  }
+};
+
+class Solution9179 {
+public:
+  long long shadowPairs(vector<int> &nums) {
+    int n = nums.size();
+    vector<int> nextSmaller(n, n);
+    stack<int> s;
+
+    for (int i = 0; i < n; ++i) {
+      while (!s.empty() && nums[s.top()] > nums[i]) {
+        nextSmaller[s.top()] = i;
+        s.pop();
+      }
+      s.push(i);
+    }
+
+    map<int, vector<int>> posMap;
+    for (int i = 0; i < n; ++i) {
+      posMap[nums[i]].push_back(i);
+    }
+
+    long long totalShadowPairs = 0;
+    for (int i = 0; i < n; ++i) {
+      int left = i + 1;
+      int right = nextSmaller[i] - 1;
+
+      if (left <= right) {
+        int rangeSize = right - left + 1;
+
+        const vector<int> &indices = posMap[nums[i]];
+        auto it1 = lower_bound(indices.begin(), indices.end(), left);
+        auto it2 = upper_bound(indices.begin(), indices.end(), right);
+        int equalCount = distance(it1, it2);
+
+        totalShadowPairs += (rangeSize - equalCount);
+      }
+    }
+
+    return totalShadowPairs;
   }
 };
