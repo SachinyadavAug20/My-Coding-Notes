@@ -3,8 +3,6 @@
 #include <vector>
 using namespace std;
 
-#define fastio()                                                               \
-  (ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr))
 #define MOD 1000000007
 #define INF ((long long)1e18)
 #define endl '\n'
@@ -14,11 +12,9 @@ using namespace std;
 #define ss second
 // obs
 // 1) if already sorted -> YES
+//
 
 int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
-
   int q;
   cin >> q;
   while (q--) {
