@@ -12,6 +12,7 @@ using namespace std;
 #define ss second
 // obs
 // 1) if already sorted -> YES
+// 2) only position 0 is problem as other is doable
 //
 
 int main() {
