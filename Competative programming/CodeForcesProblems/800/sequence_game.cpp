@@ -13,7 +13,7 @@ using namespace std;
 #define int long long
 
 // obs
-// 1. insert iff a[i-1]>a[i] then inset 1 as it is garented smaller
+// 1. insert iff a[i-1]>a[i] then inset 1 as it is garented smaller or can put a[i] also
 
 signed main() {
     fastio();
@@ -33,6 +33,8 @@ signed main() {
                 ans.push_back(a[i]);
             }else {
                 ans.push_back(1);
+                // OR 
+                // ans.push_back(a[i]);
                 ans.push_back(a[i]);
             }
         }
