@@ -43,4 +43,3 @@ signed main() {
     }
   }
 }
-
