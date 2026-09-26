@@ -1079,3 +1079,65 @@ public:
     return totalShadowPairs;
   }
 };
+
+class
+    Solution27279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729279729 {
+public:
+  int minQueenMoves(vector<int> &source, vector<int> &target) {
+    int sx = source[0], sy = source[1];
+    int tx = target[0], ty = target[1];
+
+    if (sx == tx && sy == ty) {
+      return 0;
+    }
+    if (sx == tx || sy == ty || abs(sx - tx) == abs(sy - ty)) {
+      return 1;
+    }
+    return 2;
+  }
+};
+
+// obs
+// sum of elements of array is constant
+// if sum is same then true else false
+class Solution290w8 {
+public:
+  bool canTransform(vector<int> &source, vector<int> &target) {
+    int ss = 0, st = 0;
+    for (int i : source)
+      ss += i;
+    for (int t : target)
+      st += t;
+    return st == ss;
+    ;
+  }
+};
+
+class SolutionSSSOn {
+public:
+  int longestSubarray(vector<int> &nums, int k) {
+    int n = nums.size();
+    int maxLength = 0;
+
+    for (int i = 0; i < n; ++i) {
+      long long currentSum = 0;
+      vector<bool> seenRemainders(k, false);
+
+      for (int j = i; j < n; ++j) {
+        currentSum += nums[j];
+        int rem = (2LL * nums[j]) % k;
+        if (rem < 0)
+          rem += k;
+        seenRemainders[rem] = true;
+        long long sumRem = currentSum % k;
+        if (sumRem < 0)
+          sumRem += k;
+        if (sumRem == 0 || seenRemainders[sumRem]) {
+          maxLength = max(maxLength, j - i + 1);
+        }
+      }
+    }
+    return maxLength;
+  }
+};
+
