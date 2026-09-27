@@ -1,33 +1,36 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    int t;
-    cin >> t;
-    while (t--) {
-        int n;
-        cin >> n;
-        vector<int> a(n);
-        for (int i = 0; i < n; i++) {
-            cin >> a[i];
-        }
+// obs
+// if all elements same = "NO"
+// else "YES"
+// make example by puting largest at 0th index -> will gurante prefix sum > all element
 
-        if (a[0] == a[n - 1]) {
-            cout << "NO" << endl;
-        } else {
-            cout << "YES" << endl;
-            swap(a[0], a[n - 1]);
-            for (int i = 0; i < n; i++) {
-                cout << a[i] << (i == n - 1 ? "" : " ");
-            }
-            cout << endl;
-        }
-    }
-    return 0;
+void solve() {
+  int n;
+  cin >> n;
+  vector<int> a(n);
+  for (int &x : a) {
+    cin >> x;
+  }
+  if (a[0] == a[n - 1]) {
+    cout << "NO\n";
+    return;
+  }
+  cout << "YES\n";
+  cout << a[n - 1] << " ";
+  for (int i = 0; i < n - 1; i++) {
+    cout << a[i] << " ";
+  }
+  cout << "\n";
 }
 
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(nullptr);
+  int t;
+  cin >> t;
+  while (t--) {
+    solve();
+  }
+}
