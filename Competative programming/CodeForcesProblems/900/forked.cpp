@@ -19,8 +19,8 @@ using namespace std;
 //
 
 signed main() {
-  vector<pair<int, int>> v = {{1, 1}, {1, -1}, {-1, -1}, {-1, 1}};
   fastio();
+  vector<pair<int, int>> v = {{1, 1}, {1, -1}, {-1, -1}, {-1, 1}};
   int t;
   cin >> t;
   while (t--) {
