@@ -19,9 +19,6 @@ using namespace std;
 // any number between min and max is formable
 
 signed main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
     int t;
     cin >> t;
 
