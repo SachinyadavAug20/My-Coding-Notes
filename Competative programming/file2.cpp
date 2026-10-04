@@ -1140,4 +1140,98 @@ public:
     return maxLength;
   }
 };
+class Solution171717171 {
+public:
+  int minRotations(string s) {
+    int ans = 0;
+    int cur = 1;
+    for (char ch : s) {
+      int dd = (ch == '0') ? 10 : (ch - '0');
+      int diff = abs(cur - dd);
+      int rot = min(diff, 10 - diff);
+      ans += rot;
+      cur = dd;
+    }
+    return ans;
+  }
+};
 
+class Solution71711717 {
+public:
+  long long maxAlternatingSum(vector<int> &nums) {
+    const long long NEG = -(1LL << 60);
+    long long ndOdd = NEG, ndEven = NEG;
+    long long dOdd = NEG, dEven = NEG;
+
+    long long ans = NEG;
+
+    for (long long x : nums) {
+      long long newNdOdd = NEG;
+      long long newNdEven = NEG;
+      long long newDOdd = NEG;
+      long long newDEven = NEG;
+
+      newNdOdd = max(newNdOdd, x);
+
+      if (ndOdd != NEG)
+        newNdEven = max(newNdEven, ndOdd - x);
+
+      if (ndEven != NEG)
+        newNdOdd = max(newNdOdd, ndEven + x);
+
+      if (ndOdd != NEG)
+        newDOdd = max(newDOdd, ndOdd);
+
+      if (ndEven != NEG)
+        newDEven = max(newDEven, ndEven);
+
+      if (dOdd != NEG)
+        newDEven = max(newDEven, dOdd - x);
+
+      if (dEven != NEG)
+        newDOdd = max(newDOdd, dEven + x);
+
+      ndOdd = newNdOdd;
+      ndEven = newNdEven;
+      dOdd = newDOdd;
+      dEven = newDEven;
+
+      ans = max({ans, ndOdd, ndEven, dOdd, dEven});
+    }
+
+    return ans;
+  }
+};
+
+class Solution {
+public:
+  int dist(int a, int b) {
+    int x = abs(a - b);
+    return min(x, 10 - x);
+  }
+
+  int minRotations(int n, string s) {
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) a[i] = s[i] - '0';
+    vector<int> edge(n, 0);
+    for (int i = 1; i < n; i++) edge[i] = dist(a[i - 1], a[i]);
+    vector<int> pref(n);
+    pref[0] = dist(0, a[0]);
+    for (int i = 1; i < n; i++) pref[i] = pref[i - 1] + edge[i];
+    vector<int> suffix(n, 0);
+    for (int i = n - 2; i >= 0; i--) suffix[i] = suffix[i + 1] + edge[i + 1];
+    int ans = pref[n - 1];
+    for (int k = 0; k < n; k++) {
+      int cost;
+      if (k == 0) {
+        cost = dist(0, a[n - 1]) + suffix[0];
+      } else {
+        cost = pref[k - 1];
+        cost += dist(a[k - 1], a[n - 1]);
+        cost += suffix[k];
+      }
+      ans = min(ans, cost);
+    }
+    return ans;
+  }
+};
