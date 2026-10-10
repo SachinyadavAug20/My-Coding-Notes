@@ -1203,35 +1203,80 @@ public:
   }
 };
 
+class Solution726723 {
+public:
+  vector<int> maxProductPair(vector<int> &nums, int target) {
+    unordered_map<int, int> seen;
+    long long max_prod = LLONG_MIN;
+    vector<int> result = {-1, -1};
+    bool found = false;
+    for (int k = 0; k < nums.size(); ++k) {
+      int num = nums[k];
+      int comp = target - num;
+      if (seen.count(comp)) {
+        if (num != comp) {
+          int i, j;
+          if (num > comp) {
+            i = k;
+            j = seen[comp];
+          } else {
+            i = seen[comp];
+            j = k;
+          }
+          long long current_prod = 1LL * nums[i] * nums[j];
+          if (!found || current_prod > max_prod) {
+            max_prod = current_prod;
+            result = {i, j};
+            found = true;
+          }
+        }
+      }
+      seen[num] = k;
+    }
+    return result;
+  }
+};
+
+class Solution262722 {
+public:
+  int resilientSubarray(vector<int> &nums, int k) {
+    int n = nums.size();
+    int max_len = 0;
+    int i = 0;
+    while (i < n) {
+      int r = ((nums[i] % k) + k) % k;
+      int j = i;
+      while (j < n && ((nums[j] % k) + k) % k == r) {
+        j++;
+      }
+      int M = j - i;
+      int step = k / std::gcd(r, k);
+      int L = ((M - 1) / step) * step + 1;
+      max_len = max(max_len, L);
+      i = j;
+    }
+    return max_len;
+  }
+};
+
 class Solution {
 public:
-  int dist(int a, int b) {
-    int x = abs(a - b);
-    return min(x, 10 - x);
-  }
-
-  int minRotations(int n, string s) {
-    vector<int> a(n);
-    for (int i = 0; i < n; i++) a[i] = s[i] - '0';
-    vector<int> edge(n, 0);
-    for (int i = 1; i < n; i++) edge[i] = dist(a[i - 1], a[i]);
-    vector<int> pref(n);
-    pref[0] = dist(0, a[0]);
-    for (int i = 1; i < n; i++) pref[i] = pref[i - 1] + edge[i];
-    vector<int> suffix(n, 0);
-    for (int i = n - 2; i >= 0; i--) suffix[i] = suffix[i + 1] + edge[i + 1];
-    int ans = pref[n - 1];
-    for (int k = 0; k < n; k++) {
-      int cost;
-      if (k == 0) {
-        cost = dist(0, a[n - 1]) + suffix[0];
-      } else {
-        cost = pref[k - 1];
-        cost += dist(a[k - 1], a[n - 1]);
-        cost += suffix[k];
+  int resilientSubarray(vector<int> &nums, int k) {
+    int n = nums.size();
+    int max_len = 0;
+    int i = 0;
+    while (i < n) {
+      int r = ((nums[i] % k) + k) % k;
+      int j = i;
+      while (j < n && ((nums[j] % k) + k) % k == r) {
+        j++;
       }
-      ans = min(ans, cost);
+      int M = j - i;
+      int step = k / std::gcd(r, k);
+      int L = ((M - 1) / step) * step + 1;
+      max_len = max(max_len, L);
+      i = j;
     }
-    return ans;
+    return max_len;
   }
 };
