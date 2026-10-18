@@ -1259,7 +1259,7 @@ public:
   }
 };
 
-class Solution {
+class Solution2917391719 {
 public:
   int resilientSubarray(vector<int> &nums, int k) {
     int n = nums.size();
@@ -1279,4 +1279,104 @@ public:
     }
     return max_len;
   }
+};
+
+class Solution919179179 {
+public:
+    int minDeletions(vector<int>& nums) {
+        int n = nums.size();
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            while (i +1< n && nums[i] == nums[i+1]) {
+                i++;
+                ans++;
+            }
+        }
+        return ans;
+    }
+};
+
+class Solution97191 {
+public:
+    vector<int> lastVisitedCell(vector<vector<char>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+        int r = 0, c = 0;
+        while (true) {
+            char dir = grid[r][c];
+            grid[r][c] = '#';
+            int nr = r, nc = c;
+            if (dir == 'L') nc--;
+            else if (dir == 'R') nc++;
+            else if (dir == 'U') nr--;
+            else if (dir == 'D') nr++;
+            if (nr < 0 || nr >= m || nc < 0 || nc >= n || grid[nr][nc] == '#') {
+                return {r, c};
+            }
+            r = nr;
+            c = nc;
+        }
+        return {-1, -1};
+    }
+};
+
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class Solution97191791791 {
+private:
+    bool isNextColor(char u_color, char v_color) { // order is R, B, W ...
+        if (u_color == 'R') return v_color == 'B';
+        if (u_color == 'B') return v_color == 'W';
+        if (u_color == 'W') return v_color == 'R';
+        return false;
+    }
+
+    bool dfs(int u, int p, const vector<vector<int>>& adj, const string& colors) {
+        int children = 0;
+        for (int v : adj[u]) {
+            if (v == p) continue;
+            children++;
+            if (children > 2 || !isNextColor(colors[u], colors[v])) return false;
+            if (!dfs(v, u, adj, colors)) return false;
+        }
+        return true;
+    }
+
+public:
+    int findColoredRoot(vector<vector<int>>& edges, string colors) {
+        int n = colors.size();
+        if (n == 1) return 0;
+        vector<vector<int>> adj(n);
+        vector<int> in_degree(n, 0);
+        for (const auto& edge : edges) {
+            int u = edge[0];
+            int v = edge[1];
+            if (colors[u] == colors[v]) {
+                return -1;
+            }
+            if (isNextColor(colors[u], colors[v])) {
+                in_degree[v]++;
+            } else {
+                in_degree[u]++;
+            }
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+
+        int candidate = -1;
+        for (int i = 0; i < n; ++i) {
+            if (in_degree[i] == 0) {
+                candidate = i;
+                break;
+            }
+        }
+        if (candidate == -1) return -1;
+        if (dfs(candidate, -1, adj, colors)) {
+            return candidate;
+        }
+        return -1;
+    }
 };
