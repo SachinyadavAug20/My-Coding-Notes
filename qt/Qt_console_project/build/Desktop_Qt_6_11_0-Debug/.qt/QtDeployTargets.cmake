@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_Qt_console_project_FILE /home/sachin/Sachin/learning/programming/qt/Qt_console_project/build/Desktop_Qt_6_11_0-Debug/Qt_console_project)
+set(__QT_DEPLOY_TARGET_Qt_console_project_TYPE EXECUTABLE)

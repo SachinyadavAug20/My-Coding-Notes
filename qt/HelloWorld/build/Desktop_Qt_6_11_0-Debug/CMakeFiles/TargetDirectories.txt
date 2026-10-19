@@ -1,0 +1,9 @@
+/home/sachin/Sachin/learning/programming/qt/HelloWorld/build/Desktop_Qt_6_11_0-Debug/CMakeFiles/HelloWorld.dir
+/home/sachin/Sachin/learning/programming/qt/HelloWorld/build/Desktop_Qt_6_11_0-Debug/CMakeFiles/edit_cache.dir
+/home/sachin/Sachin/learning/programming/qt/HelloWorld/build/Desktop_Qt_6_11_0-Debug/CMakeFiles/rebuild_cache.dir
+/home/sachin/Sachin/learning/programming/qt/HelloWorld/build/Desktop_Qt_6_11_0-Debug/CMakeFiles/list_install_components.dir
+/home/sachin/Sachin/learning/programming/qt/HelloWorld/build/Desktop_Qt_6_11_0-Debug/CMakeFiles/install.dir
+/home/sachin/Sachin/learning/programming/qt/HelloWorld/build/Desktop_Qt_6_11_0-Debug/CMakeFiles/install/local.dir
+/home/sachin/Sachin/learning/programming/qt/HelloWorld/build/Desktop_Qt_6_11_0-Debug/CMakeFiles/install/strip.dir
+/home/sachin/Sachin/learning/programming/qt/HelloWorld/build/Desktop_Qt_6_11_0-Debug/CMakeFiles/HelloWorld_autogen_timestamp_deps.dir
+/home/sachin/Sachin/learning/programming/qt/HelloWorld/build/Desktop_Qt_6_11_0-Debug/CMakeFiles/HelloWorld_autogen.dir
