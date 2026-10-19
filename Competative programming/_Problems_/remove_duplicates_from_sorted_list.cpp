@@ -21,6 +21,9 @@ using namespace std;
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
+        if(head == NULL || head->next == NULL){
+            return head;
+        }
         // as sorted so duplicates are adjacent
         ListNode *curr = head;
         while(curr->next != NULL){
