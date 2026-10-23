@@ -11,6 +11,9 @@ using namespace std;
 #define ss second
 #define int long long
 
+// obs
+// should make it balanced like if starts with a then, should end with a like aaabababa is balanced
+
 signed main() {
     fastio();
     int t;
@@ -19,6 +22,12 @@ signed main() {
         string s;
         cin >> s;
         int n = s.size();
+        if(s[0] == s[n-1]){
+            cout << s << endl;
+        }else{
+            s[0] = s[n-1];
+            cout << s << endl;
+        }
     }
     return 0;
 }
