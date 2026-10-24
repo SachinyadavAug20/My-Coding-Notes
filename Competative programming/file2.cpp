@@ -1320,11 +1320,6 @@ public:
     }
 };
 
-#include <vector>
-#include <string>
-
-using namespace std;
-
 class Solution97191791791 {
 private:
     bool isNextColor(char u_color, char v_color) { // order is R, B, W ...
@@ -1378,5 +1373,70 @@ public:
             return candidate;
         }
         return -1;
+    }
+};
+
+
+class Solution27272 {
+public:
+    int peakValleyDifference(vector<int>& nums) {
+        int peak = 0, valley = 0;
+        for (int i = 1; i < nums.size()-1; i++) {
+            if (nums[i-1]<nums[i] && nums[i]>nums[i+1]) {
+                peak += nums[i];
+            }
+            if (nums[i-1]>nums[i] && nums[i]<nums[i+1]) {
+                valley += nums[i];
+            }
+        }
+        return abs(peak-valley);
+    }
+};
+
+class Solution27727 {
+public:
+    long long countSubarrays(vector<int>& nums, int minK, int maxK) {
+        long long ans = 0;
+        long long currS = 0;
+        for (int num : nums) {
+            if (num >= minK && num <= maxK) {
+                currS++;
+                ans += currS;
+            } else {
+                currS = 0;
+            }
+        }
+        return ans;
+    }
+};
+
+class Solution17171711 {
+public:
+    int countMagicalPairs(string s) {
+        int n = s.size();
+        long long ans = 0;
+        for (int j = 0; j < n - 1; j++) {
+            int freq[27] = {0};
+            int mask1 = 0, distinct1 = 0;
+            for (int i = j; i >= 0; i--) {
+                int bit = 1 << (s[i] - 'a');
+                if (!(mask1 & bit)) {
+                    mask1 |= bit;
+                    distinct1++;
+                }
+                freq[distinct1]++;
+            }
+            int mask2 = 0, distinct2 = 0;
+            for (int k = j + 1; k < n; k++) {
+                int bit = 1 << (s[k] - 'a');
+                if (!(mask2 & bit)) {
+                    mask2 |= bit;
+                    distinct2++;
+                }
+                ans += freq[distinct2];
+            }
+        }
+
+        return ans;
     }
 };
