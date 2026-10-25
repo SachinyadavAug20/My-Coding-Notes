@@ -1410,7 +1410,7 @@ public:
     }
 };
 
-class Solution17171711 {
+class Solution {
 public:
     int countMagicalPairs(string s) {
         int n = s.size();
