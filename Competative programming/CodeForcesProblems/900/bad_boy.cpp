@@ -11,7 +11,17 @@ using namespace std;
 #define ss second
 #define int long long
 
+// obs
+// Always placing the yo-yos at opposite corners achieves the maximum distance
+
 signed main() {
     fastio();
+    int t;
+    cin>>t;
+    while(t--){
+        int n, m, i, j;
+        cin >> n >> m >> i >> j;
+        cout << 1 << " " << 1 << " " << n << " " << m << endl;
+    }
     return 0;
 }
