@@ -15,36 +15,23 @@ using namespace std;
 class Solution {
     // obs
     // will count using same => 
-public:
-    static const int N=1e5+10;
-    int dp[N];
-    int steps=0;
-    int fun(int amount, vector<int>& coins) {
-        if (amount == 0){
-            steps++;
-            return 0;
-        } 
-        if(dp[amount]!=-1){
-            if(dp[amount]!=INT_MAX) steps++;
-            return dp[amount];
+    // problem : give all permutation need only combination
+    // solve: maintain order 
+    int dp[305][5005];
+    int fun(int index, int amount, vector<int>& coins) {
+        if (amount == 0) return 1;
+        if (index < 0) return 0;
+        if (dp[index][amount] != -1) return dp[index][amount];
+        int ways = fun(index - 1, amount, coins);
+        if (amount >= coins[index]) {
+            ways += fun(index, amount - coins[index], coins);
         }
-        
-        int ans = INT_MAX;
-        for (int coin : coins) {
-            if (amount - coin >= 0) {
-                int res = fun(amount - coin, coins);
-                if (res != INT_MAX) {
-                    ans = min(ans, res + 1);
-                }
-            }
-        }
-        return dp[amount]=ans;
+        return dp[index][amount] = ways;
     }
 
-    int change(int amount,vector<int>& coins) {
-        steps=0;
-        memset(dp,-1,sizeof(dp));
-        return steps;
+public:
+    int change(int amount, vector<int>& coins) {
+        memset(dp, -1, sizeof(dp));
+        return fun((int)coins.size() - 1, amount, coins);
     }
 };
-
