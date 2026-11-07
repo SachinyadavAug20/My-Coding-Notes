@@ -1283,160 +1283,260 @@ public:
 
 class Solution919179179 {
 public:
-    int minDeletions(vector<int>& nums) {
-        int n = nums.size();
-        int ans = 0;
-        for (int i = 0; i < n; i++) {
-            while (i +1< n && nums[i] == nums[i+1]) {
-                i++;
-                ans++;
-            }
-        }
-        return ans;
+  int minDeletions(vector<int> &nums) {
+    int n = nums.size();
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+      while (i + 1 < n && nums[i] == nums[i + 1]) {
+        i++;
+        ans++;
+      }
     }
+    return ans;
+  }
 };
 
 class Solution97191 {
 public:
-    vector<int> lastVisitedCell(vector<vector<char>>& grid) {
-        int m = grid.size();
-        int n = grid[0].size();
-        int r = 0, c = 0;
-        while (true) {
-            char dir = grid[r][c];
-            grid[r][c] = '#';
-            int nr = r, nc = c;
-            if (dir == 'L') nc--;
-            else if (dir == 'R') nc++;
-            else if (dir == 'U') nr--;
-            else if (dir == 'D') nr++;
-            if (nr < 0 || nr >= m || nc < 0 || nc >= n || grid[nr][nc] == '#') {
-                return {r, c};
-            }
-            r = nr;
-            c = nc;
-        }
-        return {-1, -1};
+  vector<int> lastVisitedCell(vector<vector<char>> &grid) {
+    int m = grid.size();
+    int n = grid[0].size();
+    int r = 0, c = 0;
+    while (true) {
+      char dir = grid[r][c];
+      grid[r][c] = '#';
+      int nr = r, nc = c;
+      if (dir == 'L')
+        nc--;
+      else if (dir == 'R')
+        nc++;
+      else if (dir == 'U')
+        nr--;
+      else if (dir == 'D')
+        nr++;
+      if (nr < 0 || nr >= m || nc < 0 || nc >= n || grid[nr][nc] == '#') {
+        return {r, c};
+      }
+      r = nr;
+      c = nc;
     }
+    return {-1, -1};
+  }
 };
 
 class Solution97191791791 {
 private:
-    bool isNextColor(char u_color, char v_color) { // order is R, B, W ...
-        if (u_color == 'R') return v_color == 'B';
-        if (u_color == 'B') return v_color == 'W';
-        if (u_color == 'W') return v_color == 'R';
+  bool isNextColor(char u_color, char v_color) { // order is R, B, W ...
+    if (u_color == 'R')
+      return v_color == 'B';
+    if (u_color == 'B')
+      return v_color == 'W';
+    if (u_color == 'W')
+      return v_color == 'R';
+    return false;
+  }
+
+  bool dfs(int u, int p, const vector<vector<int>> &adj, const string &colors) {
+    int children = 0;
+    for (int v : adj[u]) {
+      if (v == p)
+        continue;
+      children++;
+      if (children > 2 || !isNextColor(colors[u], colors[v]))
+        return false;
+      if (!dfs(v, u, adj, colors))
         return false;
     }
-
-    bool dfs(int u, int p, const vector<vector<int>>& adj, const string& colors) {
-        int children = 0;
-        for (int v : adj[u]) {
-            if (v == p) continue;
-            children++;
-            if (children > 2 || !isNextColor(colors[u], colors[v])) return false;
-            if (!dfs(v, u, adj, colors)) return false;
-        }
-        return true;
-    }
+    return true;
+  }
 
 public:
-    int findColoredRoot(vector<vector<int>>& edges, string colors) {
-        int n = colors.size();
-        if (n == 1) return 0;
-        vector<vector<int>> adj(n);
-        vector<int> in_degree(n, 0);
-        for (const auto& edge : edges) {
-            int u = edge[0];
-            int v = edge[1];
-            if (colors[u] == colors[v]) {
-                return -1;
-            }
-            if (isNextColor(colors[u], colors[v])) {
-                in_degree[v]++;
-            } else {
-                in_degree[u]++;
-            }
-            adj[u].push_back(v);
-            adj[v].push_back(u);
-        }
-
-        int candidate = -1;
-        for (int i = 0; i < n; ++i) {
-            if (in_degree[i] == 0) {
-                candidate = i;
-                break;
-            }
-        }
-        if (candidate == -1) return -1;
-        if (dfs(candidate, -1, adj, colors)) {
-            return candidate;
-        }
+  int findColoredRoot(vector<vector<int>> &edges, string colors) {
+    int n = colors.size();
+    if (n == 1)
+      return 0;
+    vector<vector<int>> adj(n);
+    vector<int> in_degree(n, 0);
+    for (const auto &edge : edges) {
+      int u = edge[0];
+      int v = edge[1];
+      if (colors[u] == colors[v]) {
         return -1;
+      }
+      if (isNextColor(colors[u], colors[v])) {
+        in_degree[v]++;
+      } else {
+        in_degree[u]++;
+      }
+      adj[u].push_back(v);
+      adj[v].push_back(u);
     }
-};
 
+    int candidate = -1;
+    for (int i = 0; i < n; ++i) {
+      if (in_degree[i] == 0) {
+        candidate = i;
+        break;
+      }
+    }
+    if (candidate == -1)
+      return -1;
+    if (dfs(candidate, -1, adj, colors)) {
+      return candidate;
+    }
+    return -1;
+  }
+};
 
 class Solution27272 {
 public:
-    int peakValleyDifference(vector<int>& nums) {
-        int peak = 0, valley = 0;
-        for (int i = 1; i < nums.size()-1; i++) {
-            if (nums[i-1]<nums[i] && nums[i]>nums[i+1]) {
-                peak += nums[i];
-            }
-            if (nums[i-1]>nums[i] && nums[i]<nums[i+1]) {
-                valley += nums[i];
-            }
-        }
-        return abs(peak-valley);
+  int peakValleyDifference(vector<int> &nums) {
+    int peak = 0, valley = 0;
+    for (int i = 1; i < nums.size() - 1; i++) {
+      if (nums[i - 1] < nums[i] && nums[i] > nums[i + 1]) {
+        peak += nums[i];
+      }
+      if (nums[i - 1] > nums[i] && nums[i] < nums[i + 1]) {
+        valley += nums[i];
+      }
     }
+    return abs(peak - valley);
+  }
 };
 
 class Solution27727 {
 public:
-    long long countSubarrays(vector<int>& nums, int minK, int maxK) {
-        long long ans = 0;
-        long long currS = 0;
-        for (int num : nums) {
-            if (num >= minK && num <= maxK) {
-                currS++;
-                ans += currS;
-            } else {
-                currS = 0;
-            }
-        }
-        return ans;
+  long long countSubarrays(vector<int> &nums, int minK, int maxK) {
+    long long ans = 0;
+    long long currS = 0;
+    for (int num : nums) {
+      if (num >= minK && num <= maxK) {
+        currS++;
+        ans += currS;
+      } else {
+        currS = 0;
+      }
     }
+    return ans;
+  }
 };
+
+class Solutionskjd {
+public:
+  int countMagicalPairs(string s) {
+    int n = s.size();
+    long long ans = 0;
+    for (int j = 0; j < n - 1; j++) {
+      int freq[27] = {0};
+      int mask1 = 0, distinct1 = 0;
+      for (int i = j; i >= 0; i--) {
+        int bit = 1 << (s[i] - 'a');
+        if (!(mask1 & bit)) {
+          mask1 |= bit;
+          distinct1++;
+        }
+        freq[distinct1]++;
+      }
+      int mask2 = 0, distinct2 = 0;
+      for (int k = j + 1; k < n; k++) {
+        int bit = 1 << (s[k] - 'a');
+        if (!(mask2 & bit)) {
+          mask2 |= bit;
+          distinct2++;
+        }
+        ans += freq[distinct2];
+      }
+    }
+
+    return ans;
+  }
+};
+
+class Solution771 {
+public:
+  long long countValidSubstrings(string s) {
+    long long ans = 0;
+    int n = s.size();
+    int last_abc = -1;
+
+    for (int i = 0; i < n; i++) {
+      if (i >= 2 && s[i - 2] == 'a' && s[i - 1] == 'b' && s[i] == 'c') {
+        last_abc = i - 2;
+      }
+      ans += (i - last_abc);
+    }
+
+    return ans;
+  }
+};
+
+class Solution7278277 {
+  struct Block {
+    int type;
+    int color;
+    int count;
+  };
+
+public:
+  bool canRemoveAll(vector<int> &types, vector<int> &colors,
+                    vector<int> &groupSize) {
+    vector<Block> st;
+    for (int i = 0; i < types.size(); ++i) {
+      int t = types[i];
+      int c = colors[i];
+      if (!st.empty() && st.back().type == t && st.back().color == c) {
+        st.back().count++;
+      } else {
+        st.push_back({t, c, 1});
+      }
+
+      if (st.back().count == groupSize[t]) {
+        st.pop_back();
+      }
+    }
+    return st.empty();
+  }
+}; // candy crsh
+
+class Solution87172728 {
+public:
+  long long countValidSubstrings(string s) {
+    int n = s.size();
+    long long ans = 0;
+    int last_a = -1;
+    int last_a_before_b = -1;
+    int bad_start = -1;
+    for (int r = 0; r < n; ++r) {
+      if (s[r] == 'a') {
+        last_a = r;
+      } else if (s[r] == 'b') {
+        last_a_before_b = last_a;
+      } else if (s[r] == 'c') {
+        bad_start = max(bad_start, last_a_before_b);
+      }
+
+      ans += (r - bad_start);
+    }
+    return ans;
+  }
+}; // now subsequence instead of sub-string
 
 class Solution {
 public:
-    int countMagicalPairs(string s) {
-        int n = s.size();
-        long long ans = 0;
-        for (int j = 0; j < n - 1; j++) {
-            int freq[27] = {0};
-            int mask1 = 0, distinct1 = 0;
-            for (int i = j; i >= 0; i--) {
-                int bit = 1 << (s[i] - 'a');
-                if (!(mask1 & bit)) {
-                    mask1 |= bit;
-                    distinct1++;
-                }
-                freq[distinct1]++;
-            }
-            int mask2 = 0, distinct2 = 0;
-            for (int k = j + 1; k < n; k++) {
-                int bit = 1 << (s[k] - 'a');
-                if (!(mask2 & bit)) {
-                    mask2 |= bit;
-                    distinct2++;
-                }
-                ans += freq[distinct2];
-            }
-        }
-
-        return ans;
+  bool repeatedStringMatch(string a, string b, int x, int y) {
+    if (1LL * b.size() * y > 1LL * a.size() * x) {
+      return false;
     }
+    string full_a = "";
+    full_a.reserve(1LL * a.size() * x);
+    for (int i = 0; i < x; ++i) {
+      full_a += a;
+    }
+    string full_b = "";
+    full_b.reserve(1LL * b.size() * y);
+    for (int i = 0; i < y; ++i) {
+      full_b += b;
+    }
+    return full_a.find(full_b) != string::npos;
+  }
 };
